@@ -1,0 +1,105 @@
+.Main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.Main h1,
+h2,
+h3 {
+    color: #1a1f49;
+}
+
+.Main .title-section {
+    margin-bottom: 2rem;
+}
+.Main .title {
+    font-family: Huji-regular;
+    color: #1a1f49;
+}
+.Main .title.welcome {
+    font-size: 1.7rem;
+}
+.Main .title.campus {
+    color: #1477b8;
+    font-size: 3.1rem;
+}
+.Main .title.welcome:last-child {
+    color: #1477b8;
+    font-size: 2.1rem;
+}
+.Main .logo-line {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.Main h2.title.cta {
+    margin-bottom: 0.7rem;
+    font-size: 1.7rem;
+}
+
+.Main span.without {
+    color: rgb(130, 14, 43);
+}
+
+.Main .input-text {
+    direction: ltr;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    border-radius: 50px;
+    border: 0;
+    width: 17rem;
+    font-family: "Assistant", sans-serif;
+    padding: 0.4rem 0.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    color: #065f9a;
+    transition: all 100ms ease-in;
+    line-height: 1rem;
+}
+.Main .input-text:focus {
+    outline: 0;
+    border-color: #286eba;
+}
+
+.Main .numpad {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.Main .numpad .row {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.Main form div.btn,
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    margin: 0.2rem;
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0.8rem;
+    border: #1a1f49 2px solid;
+    cursor: pointer;
+}
+
+.Main form div.btn:active,
+button:active {
+    background-color: #1a1f49;
+    color: #fff;
+    transition: 100ms;
+    transform: scale(0.9);
+}

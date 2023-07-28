@@ -1,0 +1,18 @@
+@font-face {
+    src: url("assets/fonts/Huji-Regular.otf");
+    font-family: Huji-regular;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Huji-regular, Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+    direction: rtl;
+    background-color: #96cae7;
+    height: 100%;
+}

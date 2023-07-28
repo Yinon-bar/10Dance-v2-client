@@ -1,0 +1,30 @@
+.Header {
+    /* height: 5rem; */
+}
+
+.Header .logo-line {
+    /* position: absolute; */
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.Header .logos-flex {
+    width: 100%;
+    padding: 20px 20px 0px 20px;
+}
+.Header .uni-logos,
+.logos-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Header img.logo.logo-uni {
+    height: 100px;
+}
+.Header img.logo.logo-agi {
+    height: 70px;
+    border-radius: 5px;
+}
+.Header img.logo.logo-10dance {
+    height: 70px;
+}
