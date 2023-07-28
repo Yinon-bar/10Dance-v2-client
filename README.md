@@ -1,4 +1,5 @@
 # 10Dance-v2-client
 
-## Client start - "npm start"
-## Server start - "npm start"
+## How to run the project
+### Client start - "npm start"
+### Server start - "npm start"
