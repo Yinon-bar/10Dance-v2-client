@@ -6,6 +6,25 @@
     text-align: center;
 }
 
+.loading {
+    /* z-index: 1; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+}
+
+.loading h1 {
+    font-size: 4rem;
+    color: #fff;
+}
+
 .Main h1,
 h2,
 h3 {

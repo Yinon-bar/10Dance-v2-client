@@ -5,20 +5,25 @@ import NumberContext from "../../Context/NumberContext";
 import axios from "axios";
 
 function Main() {
+    const [inputValue, setInputValue] = useState("");
+    const [isPending, setIsPending] = useState(false);
     const sendId = (e) => {
         e.preventDefault();
         const tzId = e.target.elements.tzId.value;
         console.log(e.target.elements.tzId.value);
-
-        axios
-            .get("http://localhost:3001/api/attendees/" + tzId, {
-                headers: { "Content-Type": "application/json" },
-            })
-            .then((resp) => console.log(resp.data))
-            .catch((err) => console.log(err));
+        setIsPending(true);
+        setTimeout(() => {
+            axios
+                .get("http://localhost:3001/api/attendees/" + tzId, {
+                    headers: { "Content-Type": "application/json" },
+                })
+                .then((resp) => {
+                    console.log(resp.data);
+                    setIsPending(false);
+                })
+                .catch((err) => console.log(err));
+        }, 1000);
     };
-
-    const [inputValue, setInputValue] = useState("");
 
     const insertToInput = (e) => {
         console.log(e);
@@ -29,6 +34,11 @@ function Main() {
         <NumberContext.Provider
             value={{ inputValue: inputValue, setInputValue: setInputValue }}
         >
+            {isPending && (
+                <div className="loading">
+                    <h1>טוען</h1>
+                </div>
+            )}
             <div className="Main">
                 <div className="title wrapper">
                     <div className="title-section">
