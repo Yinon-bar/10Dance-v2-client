@@ -10,7 +10,7 @@ function Main() {
     const sendId = (e) => {
         e.preventDefault();
         const tzId = e.target.elements.tzId.value;
-        console.log(e.target.elements.tzId.value);
+        // console.log(e.target.elements.tzId.value);
         setIsPending(true);
         setTimeout(() => {
             axios
