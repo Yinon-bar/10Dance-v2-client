@@ -1,0 +1,42 @@
+.PrintAtt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.PrintAtt .name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PrintAtt .name h1,
+h2 {
+    display: none;
+    margin: 0.5rem 0.5rem;
+}
+
+@media print {
+    .Header {
+        display: none;
+    }
+    .Main {
+        display: none;
+    }
+    .PrintAtt .name h1,
+    h2 {
+        display: inline-block;
+        margin: 0.5rem 0.3rem;
+    }
+}
+
+@page {
+    size: 100mm 62mm;
+    margin: 0mm;
+}

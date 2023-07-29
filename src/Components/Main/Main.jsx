@@ -3,26 +3,42 @@ import { useState } from "react";
 import ListNumpad from "../NumPad/ListNumpad/ListNumpad";
 import NumberContext from "../../Context/NumberContext";
 import axios from "axios";
+import PrintAtt from "../PrintAtt/PrintAtt";
 
 function Main() {
     const [inputValue, setInputValue] = useState("");
-    const [isPending, setIsPending] = useState(false);
+    const [msg, setMsg] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [printAtt, setPrintAtt] = useState(false);
+    const [attendee, setAttendee] = useState([]);
+
+    const showMsg = (arg, status = 1) => {
+        setMsg(arg);
+        setTimeout(() => {
+            setMsg(null);
+            status == 1 && setPrintAtt(true);
+            setInputValue("");
+        }, 3000);
+    };
+
     const sendId = (e) => {
         e.preventDefault();
         const tzId = e.target.elements.tzId.value;
         // console.log(e.target.elements.tzId.value);
-        setIsPending(true);
-        setTimeout(() => {
-            axios
-                .get("http://localhost:3001/api/attendees/" + tzId, {
-                    headers: { "Content-Type": "application/json" },
-                })
-                .then((resp) => {
-                    console.log(resp.data);
-                    setIsPending(false);
-                })
-                .catch((err) => console.log(err));
-        }, 1000);
+        setLoading(true);
+        axios
+            .get("http://localhost:3001/api/attendees/" + tzId, {
+                headers: { "Content-Type": "application/json" },
+            })
+            .then((resp) => {
+                console.log(resp.data);
+                setAttendee(resp.data);
+                setLoading(false);
+                resp.data.length > 0
+                    ? showMsg("נרשמת בהצלחה!")
+                    : showMsg("אינך רשום במערכת, אנא גש לעמדת הרישום", 0);
+            })
+            .catch((err) => console.log(err));
     };
 
     const insertToInput = (e) => {
@@ -34,11 +50,17 @@ function Main() {
         <NumberContext.Provider
             value={{ inputValue: inputValue, setInputValue: setInputValue }}
         >
-            {isPending && (
+            {msg && (
                 <div className="loading">
-                    <h1>טוען</h1>
+                    <h1>{msg}</h1>
                 </div>
             )}
+            {loading && (
+                <div className="loading">
+                    <h1>טוען נתונים...</h1>
+                </div>
+            )}
+            {printAtt && <PrintAtt attendee={attendee[0]} />}
             <div className="Main">
                 <div className="title wrapper">
                     <div className="title-section">
