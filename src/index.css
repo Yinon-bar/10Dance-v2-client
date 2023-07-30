@@ -38,3 +38,7 @@ body,
     background-color: #e1eef8;
     color: #09536a;
 }
+
+a {
+    text-decoration: none;
+}
