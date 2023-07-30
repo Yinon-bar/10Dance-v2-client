@@ -11,8 +11,30 @@
 }
 
 html,
-body {
+body,
+#root {
     direction: rtl;
     background-color: #96cae7;
     height: 100%;
+}
+
+.container {
+    width: 1400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: unset;
+    height: unset;
+}
+
+.btn-primary {
+    background-color: #e1eef8;
+    color: #09536a;
 }

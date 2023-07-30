@@ -1,0 +1,28 @@
+.HeaderAdmin {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #20718b;
+}
+
+.HeaderAdmin .container .content {
+    padding: 1rem 0rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.HeaderAdmin .container .content h1,
+h2,
+h3 {
+    color: #fff;
+}
+
+.HeaderAdmin .container .content .btn-group {
+    width: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
