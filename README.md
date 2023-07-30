@@ -1,5 +1,6 @@
 # 10Dance-v2-client
 
 ## How to run the project
-### Client start - "npm start"
+### 1. Run "npm i" in the console
+### 2. Client start - "npm start"
 
