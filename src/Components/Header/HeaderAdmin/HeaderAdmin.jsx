@@ -8,6 +8,9 @@ function HeaderAdmin() {
                     <h3>שלום ינון בר</h3>
                     <div className="btn-group">
                         <button className="btn btn-primary">
+                            יצירת אירוע חדש
+                        </button>
+                        <button className="btn btn-primary">
                             למסך קבלת פנים
                         </button>
                         <button className="btn btn-primary">אודות</button>

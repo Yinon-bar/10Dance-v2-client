@@ -6,11 +6,23 @@
     background-color: #2a3d43;
 }
 
-.Admin .container .content {
+.Admin .container {
+    height: 100%;
+}
+
+.Admin > .container > .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     color: #fff;
+    height: 100%;
 }
 
 .Admin .container .content h1 {
+    margin: 3rem;
+}
+
+.Admin > .container > .content button {
     margin-top: 1rem;
 }
