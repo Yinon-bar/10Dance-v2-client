@@ -39,7 +39,7 @@ function Admin() {
                         <option defaultChecked hidden value="">
                             ללא
                         </option>
-                        <option value="present-day">יום עיון</option>
+                        <option value="dec_geo">יום עיון</option>
                         <option value="attendees">כנס גיאוגרפיה</option>
                     </select>
                     <AttTable attendee={attendee} />
