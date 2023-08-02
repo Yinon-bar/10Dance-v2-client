@@ -6,6 +6,7 @@ import AttTable from "./AttTable/AttTable";
 
 function Admin() {
     const [attendee, setAttendee] = useState([]);
+    const [tables, setTables] = useState([]);
 
     const handleEvent = (e) => {
         console.log(e.target.value);
@@ -22,6 +23,15 @@ function Admin() {
 
     useEffect(() => {
         // להוסיף לפה קריאה של כל הטבלאות שיש בדאטהבייס
+        axios
+            .get("http://localhost:3001/api/tables", {
+                headers: { "Content-Type": "application/json" },
+            })
+            .then((resp) => {
+                console.log(resp.data);
+                setTables(resp.data);
+            })
+            .catch((err) => console.log(err));
     }, []);
 
     return (

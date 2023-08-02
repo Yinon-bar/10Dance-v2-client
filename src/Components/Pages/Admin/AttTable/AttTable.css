@@ -3,7 +3,7 @@
     width: 100%;
     overflow-y: scroll;
     margin: 1rem;
-    padding: 1rem;
+    /* padding: 1rem; */
 }
 
 .AttTable table {
