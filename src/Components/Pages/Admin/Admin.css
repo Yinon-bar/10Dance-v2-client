@@ -23,6 +23,11 @@
     margin: 3rem;
 }
 
+.Admin > .container > .content > h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
 .Admin > .container > .content button {
     margin-top: 1rem;
 }

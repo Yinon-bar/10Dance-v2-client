@@ -1,0 +1,43 @@
+.AttTable {
+    height: 60%;
+    width: 100%;
+    overflow-y: scroll;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.AttTable table {
+    border-collapse: collapse;
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    color: #09536a;
+}
+
+.AttTable table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.AttTable table thead tr {
+    font-size: 1.4rem;
+}
+
+.AttTable table thead tr th {
+    padding: 0.4rem;
+}
+
+.AttTable table tbody tr {
+    cursor: pointer;
+    font-size: 1.2rem;
+    border: 1px solid #2a55635b;
+}
+
+.AttTable table tbody tr:hover {
+    transition: 0.1s ease-in-out;
+    background-color: #09536a;
+    color: #ffffff;
+}
+
+.AttTable table tbody tr td {
+    padding: 0.3rem;
+}
