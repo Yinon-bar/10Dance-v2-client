@@ -14,6 +14,10 @@ function NewEvent() {
                             <input type="text" name="" id="" />
                         </label>
                         <label>
+                            כותרת האירוע (יופיע במסך קבלת הפנים)
+                            <input type="text" name="" id="" />
+                        </label>
+                        <label>
                             העלאת לוגו האירוע
                             <input type="file" name="" id="" />
                         </label>
