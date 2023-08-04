@@ -9,13 +9,13 @@ function Admin() {
     const [tables, setTables] = useState([]);
 
     const handleEvent = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         axios
             .get("http://localhost:3001/api/" + e.target.value, {
                 headers: { "Content-Type": "application/json" },
             })
             .then((resp) => {
-                console.log(resp.data);
+                // console.log(resp.data);
                 setAttendee(resp.data);
             })
             .catch((err) => console.log(err));
@@ -28,7 +28,7 @@ function Admin() {
                 headers: { "Content-Type": "application/json" },
             })
             .then((resp) => {
-                console.log(resp.data);
+                // console.log(resp.data);
                 setTables(resp.data);
             })
             .catch((err) => console.log(err));
@@ -49,8 +49,11 @@ function Admin() {
                         <option defaultChecked hidden value="">
                             ללא
                         </option>
-                        <option value="dec_geo">יום עיון</option>
-                        <option value="attendees">כנס גיאוגרפיה</option>
+                        {tables.map((table, index) => (
+                            <option key={index} value={table.Tables_in_10dance}>
+                                {table.Tables_in_10dance}
+                            </option>
+                        ))}
                     </select>
                     <AttTable attendee={attendee} />
                 </div>

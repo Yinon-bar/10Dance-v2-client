@@ -1,7 +1,7 @@
 import "./AttTable.css";
 
 function AttTable(props) {
-    console.log(props.attendee);
+    // console.log(props.attendee);
     return (
         <div className="AttTable">
             <table>
