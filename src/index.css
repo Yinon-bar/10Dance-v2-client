@@ -63,3 +63,17 @@ select {
 .complementary {
     color: #e1eef8;
 }
+
+button:active {
+    background-color: #1a1f49;
+    color: #fff;
+    transition: 100ms;
+    transform: scale(0.9);
+}
+
+a:active {
+    background-color: #1a1f49;
+    color: #fff;
+    transition: 100ms;
+    transform: scale(0.9);
+}

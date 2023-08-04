@@ -8,12 +8,15 @@ function HeaderAdmin() {
                 <div className="content">
                     <h3>שלום ינון בר</h3>
                     <div className="btn-group">
+                        <NavLink className="btn btn-primary" to={"/admin"}>
+                            חזרה
+                        </NavLink>
                         <NavLink className="btn btn-primary" to={"/new-event"}>
                             יצירת אירוע חדש
                         </NavLink>
-                        <button className="btn btn-primary">
+                        <NavLink className="btn btn-primary" to={"/client"}>
                             למסך קבלת פנים
-                        </button>
+                        </NavLink>
                         <button className="btn btn-primary">אודות</button>
                     </div>
                 </div>
