@@ -51,27 +51,25 @@ function Client() {
         <NumberContext.Provider
             value={{ inputValue: inputValue, setInputValue: setInputValue }}
         >
-            <Header />
-            {msg && (
-                <div className="loading">
-                    <h1>{msg}</h1>
-                </div>
-            )}
-            {loading && (
-                <div className="loading">
-                    <h1>טוען נתונים...</h1>
-                </div>
-            )}
-            {printAtt && <PrintAtt attendee={attendee[0]} />}
-            <div className="Main">
-                <div className="title wrapper">
-                    <div className="title-section">
-                        <h1 className="title welcome">ברוכים הבאים</h1>
-                        <h1 className="title campus">
-                            יום אוריינטציה לעובדים חדשים
-                        </h1>
-                        <h1 className="title welcome">האוניברסיטה העברית</h1>
+            <div className="Client">
+                <Header />
+                {msg && (
+                    <div className="loading">
+                        <h1>{msg}</h1>
                     </div>
+                )}
+                {loading && (
+                    <div className="loading">
+                        <h1>טוען נתונים...</h1>
+                    </div>
+                )}
+                {printAtt && <PrintAtt attendee={attendee[0]} />}
+                <div className="title-section">
+                    <h1 className="title welcome">ברוכים הבאים</h1>
+                    <h1 className="title campus">
+                        יום אוריינטציה לעובדים חדשים
+                    </h1>
+                    <h1 className="title welcome">האוניברסיטה העברית</h1>
                 </div>
                 <h2 className="title cta">
                     נא הכנס ת.ז. מלאה <span className="without">כולל</span> ספרת

@@ -25,7 +25,12 @@ h2 {
     .Header {
         display: none;
     }
-    .Main {
+    .title,
+    .wrapper {
+        display: none;
+    }
+
+    form {
         display: none;
     }
     .PrintAtt .name h1,
