@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./HeaderAdmin.css";
 
 function HeaderAdmin() {
@@ -7,9 +8,9 @@ function HeaderAdmin() {
                 <div className="content">
                     <h3>שלום ינון בר</h3>
                     <div className="btn-group">
-                        <button className="btn btn-primary">
+                        <NavLink className="btn btn-primary" to={"/new-event"}>
                             יצירת אירוע חדש
-                        </button>
+                        </NavLink>
                         <button className="btn btn-primary">
                             למסך קבלת פנים
                         </button>
