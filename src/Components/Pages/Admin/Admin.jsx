@@ -28,7 +28,7 @@ function Admin() {
                 headers: { "Content-Type": "application/json" },
             })
             .then((resp) => {
-                // console.log(resp.data);
+                console.log(resp.data);
                 setTables(resp.data);
             })
             .catch((err) => console.log(err));
@@ -50,8 +50,11 @@ function Admin() {
                             ללא
                         </option>
                         {tables.map((table, index) => (
-                            <option key={index} value={table.Tables_in_10dance}>
-                                {table.Tables_in_10dance}
+                            <option
+                                key={index}
+                                value={table.Tables_in_zerdance_general}
+                            >
+                                {table.Tables_in_zerdance_general}
                             </option>
                         ))}
                     </select>
