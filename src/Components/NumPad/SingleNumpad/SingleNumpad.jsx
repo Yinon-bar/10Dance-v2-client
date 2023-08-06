@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "./singleNumpad.css";
+import "./SingleNumpad.css";
 import NumberContext from "../../../Context/NumberContext";
 
 function SingleNumpad(props) {
