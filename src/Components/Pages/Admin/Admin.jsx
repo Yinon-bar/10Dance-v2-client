@@ -12,6 +12,9 @@ function Admin() {
         // console.log(e.target.value);
         axios
             .get(
+                // Local
+                // "http://localhost:3001/api/" +
+                // Render hosting
                 "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
                     e.target.value,
                 {
@@ -28,9 +31,14 @@ function Admin() {
     useEffect(() => {
         // להוסיף לפה קריאה של כל הטבלאות שיש בדאטהבייס
         axios
-            .get("http://localhost:3001/api/tables", {
-                headers: { "Content-Type": "application/json" },
-            })
+            .get(
+                // Local
+                // "http://localhost:3001/api/tables"
+                "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            )
             .then((resp) => {
                 console.log(resp.data);
                 setTables(resp.data);
