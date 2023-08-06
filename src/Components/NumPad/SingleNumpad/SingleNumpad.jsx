@@ -3,8 +3,7 @@ import "./singleNumpad.css";
 import NumberContext from "../../../Context/NumberContext";
 
 function SingleNumpad(props) {
-    const { inputValue } = useContext(NumberContext);
-    const { setInputValue } = useContext(NumberContext);
+    const { inputValue, setInputValue } = useContext(NumberContext);
 
     return (
         <div className="SingleNumPad">
