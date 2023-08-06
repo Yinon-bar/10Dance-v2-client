@@ -11,9 +11,13 @@ function Admin() {
     const handleEvent = (e) => {
         // console.log(e.target.value);
         axios
-            .get("http://localhost:3001/api/" + e.target.value, {
-                headers: { "Content-Type": "application/json" },
-            })
+            .get(
+                "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
+                    e.target.value,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            )
             .then((resp) => {
                 // console.log(resp.data);
                 setAttendee(resp.data);
