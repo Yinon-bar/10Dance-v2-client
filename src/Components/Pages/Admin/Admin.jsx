@@ -18,7 +18,12 @@ function Admin() {
                 "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
                     e.target.value,
                 {
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods":
+                            "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                    },
                 }
             )
             .then((resp) => {
@@ -36,7 +41,12 @@ function Admin() {
                 // "http://localhost:3001/api/tables"
                 "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
                 {
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods":
+                            "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                    },
                 }
             )
             .then((resp) => {
