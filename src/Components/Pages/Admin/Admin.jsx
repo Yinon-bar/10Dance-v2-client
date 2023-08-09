@@ -18,12 +18,12 @@ function Admin() {
                 "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
                     e.target.value,
                 {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods":
-                            "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                    },
+                    // headers: {
+                    //     "Content-Type": "application/json",
+                    //     "Access-Control-Allow-Origin": "*",
+                    //     "Access-Control-Allow-Methods":
+                    //         "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                    // },
                 }
             )
             .then((resp) => {
@@ -39,17 +39,17 @@ function Admin() {
             .get(
                 // Local
                 // "http://localhost:3001/api/tables"
-                "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
+                "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables"
                 // סתאם לנסיון
                 // "https://jsonplaceholder.typicode.com/todos",
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods":
-                            "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                    },
-                }
+                // {
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //         "Access-Control-Allow-Origin": "*",
+                //         "Access-Control-Allow-Methods":
+                //             "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                //     },
+                // }
             )
             .then((resp) => {
                 console.log(resp.data);
