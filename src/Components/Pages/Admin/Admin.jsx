@@ -39,7 +39,8 @@ function Admin() {
             .get(
                 // Local
                 // "http://localhost:3001/api/tables"
-                "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
+                // "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
+                "https://jsonplaceholder.typicode.com/todos",
                 {
                     headers: {
                         "Content-Type": "application/json",
