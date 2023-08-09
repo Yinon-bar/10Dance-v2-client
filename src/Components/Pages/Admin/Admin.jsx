@@ -40,6 +40,7 @@ function Admin() {
                 // Local
                 // "http://localhost:3001/api/tables"
                 // "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
+                // סתאם לנסיון
                 "https://jsonplaceholder.typicode.com/todos",
                 {
                     headers: {
