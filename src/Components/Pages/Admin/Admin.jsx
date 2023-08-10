@@ -13,9 +13,9 @@ function Admin() {
         axios
             .get(
                 // Local
-                // "http://localhost:3001/api/" +
-                // Render hosting
-                "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
+                "http://localhost:3001/api/" +
+                    // Render hosting
+                    // "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
                     e.target.value,
                 {
                     headers: {
@@ -38,8 +38,8 @@ function Admin() {
         axios
             .get(
                 // Local
-                // "http://localhost:3001/api/tables"
-                "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
+                "http://localhost:3001/api/tables",
+                // "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
                 {
                     headers: {
                         "Content-Type": "application/json",
