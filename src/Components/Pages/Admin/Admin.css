@@ -51,6 +51,10 @@
     height: 2rem;
 }
 
+.Admin > .container > .content .commandRibbon .leftSide button.printScreen {
+    width: 5rem;
+}
+
 .Admin > .container > .content .searchAtt {
     border: none;
     height: 2rem;

@@ -3,10 +3,12 @@ import "./Admin.css";
 import { useEffect, useState } from "react";
 import AttTable from "./AttTable/AttTable";
 import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
+import AddModal from "./AddModal/AddModal";
 
 function Admin() {
     const [attendee, setAttendee] = useState([]);
     const [tables, setTables] = useState([]);
+    const [addAttendee, setAddAttendee] = useState(false);
 
     const handleEvent = (e) => {
         // console.log(e.target.value);
@@ -29,23 +31,27 @@ function Admin() {
         console.log(term);
     };
 
+    const handleAddAttendee = (term) => {
+        console.log(term);
+    };
+
     useEffect(() => {
         // להוסיף לפה קריאה של כל הטבלאות שיש בדאטהבייס
         axios
             .get(
                 // Local
                 // "http://localhost:3001/api/tables",
-                "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
+                "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables"
                 // סתאם לנסיון
                 // "https://jsonplaceholder.typicode.com/todos",
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods":
-                            "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                    },
-                }
+                // {
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //         "Access-Control-Allow-Origin": "*",
+                //         "Access-Control-Allow-Methods":
+                //             "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                //     },
+                // }
             )
             .then((resp) => {
                 console.log(resp.data);
@@ -88,12 +94,21 @@ function Admin() {
                                 onChange={(e) => handleSearch(e.target.value)}
                                 placeholder="חיפוש אנשים"
                             />
-                            <button className="btn btn-primary">+</button>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => setAddAttendee(true)}
+                            >
+                                +
+                            </button>
+                            <button className="btn btn-primary printScreen">
+                                הדפס
+                            </button>
                         </div>
                     </div>
                     <AttTable attendee={attendee} />
                 </div>
             </div>
+            {addAttendee && <AddModal closeModal={(e) => setAddAttendee(e)} />}
         </div>
     );
 }
