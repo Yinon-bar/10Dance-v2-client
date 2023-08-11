@@ -21,6 +21,45 @@
     height: 100%;
 }
 
+.Admin > .container > .content .commandRibbon {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Admin > .container > .content .commandRibbon .rightSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Admin > .container > .content .commandRibbon .rightSide h3 {
+    font-size: 1.4rem;
+    margin-left: 1rem;
+}
+
+.Admin > .container > .content .commandRibbon .leftSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Admin > .container > .content .commandRibbon .leftSide button {
+    margin: 0.2rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.Admin > .container > .content .searchAtt {
+    border: none;
+    height: 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    margin: 0.5rem;
+    padding: 0.1rem 0.8rem;
+}
+
 .Admin .container .content h1 {
     margin: 2rem;
 }

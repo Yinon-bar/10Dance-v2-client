@@ -16,21 +16,17 @@ function Admin() {
                 // "http://localhost:3001/api/" +
                 // Render hosting
                 "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
-                    e.target.value,
-                {
-                    // headers: {
-                    //     "Content-Type": "application/json",
-                    //     "Access-Control-Allow-Origin": "*",
-                    //     "Access-Control-Allow-Methods":
-                    //         "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                    // },
-                }
+                    e.target.value
             )
             .then((resp) => {
                 // console.log(resp.data);
                 setAttendee(resp.data);
             })
             .catch((err) => console.log(err));
+    };
+
+    const handleSearch = (term) => {
+        console.log(term);
     };
 
     useEffect(() => {
@@ -64,24 +60,37 @@ function Admin() {
             <div className="container">
                 <div className="content">
                     <h1>ברוכים הבאים לממשק הניהול</h1>
-                    <h3>בחר אירוע להצגה</h3>
-                    <select
-                        onChange={(e) => handleEvent(e)}
-                        name="בחר אירוע להצגה"
-                        id=""
-                    >
-                        <option defaultChecked hidden value="">
-                            ללא
-                        </option>
-                        {tables.map((table, index) => (
-                            <option
-                                key={index}
-                                value={table.Tables_in_zerdance_general}
+                    <div className="commandRibbon">
+                        <div className="rightSide">
+                            <h3>בחר אירוע להצגה</h3>
+                            <select
+                                onChange={(e) => handleEvent(e)}
+                                name="בחר אירוע להצגה"
+                                id=""
                             >
-                                {table.Tables_in_zerdance_general}
-                            </option>
-                        ))}
-                    </select>
+                                <option defaultChecked hidden value="">
+                                    ללא
+                                </option>
+                                {tables.map((table, index) => (
+                                    <option
+                                        key={index}
+                                        value={table.Tables_in_zerdance_general}
+                                    >
+                                        {table.Tables_in_zerdance_general}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="leftSide">
+                            <input
+                                className="searchAtt"
+                                type="text"
+                                onChange={(e) => handleSearch(e.target.value)}
+                                placeholder="חיפוש אנשים"
+                            />
+                            <button className="btn btn-primary">+</button>
+                        </div>
+                    </div>
                     <AttTable attendee={attendee} />
                 </div>
             </div>
