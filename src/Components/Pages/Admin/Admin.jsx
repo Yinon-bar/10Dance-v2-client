@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import AttTable from "./AttTable/AttTable";
 import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
+import { useContext } from "react";
+import CurrentTableContext from "../../../Context/CurrentTableContext";
 
 function Admin() {
     const [attendee, setAttendee] = useState([]);
     const [tables, setTables] = useState([]);
     const [addAttendee, setAddAttendee] = useState(false);
+    let { CurrentTable } = useContext(CurrentTableContext);
 
     const handleEvent = (e) => {
         // console.log(e.target.value);
@@ -23,6 +26,8 @@ function Admin() {
             .then((resp) => {
                 // console.log(resp.data);
                 setAttendee(resp.data);
+                CurrentTable = resp.data;
+                console.log(CurrentTable);
             })
             .catch((err) => console.log(err));
     };
