@@ -1,8 +1,6 @@
 import "./AddModal.css";
 
 function AddModal(props) {
-    console.log(props);
-
     const handleAddAttendee = (e) => {
         e.preventDefault();
         props.closeModal(false);

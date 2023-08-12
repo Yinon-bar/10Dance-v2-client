@@ -31,10 +31,6 @@ function Admin() {
         console.log(term);
     };
 
-    const handleAddAttendee = (term) => {
-        console.log(term);
-    };
-
     useEffect(() => {
         // להוסיף לפה קריאה של כל הטבלאות שיש בדאטהבייס
         axios

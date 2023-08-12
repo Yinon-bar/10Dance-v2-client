@@ -28,14 +28,7 @@ function Client() {
         // console.log(e.target.elements.tzId.value);
         setLoading(true);
         axios
-            .get("https://one0dance-v2-nodejs-mysql.onrender.com/" + tzId, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Methods":
-                        "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                },
-            })
+            .get("https://one0dance-v2-nodejs-mysql.onrender.com/" + tzId)
             .then((resp) => {
                 console.log(resp.data);
                 setAttendee(resp.data);
