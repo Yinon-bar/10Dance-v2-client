@@ -10,7 +10,8 @@ function App() {
     return (
         <CurrentTableContext.Provider
             value={{
-                currentTable,
+                currentTable: currentTable,
+                setCurrentTable: setCurrentTable,
             }}
         >
             <div className="App">

@@ -11,7 +11,7 @@ function Admin() {
     const [attendee, setAttendee] = useState([]);
     const [tables, setTables] = useState([]);
     const [addAttendee, setAddAttendee] = useState(false);
-    let { CurrentTable } = useContext(CurrentTableContext);
+    let { currentTable, setCurrentTable } = useContext(CurrentTableContext);
 
     const handleEvent = (e) => {
         // console.log(e.target.value);
@@ -26,11 +26,11 @@ function Admin() {
             .then((resp) => {
                 // console.log(resp.data);
                 setAttendee(resp.data);
-                CurrentTable = resp.data;
-                console.log(CurrentTable);
+                setCurrentTable(resp.data);
             })
             .catch((err) => console.log(err));
     };
+    console.log(currentTable);
 
     const handleSearch = (term) => {
         console.log(term);
