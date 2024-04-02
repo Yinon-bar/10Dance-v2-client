@@ -29,7 +29,7 @@ function Admin() {
         }
       )
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         setAttendee(resp.data);
       })
       .catch((err) => console.log(err));
@@ -58,7 +58,7 @@ function Admin() {
         }
       )
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         setTables(resp.data);
       })
       .catch((err) => console.log(err));
