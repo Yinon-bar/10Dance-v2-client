@@ -10,30 +10,29 @@ import CurrentTableContext from "../../../Context/CurrentTableContext";
 function Admin() {
   const [attendee, setAttendee] = useState([]);
   const [tables, setTables] = useState([]);
-  const [addAttendee, setAddAttendee] = useState(false);
-  let { currentTable, setCurrentTable } = useContext(CurrentTableContext);
 
   const handleEvent = (e) => {
     // console.log(e.target.value);
     axios
       .get(
         // Local
-        "http://localhost:3001/api/" +
+        "http://localhost/10Dance-V2-php-server/API/attendees/get-all-attendees.php/?tableName=" +
           // Render hosting
           // "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
-          e.target.value
+          e.target.value,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
+        }
       )
       .then((resp) => {
-        // console.log(resp.data);
+        console.log(resp.data);
         setAttendee(resp.data);
-        setCurrentTable(resp.data);
       })
       .catch((err) => console.log(err));
-  };
-  console.log(currentTable);
-
-  const handleSearch = (term) => {
-    console.log(term);
   };
 
   useEffect(() => {
@@ -43,20 +42,20 @@ function Admin() {
         // Local
         // "http://localhost:3001/api/tables",
 
-        // זה הנכוןןן
-        // "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables"
+        // זה הנכון
+        // "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
 
-        "http://localhost/10Dance-V2-php-server/API/attendees/read.php"
+        "http://localhost/10Dance-V2-php-server/API/attendees/read.php",
+
         // סתאם לנסיון
         // "https://jsonplaceholder.typicode.com/todos",
-        // {
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Access-Control-Allow-Origin": "*",
-        //         "Access-Control-Allow-Methods":
-        //             "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        //     },
-        // }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
+        }
       )
       .then((resp) => {
         console.log(resp.data);
@@ -71,44 +70,20 @@ function Admin() {
       <div className="container">
         <div className="content">
           <h1>ברוכים הבאים לממשק הניהול</h1>
-          <div className="commandRibbon">
-            <div className="rightSide">
-              <h3>בחר אירוע להצגה</h3>
-              <select
-                onChange={(e) => handleEvent(e)}
-                name="בחר אירוע להצגה"
-                id=""
-              >
-                <option defaultChecked hidden value="">
-                  ללא
-                </option>
-                {tables.map((table, index) => (
-                  <option key={index} value={table.Tables_in_zerdance_general}>
-                    {table.Tables_in_zerdance_general}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="leftSide">
-              <input
-                className="searchAtt"
-                type="text"
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="חיפוש אנשים"
-              />
-              <button
-                className="btn btn-primary"
-                onClick={() => setAddAttendee(true)}
-              >
-                +
-              </button>
-              <button className="btn btn-primary printScreen">הדפס</button>
-            </div>
-          </div>
+          <h3>בחר אירוע להצגה</h3>
+          <select onChange={(e) => handleEvent(e)} name="בחר אירוע להצגה" id="">
+            <option defaultChecked hidden value="">
+              ללא
+            </option>
+            {tables.map((table, index) => (
+              <option key={index} value={"dec_geo"}>
+                {table.event_name}
+              </option>
+            ))}
+          </select>
           <AttTable attendee={attendee} />
         </div>
       </div>
-      {addAttendee && <AddModal closeModal={(e) => setAddAttendee(e)} />}
     </div>
   );
 }
