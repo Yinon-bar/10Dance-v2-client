@@ -16,21 +16,20 @@ function Admin() {
     axios
       .get(
         // Local
-        "http://localhost:3001/api/" +
+        "http://localhost/10Dance-V2-php-server/API/attendees/get-all-attendees.php/?tableName=" +
           // Render hosting
           // "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
           e.target.value,
         {
-          // headers: {
-          //     "Content-Type": "application/json",
-          //     "Access-Control-Allow-Origin": "*",
-          //     "Access-Control-Allow-Methods":
-          //         "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          // },
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
         }
       )
       .then((resp) => {
-        // console.log(resp.data);
+        console.log(resp.data);
         setAttendee(resp.data);
       })
       .catch((err) => console.log(err));
@@ -77,7 +76,7 @@ function Admin() {
               ללא
             </option>
             {tables.map((table, index) => (
-              <option key={index} value={table.Tables_in_zerdance_general}>
+              <option key={index} value={"dec_geo"}>
                 {table.event_name}
               </option>
             ))}
