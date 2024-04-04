@@ -16,7 +16,7 @@ function Admin() {
     axios
       .get(
         // Local
-        "http://localhost/10Dance-V2-php-server/API/attendees/get-all-attendees.php/?tableName=" +
+        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php/?tableName=" +
           // Render hosting
           // "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
           e.target.value,
@@ -45,7 +45,7 @@ function Admin() {
         // זה הנכון
         // "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
 
-        "http://localhost/10Dance-V2-php-server/API/attendees/read.php",
+        "http://localhost/10Dance-V2-php-server/4-controllers/read.php",
 
         // סתאם לנסיון
         // "https://jsonplaceholder.typicode.com/todos",
@@ -76,7 +76,7 @@ function Admin() {
               ללא
             </option>
             {tables.map((table, index) => (
-              <option key={index} value={"dec_geo"}>
+              <option key={index} value={table.event_table}>
                 {table.event_name}
               </option>
             ))}

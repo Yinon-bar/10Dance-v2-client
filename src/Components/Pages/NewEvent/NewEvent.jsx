@@ -7,6 +7,7 @@ function NewEvent() {
   const [data, setData] = useState({
     eventName: "",
     eventTitle: "",
+    eventLogo: "",
     eventTable: "",
   });
   const handleSubmit = (e) => {
@@ -15,11 +16,12 @@ function NewEvent() {
     const formData = new FormData();
     formData.append("eventName", data.eventName);
     formData.append("eventTitle", data.eventTitle);
+    formData.append("eventLogo", data.eventLogo);
     formData.append("eventTable", data.eventTable);
 
     axios
       .post(
-        "http://localhost/10Dance-V2-php-server/API/attendees/new-event.php",
+        "http://localhost/10Dance-V2-php-server/4-controllers/new-event.php",
         formData
       )
       .then((response) => {
@@ -54,7 +56,13 @@ function NewEvent() {
             </label>
             <label>
               העלאת לוגו האירוע
-              <input type="file" name="" id="" />
+              <input
+                type="file"
+                name="file"
+                onChange={(e) =>
+                  setData({ ...data, eventLogo: e.target.files[0] })
+                }
+              />
             </label>
             <label>
               יש לצרף קובץ בפורמט Excel, Csv
