@@ -1,78 +1,82 @@
 @font-face {
-    src: url("assets/fonts/Huji-Regular.otf");
-    font-family: Huji-regular;
+  src: url("assets/fonts/Huji-Regular.otf");
+  font-family: Huji-regular;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Huji-regular, "Assistant", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Huji-regular, "Assistant", Arial, Helvetica, sans-serif;
 }
 
 html,
 body,
 #root {
-    direction: rtl;
-    height: 100%;
+  direction: rtl;
+  height: 100%;
 }
 
 .container {
-    width: 1400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn {
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    width: unset;
-    height: unset;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  width: unset;
+  height: unset;
 }
 
 .btn-primary {
-    background-color: #e1eef8;
-    color: #09536a;
+  background-color: #e1eef8;
+  color: #09536a;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 select {
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.3rem 0.5rem;
-    border: none;
-    border-radius: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
 }
 
 /* Colors */
 .primary {
-    color: #1a1f49;
+  color: #1a1f49;
 }
 
 .secondary {
-    color: #20718b;
+  color: #20718b;
 }
 
 .complementary {
-    color: #e1eef8;
+  color: #e1eef8;
+}
+
+.red {
+  color: #860c1b;
 }
 
 button:active {
-    background-color: #1a1f49;
-    color: #fff;
-    transition: 100ms;
-    transform: scale(0.9);
+  background-color: #1a1f49;
+  color: #fff;
+  transition: 100ms;
+  transform: scale(0.9);
 }
 
 a:active {
-    background-color: #1a1f49;
-    color: #fff;
-    transition: 100ms;
-    transform: scale(0.9);
+  background-color: #1a1f49;
+  color: #fff;
+  transition: 100ms;
+  transform: scale(0.9);
 }
