@@ -34,6 +34,7 @@ function Admin() {
   };
 
   useEffect(() => {
+    console.log(tables);
     axios
       .get(
         // Local
