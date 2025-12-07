@@ -5,13 +5,13 @@ import AuthContext from "../../../Context/AuthContext";
 
 function HeaderAdmin() {
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
-  // console.log(user);
+  console.log(userFromDb);
   return (
     <div className="HeaderAdmin">
       {/* {console.log(userFromDb)} */}
       <div className="container">
         <div className="content">
-          <h3>שלום {userFromDb.name}</h3>
+          <h3>שלום {userFromDb?.user_name}</h3>
           <div className="btn-group">
             <NavLink className="btn btn-primary" to={"/admin"}>
               חזרה

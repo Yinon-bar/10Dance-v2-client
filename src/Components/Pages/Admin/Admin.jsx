@@ -12,53 +12,36 @@ function Admin() {
   const [tables, setTables] = useState([]);
 
   const handleEvent = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     axios
       .get(
         // Local
-        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php/?tableName=" +
-          // Render hosting
-          // "https://one0dance-v2-nodejs-mysql.onrender.com/api/" +
-          e.target.value,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          },
-        }
+        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableName=" +
+          e.target.value
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     "Access-Control-Allow-Origin": "*",
+        //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        //   },
+        // }
       )
       .then((resp) => {
-        // console.log(resp.data);
-        setAttendee(resp.data);
+        console.log(resp.data);
+        // setAttendee(resp.data);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    // להוסיף לפה קריאה של כל הטבלאות שיש בדאטהבייס
     axios
       .get(
         // Local
         // "http://localhost:3001/api/tables",
-
-        // זה הנכון
-        // "https://one0dance-v2-nodejs-mysql.onrender.com/api/tables",
-
-        "http://localhost/10Dance-V2-php-server/4-controllers/read.php",
-
-        // סתאם לנסיון
-        // "https://jsonplaceholder.typicode.com/todos",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          },
-        }
+        "http://localhost/10Dance-V2-php-server/4-controllers/read.php"
       )
       .then((resp) => {
-        // console.log(resp.data);
+        console.log(resp);
         setTables(resp.data);
       })
       .catch((err) => console.log(err));

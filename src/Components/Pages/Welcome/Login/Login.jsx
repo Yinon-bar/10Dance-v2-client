@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.css";
 import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthContext";
 
 function Login() {
   const [msg, setMsg] = useState(false);
@@ -9,8 +11,8 @@ function Login() {
     user_institute: "6400",
     user_email: "",
     user_password: "",
-    jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbGhvc3QiLCJpYXQiOjE3MTI0MDQ2NDYsIm5iZiI6MTcxMjQwNDY0NiwiZXhwIjoxNzEyNjYzODQ2LCJhdWQiOiJteXVzZXJzIiwiZGF0YSI6eyJpZCI6MSwibmFtZSI6Inlpbm9uX2JhciIsImVtYWlsIjoieWlub25iYXIxOTg4QGdtYWlsLmNvbSJ9fQ.Ew0pBePym9b_PQwLpDB69BXROtraOMTclSZTvBPWlkk",
   });
+  const { userFromDb, setUserFromDb } = useContext(AuthContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -26,9 +28,10 @@ function Login() {
           // console.log(resp.data.error);
           setMsg(true);
         } else {
-          // console.log(resp.data.data);
-          setUserFromDb(resp.data.data);
-          navigate("admin");
+          console.log(resp.data);
+          setUserFromDb(resp.data[0]);
+
+          navigate("/admin");
         }
       })
       .catch((error) => {
