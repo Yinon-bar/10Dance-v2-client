@@ -18,17 +18,10 @@ function Admin() {
         // Local
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableName=" +
           e.target.value
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     "Access-Control-Allow-Origin": "*",
-        //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        //   },
-        // }
       )
       .then((resp) => {
         console.log(resp.data);
-        // setAttendee(resp.data);
+        setAttendee(resp.data);
       })
       .catch((err) => console.log(err));
   };
@@ -38,7 +31,6 @@ function Admin() {
     axios
       .get(
         // Local
-        // "http://localhost:3001/api/tables",
         "http://localhost/10Dance-V2-php-server/4-controllers/read.php"
       )
       .then((resp) => {
