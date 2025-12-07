@@ -20,21 +20,21 @@ function Admin() {
           e.target.value
       )
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         setAttendee(resp.data);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    console.log(tables);
+    // console.log(tables);
     axios
       .get(
         // Local
         "http://localhost/10Dance-V2-php-server/4-controllers/read.php"
       )
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         setTables(resp.data);
       })
       .catch((err) => console.log(err));
