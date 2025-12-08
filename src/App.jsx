@@ -1,24 +1,24 @@
 import { useState } from "react";
 import "./App.css";
 import Main from "./Components/Main/Main";
-import CurrentTableContext from "./Context/CurrentTableContext";
 import AuthContext from "./Context/AuthContext";
+import CurrentEvent from "./Context/CurrentEventContext";
 
 function App() {
-  const [currentTable, setCurrentTable] = useState([]);
+  const [currentEvent, setCurrentEvent] = useState([]);
 
   return (
     // <AuthContext.Provider value={{ name: userName }}>
-    <CurrentTableContext.Provider
+    <CurrentEvent.Provider
       value={{
-        currentTable: currentTable,
-        setCurrentTable: setCurrentTable,
+        currentEvent: currentEvent,
+        setCurrentEvent: setCurrentEvent,
       }}
     >
       <div className="App">
         <Main />
       </div>
-    </CurrentTableContext.Provider>
+    </CurrentEvent.Provider>
     // </AuthContext.Provider>
   );
 }

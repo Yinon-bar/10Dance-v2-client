@@ -5,11 +5,14 @@ import AttTable from "./AttTable/AttTable";
 import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
 import { useContext } from "react";
-import CurrentTableContext from "../../../Context/CurrentTableContext";
+import CurrentEvent from "../../../Context/CurrentEventContext";
+import AuthContext from "../../../Context/AuthContext";
 
 function Admin() {
   const [attendee, setAttendee] = useState([]);
   const [tables, setTables] = useState([]);
+  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
+  const { userFromDb, setUserFromDb } = useContext(AuthContext);
 
   const handleEvent = (e) => {
     console.log(e.target.value);

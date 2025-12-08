@@ -30,7 +30,6 @@ function Login() {
         } else {
           console.log(resp.data);
           setUserFromDb(resp.data[0]);
-
           navigate("/admin");
         }
       })

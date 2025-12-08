@@ -5,6 +5,7 @@ import AuthContext from "../../../Context/AuthContext";
 
 function HeaderAdmin() {
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
+
   console.log(userFromDb);
   return (
     <div className="HeaderAdmin">
@@ -14,7 +15,7 @@ function HeaderAdmin() {
           <h3>שלום {userFromDb?.user_name}</h3>
           <div className="btn-group">
             <NavLink className="btn btn-primary" to={"/admin"}>
-              חזרה
+              למסך הבית
             </NavLink>
             <NavLink className="btn btn-primary" to={"/new-event"}>
               יצירת אירוע חדש
