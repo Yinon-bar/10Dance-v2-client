@@ -13,17 +13,21 @@ function Admin() {
   const [attendee, setAttendee] = useState([]);
   const [allEvents, setAllEvents] = useState([]);
   const [addAttendee, setAddAttendee] = useState(false);
+  const [eventTable, setEventTable] = useState([]);
   const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
 
   const handleEvent = async (eventToDisplay) => {
     console.log(eventToDisplay);
     getCurrentEvent(eventToDisplay);
-    const resp = await axios.get(
-      "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableName=" +
-        eventToDisplay
-    );
-    localStorage.setItem("Current Event", JSON.stringify(currentEvent));
-    // .catch((err) => console.log(err));
+    try {
+      const resp = await axios.get(
+        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableName=" +
+          eventToDisplay
+      );
+      setEventTable(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getCurrentEvent = (eventToDisplay) => {
@@ -32,6 +36,7 @@ function Admin() {
       (selectedEvent) => selectedEvent.event_table === eventToDisplay
     );
     setCurrentEvent(currentEventTemp);
+    localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
   };
 
   useEffect(() => {
