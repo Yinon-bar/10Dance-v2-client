@@ -21,6 +21,26 @@
   height: 100%;
 }
 
+.Admin > .container .content .buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Admin > .container .content .buttons button {
+  margin: 0;
+  height: 2.4rem;
+  padding: 0;
+  width: 3rem;
+  background-color: #f2f2f2;
+}
+
+.Admin > .container .content .buttons .spacer {
+  width: 3rem;
+}
+
 .Admin > .container > .content .commandRibbon {
   width: 100%;
   display: flex;

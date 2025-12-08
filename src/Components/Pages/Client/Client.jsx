@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Client.css";
 import axios from "axios";
 import NumberContext from "../../../Context/NumberContext";
 import PrintAtt from "../../PrintAtt/PrintAtt";
 import ListNumpad from "../../NumPad/ListNumpad/ListNumpad";
 import Header from "../../Header/Header";
+import CurrentEvent from "../../../Context/CurrentEventContext";
 
 function Client() {
   const [inputValue, setInputValue] = useState("");
@@ -12,6 +13,7 @@ function Client() {
   const [loading, setLoading] = useState(false);
   const [printAtt, setPrintAtt] = useState(false);
   const [attendee, setAttendee] = useState([]);
+  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
 
   const showMsg = (arg, status = 1) => {
     setMsg(arg);
@@ -48,6 +50,10 @@ function Client() {
     setInputValue(e);
   };
 
+  useEffect(() => {
+    console.log(currentEvent);
+  }, []);
+
   return (
     <NumberContext.Provider
       value={{ inputValue: inputValue, setInputValue: setInputValue }}
@@ -67,7 +73,7 @@ function Client() {
         {printAtt && <PrintAtt attendee={attendee[0]} />}
         <div className="title-section">
           <h1 className="title welcome">ברוכים הבאים</h1>
-          <h1 className="title campus">יום אוריינטציה לעובדים חדשים</h1>
+          <h1 className="title campus">{currentEvent.event_name}</h1>
           <h1 className="title welcome">האוניברסיטה העברית</h1>
         </div>
         <h2 className="title cta">

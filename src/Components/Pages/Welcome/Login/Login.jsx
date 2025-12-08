@@ -31,6 +31,7 @@ function Login() {
           console.log(resp.data);
           setUserFromDb(resp.data[0]);
           navigate("/admin");
+          localStorage.setItem("User", JSON.stringify(resp.data[0]));
         }
       })
       .catch((error) => {

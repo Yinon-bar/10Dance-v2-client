@@ -1,12 +1,23 @@
 import { NavLink } from "react-router-dom";
 import "./HeaderAdmin.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AuthContext from "../../../Context/AuthContext";
 
 function HeaderAdmin() {
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
 
-  console.log(userFromDb);
+  useEffect(() => {
+    if (
+      localStorage.getItem("User") !== null &&
+      localStorage.getItem("User").length > 0
+    ) {
+      // console.log("User Exist");
+      const parcedUserFromLocal = JSON.parse(localStorage.getItem("User"));
+      setUserFromDb(parcedUserFromLocal);
+    }
+  }, []);
+
+  // console.log(userFromDb);
   return (
     <div className="HeaderAdmin">
       {/* {console.log(userFromDb)} */}
