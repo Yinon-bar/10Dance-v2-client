@@ -68,7 +68,9 @@ function Client() {
             <h1>טוען נתונים...</h1>
           </div>
         )}
-        {printAtt && <PrintAtt attendee={attendee[0]} />}
+        {printAtt && (
+          <PrintAtt attendee={attendee[0]} onDone={() => setPrintAtt(false)} />
+        )}
         <div className="title-section">
           <h1 className="title welcome">ברוכים הבאים</h1>
           <h1 className="title campus">{currentEvent.event_name}</h1>
