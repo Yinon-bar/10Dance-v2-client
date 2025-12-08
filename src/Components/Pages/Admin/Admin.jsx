@@ -29,10 +29,7 @@ function Admin() {
   useEffect(() => {
     // console.log(tables);
     axios
-      .get(
-        // Local
-        "http://localhost/10Dance-V2-php-server/4-controllers/read.php"
-      )
+      .get("http://localhost/10Dance-V2-php-server/4-controllers/read.php")
       .then((resp) => {
         // console.log(resp);
         setTables(resp.data);

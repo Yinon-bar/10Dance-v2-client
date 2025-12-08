@@ -6,7 +6,6 @@ import AuthContext from "./Context/AuthContext";
 
 function App() {
   const [currentTable, setCurrentTable] = useState([]);
-  // const [userName, setUserName] = useState("ינון");
 
   return (
     // <AuthContext.Provider value={{ name: userName }}>
