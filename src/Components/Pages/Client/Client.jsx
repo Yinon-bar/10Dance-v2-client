@@ -27,12 +27,10 @@ function Client() {
   const sendId = (e) => {
     e.preventDefault();
     const tzId = e.target.elements.tzId.value;
-    // console.log(e.target.elements.tzId.value);
     setLoading(true);
     axios
       .get(
-        "http://localhost/10Dance-V2-php-server/4-controllers/get-attendee-by-tz.php?tz=" +
-          tzId
+        `http://localhost/10Dance-V2-php-server/4-controllers/get-attendee-by-tz.php?tz=${tzId}&table=${currentEvent.event_table}`
       )
       .then((resp) => {
         console.log(resp.data);
@@ -74,7 +72,7 @@ function Client() {
         <div className="title-section">
           <h1 className="title welcome">ברוכים הבאים</h1>
           <h1 className="title campus">{currentEvent.event_name}</h1>
-          <h1 className="title welcome">האוניברסיטה העברית</h1>
+          <h1 className="title welcome">{currentEvent.event_title}</h1>
         </div>
         <h2 className="title cta">
           נא הכנס ת.ז. מלאה <span className="without">כולל</span> ספרת ביקורת

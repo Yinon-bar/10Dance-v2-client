@@ -75,7 +75,7 @@ function Admin() {
                 setAddAttendee(true);
               }}
             >
-              <IoPersonAdd size={30} />
+              <IoPersonAdd size={30} color="#20718B" />
             </button>
             <select
               onChange={(e) => handleEvent(e.target.value)}
