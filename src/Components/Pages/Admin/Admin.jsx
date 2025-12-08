@@ -11,56 +11,49 @@ import { IoPersonAdd } from "react-icons/io5";
 
 function Admin() {
   const [attendee, setAttendee] = useState([]);
-  const [tables, setTables] = useState([]);
-  const [currentTable, setCurrentTable] = useState();
-  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
+  const [allEvents, setAllEvents] = useState([]);
   const [addAttendee, setAddAttendee] = useState(false);
+  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
 
-  const handleEvent = (e) => {
-    // console.log(e);
-    axios
-      .get(
-        // Local
-        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableName=" +
-          e
-      )
-      .then((resp) => {
-        localStorage.setItem("Current Table", e);
-        setAttendee(resp.data);
-        setCurrentTable(e);
-        getCurrentEvent();
-      })
-      .catch((err) => console.log(err));
+  const handleEvent = async (eventToDisplay) => {
+    console.log(eventToDisplay);
+    getCurrentEvent(eventToDisplay);
+    const resp = await axios.get(
+      "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableName=" +
+        eventToDisplay
+    );
+    localStorage.setItem("Current Event", JSON.stringify(currentEvent));
+    // .catch((err) => console.log(err));
   };
 
-  const getCurrentEvent = () => {
-    console.log(currentTable);
-
-    const currentEventTemp = tables.find(
-      (tempTable) => tempTable.event_table === currentTable
+  const getCurrentEvent = (eventToDisplay) => {
+    // console.log(currentTable);
+    const currentEventTemp = allEvents.find(
+      (selectedEvent) => selectedEvent.event_table === eventToDisplay
     );
     setCurrentEvent(currentEventTemp);
   };
 
   useEffect(() => {
     axios
-      .get("http://localhost/10Dance-V2-php-server/4-controllers/read.php")
+      .get(
+        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
+      )
       .then((resp) => {
-        // console.log(resp.data);
-        setTables(resp.data);
-        // console.log(currentTable);
+        console.log(resp.data);
+        setAllEvents(resp.data);
         if (
-          localStorage.getItem("Current Table") !== null &&
-          localStorage.getItem("Current Table").length > 0
+          localStorage.getItem("Current Event") !== null &&
+          localStorage.getItem("Current Event").length > 0
         ) {
           console.log("Not null");
-          setCurrentTable(localStorage.getItem("Current Table"));
-          handleEvent(localStorage.getItem("Current Table"));
-          getCurrentEvent();
+          // setCurrentTable(localStorage.getItem("Current Table"));
+          // getCurrentEvent();
+          // handleEvent(localStorage.getItem("Current Table"));
         }
-      })
-      .catch((err) => console.log(err));
-  }, [currentTable]);
+      });
+    // .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="Admin">
@@ -84,20 +77,20 @@ function Admin() {
               <option defaultChecked hidden value="">
                 ללא
               </option>
-              {tables.map((table, index) => (
+              {allEvents.map((event, index) => (
                 <option
-                  selected={table.event_table === currentTable}
+                  selected={event.event_table === currentEvent}
                   key={index}
-                  value={table.event_table}
+                  value={event.event_table}
                 >
-                  {table.event_name}
+                  {event.event_name}
                 </option>
               ))}
             </select>
             <div className="spacer"></div>
           </div>
           {addAttendee && <AddModal onClose={() => setAddAttendee(false)} />}
-          <AttTable attendee={attendee} />
+          {/* <AttTable attendee={attendee} /> */}
         </div>
       </div>
     </div>
