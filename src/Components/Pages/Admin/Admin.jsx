@@ -96,7 +96,7 @@ function Admin() {
             </select>
             <div className="spacer"></div>
           </div>
-          {addAttendee && <AddModal />}
+          {addAttendee && <AddModal onClose={() => setAddAttendee(false)} />}
           <AttTable attendee={attendee} />
         </div>
       </div>
