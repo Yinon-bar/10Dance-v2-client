@@ -4,17 +4,13 @@ import { useEffect, useState } from "react";
 import AttTable from "./AttTable/AttTable";
 import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
-import { useContext } from "react";
-import CurrentEvent from "../../../Context/CurrentEventContext";
-import AuthContext from "../../../Context/AuthContext";
 import { IoPersonAdd } from "react-icons/io5";
 
 function Admin() {
-  const [attendee, setAttendee] = useState([]);
   const [allEvents, setAllEvents] = useState([]);
-  const [addAttendee, setAddAttendee] = useState(false);
+  const [currentEvent, setCurrentEvent] = useState([]);
   const [eventTable, setEventTable] = useState([]);
-  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
+  const [addAttendee, setAddAttendee] = useState(false);
 
   const handleEvent = async (eventToDisplay) => {
     console.log(eventToDisplay);
@@ -31,12 +27,15 @@ function Admin() {
   };
 
   const getCurrentEvent = (eventToDisplay) => {
-    // console.log(currentTable);
-    const currentEventTemp = allEvents.find(
-      (selectedEvent) => selectedEvent.event_table === eventToDisplay
-    );
-    setCurrentEvent(currentEventTemp);
-    localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
+    if (allEvents.length > 0) {
+      const currentEventTemp = allEvents.find(
+        (selectedEvent) => selectedEvent.event_table === eventToDisplay
+      );
+      setCurrentEvent(currentEventTemp);
+      localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
+    } else {
+      console.log("allEvents is empty");
+    }
   };
 
   useEffect(() => {
@@ -45,19 +44,17 @@ function Admin() {
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
       )
       .then((resp) => {
-        console.log(resp.data);
         setAllEvents(resp.data);
         if (
           localStorage.getItem("Current Event") !== null &&
           localStorage.getItem("Current Event").length > 0
         ) {
-          console.log("Not null");
-          // setCurrentTable(localStorage.getItem("Current Table"));
-          // getCurrentEvent();
-          // handleEvent(localStorage.getItem("Current Table"));
+          setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
+          handleEvent(
+            JSON.parse(localStorage.getItem("Current Event")).event_table
+          );
         }
       });
-    // .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -84,7 +81,7 @@ function Admin() {
               </option>
               {allEvents.map((event, index) => (
                 <option
-                  selected={event.event_table === currentEvent}
+                  selected={event.event_table === currentEvent?.event_table}
                   key={index}
                   value={event.event_table}
                 >
@@ -95,7 +92,7 @@ function Admin() {
             <div className="spacer"></div>
           </div>
           {addAttendee && <AddModal onClose={() => setAddAttendee(false)} />}
-          {/* <AttTable attendee={attendee} /> */}
+          {eventTable && <AttTable attendee={eventTable} />}
         </div>
       </div>
     </div>
