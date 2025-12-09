@@ -13,7 +13,7 @@ function Admin() {
   const [addAttendee, setAddAttendee] = useState(false);
 
   const handleEvent = async (eventToDisplay) => {
-    console.log(eventToDisplay);
+    // console.log(eventToDisplay);
     getCurrentEvent(eventToDisplay);
     try {
       const resp = await axios.get(
@@ -34,7 +34,7 @@ function Admin() {
       setCurrentEvent(currentEventTemp);
       localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
     } else {
-      console.log("allEvents is empty");
+      // console.log("allEvents is empty");
     }
   };
 

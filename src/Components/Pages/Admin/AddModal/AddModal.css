@@ -22,6 +22,11 @@
   background-color: #e1eef8;
   color: #1a1f49;
 }
+
+.addModal form .message h2 {
+  color: #20718b;
+}
+
 .addModal form .formHeading {
   background-color: #20718b;
   font-size: 1.6rem;
