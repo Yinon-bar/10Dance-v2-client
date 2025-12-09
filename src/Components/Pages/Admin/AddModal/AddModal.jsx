@@ -29,7 +29,7 @@ function AddModal({ onClose }) {
         "http://localhost/10Dance-V2-php-server/4-controllers/create-new-attendee.php",
         newAttendee
       );
-      console.log(resp.data);
+      // console.log(resp.data);
       setMessage("הוספת נוכח הושלמה בהצלחה");
       setTimeout(() => {
         onClose();
@@ -41,6 +41,7 @@ function AddModal({ onClose }) {
 
   return (
     <div className="addModal">
+      {console.log(newAttendee)}
       <form
         onSubmit={(e) => {
           handleAddAttendee(e);
@@ -53,7 +54,7 @@ function AddModal({ onClose }) {
             required
             type="text"
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, firstName: e.target.value })
+              setNewAttendee({ ...newAttendee, fName: e.target.value })
             }
           />
         </label>
@@ -63,7 +64,7 @@ function AddModal({ onClose }) {
             required
             type="text"
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, lastName: e.target.value })
+              setNewAttendee({ ...newAttendee, lName: e.target.value })
             }
           />
         </label>
