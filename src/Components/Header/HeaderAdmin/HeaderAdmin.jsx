@@ -23,7 +23,10 @@ function HeaderAdmin() {
       {/* {console.log(userFromDb)} */}
       <div className="container">
         <div className="content">
-          <h3>שלום {userFromDb?.user_name}</h3>
+          <h3>
+            שלום {userFromDb?.user_name}
+            <span className="logout"> &nbsp; &nbsp;התנתק </span>
+          </h3>
           <div className="btn-group">
             <NavLink className="btn btn-primary" to={"/admin"}>
               למסך הבית
