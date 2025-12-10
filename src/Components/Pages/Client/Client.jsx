@@ -4,8 +4,8 @@ import axios from "axios";
 import NumberContext from "../../../Context/NumberContext";
 import PrintAtt from "../../PrintAtt/PrintAtt";
 import ListNumpad from "../../NumPad/ListNumpad/ListNumpad";
-import Header from "../../Header/Header";
 import CurrentEvent from "../../../Context/CurrentEventContext";
+import HeaderClient from "../../Header/HeaderClient/HeaderClient";
 
 function Client() {
   const [inputValue, setInputValue] = useState("");
@@ -13,7 +13,9 @@ function Client() {
   const [loading, setLoading] = useState(false);
   const [printAtt, setPrintAtt] = useState(false);
   const [attendee, setAttendee] = useState([]);
-  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
+  const [eventFromLocalStorage, setEventFromLocalStorage] = useState(
+    JSON.parse(localStorage.getItem("Current Event"))
+  );
 
   const showMsg = (arg, status = 1) => {
     setMsg(arg);
@@ -30,7 +32,7 @@ function Client() {
     setLoading(true);
     axios
       .get(
-        `http://localhost/10Dance-V2-php-server/4-controllers/get-attendee-by-tz.php?tz=${tzId}&table=${currentEvent.event_table}`
+        `http://localhost/10Dance-V2-php-server/4-controllers/get-attendee-by-tz.php?tz=${tzId}&table=${eventFromLocalStorage.event_table}`
       )
       .then((resp) => {
         console.log(resp.data);
@@ -49,7 +51,7 @@ function Client() {
   };
 
   useEffect(() => {
-    console.log(currentEvent);
+    console.log(eventFromLocalStorage);
   }, []);
 
   return (
@@ -57,7 +59,7 @@ function Client() {
       value={{ inputValue: inputValue, setInputValue: setInputValue }}
     >
       <div className="Client">
-        <Header />
+        <HeaderClient />
         {msg && (
           <div className="loading">
             <h1>{msg}</h1>
@@ -73,8 +75,8 @@ function Client() {
         )}
         <div className="title-section">
           <h1 className="title welcome">ברוכים הבאים</h1>
-          <h1 className="title campus">{currentEvent.event_name}</h1>
-          <h1 className="title welcome">{currentEvent.event_title}</h1>
+          <h1 className="title campus">{eventFromLocalStorage.event_name}</h1>
+          <h1 className="title welcome">{eventFromLocalStorage.event_title}</h1>
         </div>
         <h2 className="title cta">
           נא הכנס ת.ז. מלאה <span className="without">כולל</span> ספרת ביקורת

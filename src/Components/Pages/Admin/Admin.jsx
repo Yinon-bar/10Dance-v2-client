@@ -11,6 +11,8 @@ function Admin() {
   const [currentEvent, setCurrentEvent] = useState([]);
   const [eventTable, setEventTable] = useState([]);
   const [addAttendee, setAddAttendee] = useState(false);
+  const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
+    useState(false);
 
   const handleEvent = async (eventToDisplay) => {
     // console.log(eventToDisplay);
@@ -39,6 +41,7 @@ function Admin() {
   };
 
   useEffect(() => {
+    setRerenderTableAfterDelete(false);
     axios
       .get(
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
@@ -55,10 +58,11 @@ function Admin() {
           );
         }
       });
-  }, []);
+  }, [rerenderTableAfterDelete]);
 
   return (
     <div className="Admin">
+      {console.log(rerenderTableAfterDelete)}
       <HeaderAdmin />
       <div className="container">
         <div className="content">
@@ -92,7 +96,12 @@ function Admin() {
             <div className="spacer"></div>
           </div>
           {addAttendee && <AddModal onClose={() => setAddAttendee(false)} />}
-          {eventTable && <AttTable attendee={eventTable} />}
+          {eventTable && (
+            <AttTable
+              attendee={eventTable}
+              rerenderTable={setRerenderTableAfterDelete}
+            />
+          )}
         </div>
       </div>
     </div>

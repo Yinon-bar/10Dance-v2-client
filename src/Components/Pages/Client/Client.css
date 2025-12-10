@@ -1,6 +1,10 @@
 .Client {
-    padding-top: 7rem;
-    width: 100%;
-    height: 100%;
-    background-color: #96cae7;
+  /* padding-top: 7rem; */
+  width: 100%;
+  height: 100%;
+  background-color: #96cae7;
+}
+
+.Client .title-section .title.campus {
+  font-size: 4rem;
 }

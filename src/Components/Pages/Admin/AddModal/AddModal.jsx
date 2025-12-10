@@ -40,7 +40,6 @@ function AddModal({ onClose }) {
 
   return (
     <div className="addModal">
-      {console.log(newAttendee)}
       <form
         onSubmit={(e) => {
           handleAddAttendee(e);

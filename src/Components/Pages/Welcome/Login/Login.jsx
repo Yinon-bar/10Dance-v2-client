@@ -28,21 +28,21 @@ function Login() {
           // console.log(resp.data.error);
           setMsg(true);
         } else {
-          console.log(resp.data);
+          // console.log(resp.data);
           setUserFromDb(resp.data[0]);
           navigate("/admin");
           localStorage.setItem("User", JSON.stringify(resp.data[0]));
         }
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
       });
   };
 
   return (
     <div className="Login">
       <div className="content">
-        <h1>
+        <h1 className="title">
           ברוכים הבאים לתכנת <span className="cng-font">10Dance</span>
         </h1>
         <h2>אנא הכנס פרטי התחברות</h2>

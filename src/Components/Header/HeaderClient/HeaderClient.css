@@ -1,0 +1,12 @@
+.HeaderClient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.HeaderClient img.logo-10dance {
+  width: 300px;
+  border-radius: 2rem;
+}
