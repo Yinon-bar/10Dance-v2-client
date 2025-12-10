@@ -35,14 +35,14 @@ function Login() {
         }
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
       });
   };
 
   return (
     <div className="Login">
       <div className="content">
-        <h1>
+        <h1 className="title">
           ברוכים הבאים לתכנת <span className="cng-font">10Dance</span>
         </h1>
         <h2>אנא הכנס פרטי התחברות</h2>

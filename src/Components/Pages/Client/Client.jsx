@@ -4,8 +4,8 @@ import axios from "axios";
 import NumberContext from "../../../Context/NumberContext";
 import PrintAtt from "../../PrintAtt/PrintAtt";
 import ListNumpad from "../../NumPad/ListNumpad/ListNumpad";
-import Header from "../../Header/Header";
 import CurrentEvent from "../../../Context/CurrentEventContext";
+import HeaderClient from "../../Header/HeaderClient/HeaderClient";
 
 function Client() {
   const [inputValue, setInputValue] = useState("");
@@ -59,7 +59,7 @@ function Client() {
       value={{ inputValue: inputValue, setInputValue: setInputValue }}
     >
       <div className="Client">
-        <Header />
+        <HeaderClient />
         {msg && (
           <div className="loading">
             <h1>{msg}</h1>

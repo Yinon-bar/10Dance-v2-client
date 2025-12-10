@@ -1,3 +1,7 @@
 .Login p a {
-  color: #860c1b;
+  color: #ff344b;
+}
+
+.Login .content .title {
+  color: #fff;
 }
