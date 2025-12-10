@@ -28,7 +28,7 @@ function Login() {
           // console.log(resp.data.error);
           setMsg(true);
         } else {
-          console.log(resp.data);
+          // console.log(resp.data);
           setUserFromDb(resp.data[0]);
           navigate("/admin");
           localStorage.setItem("User", JSON.stringify(resp.data[0]));
