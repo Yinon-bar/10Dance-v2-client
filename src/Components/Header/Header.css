@@ -2,17 +2,8 @@
   width: 100%;
 }
 
-.Header .logo-line {
-  /* position: absolute; */
-  margin-top: 2rem;
-  width: 100%;
-}
-.Header .logos-flex {
-  width: 100%;
-  padding: 20px 20px 0px 20px;
-}
-
-.Header img.logo.logo-10dance {
-  width: 25rem;
+.Header img.logo-10dance {
+  margin-top: 4rem;
+  width: 20rem;
   border-radius: 2rem;
 }
