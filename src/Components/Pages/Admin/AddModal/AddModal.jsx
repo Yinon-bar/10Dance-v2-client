@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AddModal.css";
 import axios from "axios";
-import { HiH1 } from "react-icons/hi2";
 
 function AddModal({ onClose }) {
   const [message, setMessage] = useState("");
