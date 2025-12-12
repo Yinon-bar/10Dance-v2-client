@@ -21,12 +21,21 @@
   height: 100%;
 }
 
+.Admin > .container > .content h2.noRecords {
+  color: #ff344b;
+}
+
 .Admin > .container .content .buttons {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.Admin > .container .content .buttons select.selectBox option:checked {
+  background-color: #2a3d43;
+  color: white;
 }
 
 .Admin > .container .content .buttons button {

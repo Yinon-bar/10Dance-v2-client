@@ -14,6 +14,8 @@ function Admin() {
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
     useState(false);
 
+  const [msg, setMsg] = useState("");
+
   const handleEvent = async (eventId) => {
     console.log(eventId);
     getCurrentEvent(eventId);
@@ -23,12 +25,13 @@ function Admin() {
           eventId
       );
       console.log(resp.data);
-
+      setMsg("");
       setEventTable(resp.data);
     } catch (error) {
       setCurrentEvent([]);
+      setMsg(error.response.data.message);
       localStorage.removeItem("Current Event");
-      console.log(error);
+      console.log(error.response.data.message);
     }
   };
 
@@ -85,6 +88,7 @@ function Admin() {
             <select
               onChange={(e) => handleEvent(e.target.value)}
               name="בחר אירוע להצגה"
+              className="selectBox"
             >
               <option defaultChecked hidden value="">
                 ללא
@@ -102,12 +106,13 @@ function Admin() {
             <div className="spacer"></div>
           </div>
           {addAttendee && <AddModal onClose={() => setAddAttendee(false)} />}
-          {eventTable && (
+          {eventTable && msg.length < 1 && (
             <AttTable
               attendee={eventTable}
               rerenderTable={setRerenderTableAfterDelete}
             />
           )}
+          {msg && <h2 className="noRecords">{msg}</h2>}
         </div>
       </div>
     </div>
