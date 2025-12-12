@@ -75,8 +75,8 @@ function Client() {
         )}
         <div className="title-section">
           <h1 className="title welcome">ברוכים הבאים</h1>
-          {/* <h1 className="title campus">{eventFromLocalStorage.title}</h1> */}
-          {/* <h1 className="title welcome">{eventFromLocalStorage.name}</h1> */}
+          <h1 className="title campus">{eventFromLocalStorage.title}</h1>
+          <h1 className="title welcome">{eventFromLocalStorage.institute}</h1>
         </div>
         <h2 className="title cta">
           נא הכנס ת.ז. מלאה <span className="without">כולל</span> ספרת ביקורת
