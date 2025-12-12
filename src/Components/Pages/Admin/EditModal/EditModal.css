@@ -1,0 +1,70 @@
+.EditModal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  z-index: 3;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.EditModal form {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  background-color: #e1eef8;
+  color: #1a1f49;
+}
+
+.EditModal form .message h2 {
+  color: #20718b;
+}
+
+.EditModal form .formHeading {
+  background-color: #20718b;
+  font-size: 1.6rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.EditModal form label {
+  font-size: 1.2rem;
+  margin: 0.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.EditModal form label input {
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.EditModal form input[type="submit"] {
+  background-color: #1a1f49;
+  color: #fff;
+  cursor: pointer;
+}
+
+.EditModal form .btns {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.EditModal form .btns .btn.btn-secondary {
+  margin: 0;
+}

@@ -2,14 +2,22 @@ import axios from "axios";
 import "./AttTable.css";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
+import { FaUserEdit } from "react-icons/fa";
 import { useState } from "react";
+import EditModal from "../EditModal/EditModal";
 
 function AttTable(props) {
   const [message, setMessage] = useState("");
+  const [isEditAttendee, setIsEditAttendee] = useState(false);
 
   const handleDelete = (attendeeObj) => {
     console.log(attendeeObj);
     removeAttendee(attendeeObj);
+  };
+
+  const handleEdit = (attendeeObj) => {
+    // console.log(attendeeObj);
+    editAttendee(attendeeObj);
   };
 
   const removeAttendee = async (attendeeToDelte) => {
@@ -28,6 +36,24 @@ function AttTable(props) {
     }
   };
 
+  const editAttendee = async (attendeeToDelte) => {
+    console.log(attendeeToDelte);
+    setIsEditAttendee(true);
+    // try {
+    //   const resp = await axios.delete(
+    //     `http://localhost/10Dance-V2-php-server/4-controllers/delete-attendee.php?table_name=dec_geo&id=${attendeeToDelte.id}`
+    //   );
+    //   console.log(resp);
+    //   setMessage(resp.data);
+    //   setTimeout(() => {
+    //     setMessage("");
+    //     props.rerenderTable(true);
+    //   }, 3000);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
+
   if (message) {
     return (
       <div className="AttTable">
@@ -44,11 +70,13 @@ function AttTable(props) {
   // console.log(props.attendee);
   return (
     <div className="AttTable">
+      {isEditAttendee && <EditModal />}
       <table>
         <thead>
           <tr>
             <th>#</th>
             <th>מחיקה</th>
+            <th>עריכה</th>
             <th>תעודת זהות</th>
             <th>שם פרטי</th>
             <th>שם משפחה</th>
@@ -64,6 +92,13 @@ function AttTable(props) {
                 <FaTrashAlt
                   className="trash"
                   onClick={() => handleDelete(att)}
+                />
+              </td>
+              <td>
+                <FaUserEdit
+                  className="edit"
+                  size={25}
+                  onClick={() => handleEdit(att)}
                 />
               </td>
               <td>{att.tz_id}</td>

@@ -9,8 +9,7 @@ function HeaderAdmin() {
   const { currentEvent } = useContext(CurrentEvent);
 
   useEffect(() => {
-    console.log(currentEvent);
-
+    // console.log(currentEvent);
     if (
       localStorage.getItem("User") !== null &&
       localStorage.getItem("User").length > 0
@@ -20,7 +19,7 @@ function HeaderAdmin() {
       setUserFromDb(parcedUserFromLocal);
     }
     if (currentEvent) {
-      console.log("Is current event");
+      // console.log("Is current event");
     } else {
       console.log("No current event");
     }
@@ -29,7 +28,7 @@ function HeaderAdmin() {
   // console.log(userFromDb);
   return (
     <div className="HeaderAdmin">
-      {console.log(currentEvent)}
+      {/* {console.log(currentEvent)} */}
       <div className="container">
         <div className="content">
           <h3>

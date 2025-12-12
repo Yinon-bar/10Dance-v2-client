@@ -6,42 +6,43 @@ import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
 import { IoPersonAdd } from "react-icons/io5";
 import CurrentEvent from "../../../Context/CurrentEventContext";
+import EditModal from "./EditModal/EditModal";
 
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
   const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
   const [eventTable, setEventTable] = useState();
   const [addAttendee, setAddAttendee] = useState(false);
+  const [editAttendee, setEditAttendee] = useState();
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
     useState(false);
 
   const [msg, setMsg] = useState("");
 
   const handleEvent = async (eventId) => {
-    console.log(eventId);
+    // console.log(eventId);
     getCurrentEvent(eventId);
     try {
       const resp = await axios.get(
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableId=" +
           eventId
       );
-      console.log(resp.data);
+      // console.log(resp.data);
       setMsg("");
       setEventTable(resp.data);
     } catch (error) {
       setCurrentEvent([]);
-      console.log(currentEvent);
+      // console.log(currentEvent);
       setMsg(error.response.data.message);
       localStorage.removeItem("Current Event");
-      console.log(error.response.data.message);
+      // console.log(error.response.data.message);
     }
   };
 
   const getCurrentEvent = (eventToDisplay) => {
     if (allEvents.length > 0) {
-      console.log(eventToDisplay);
-      console.log(allEvents);
-
+      // console.log(eventToDisplay);
+      // console.log(allEvents);
       const currentEventTemp = allEvents.find(
         (selectedEvent) => selectedEvent.id == eventToDisplay
       );
@@ -59,7 +60,7 @@ function Admin() {
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
       )
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         setAllEvents(resp.data);
         if (
           localStorage.getItem("Current Event") !== null &&
@@ -73,7 +74,7 @@ function Admin() {
 
   return (
     <div className="Admin">
-      {console.log(rerenderTableAfterDelete)}
+      {/* {console.log(rerenderTableAfterDelete)} */}
       <HeaderAdmin />
       <div className="container">
         <div className="content">
@@ -108,6 +109,7 @@ function Admin() {
             <div className="spacer"></div>
           </div>
           {addAttendee && <AddModal onClose={() => setAddAttendee(false)} />}
+          {/* {editAttendee && <EditModal onClose={() => setEditAttendee()} />} */}
           {eventTable && msg.length < 1 && (
             <AttTable
               attendee={eventTable}
