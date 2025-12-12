@@ -16,6 +16,13 @@
   justify-content: space-between;
 }
 
+.HeaderAdmin .container .content a.disableLink {
+  pointer-events: none;
+  /* opacity: 0.5;  */
+  cursor: not-allowed;
+  color: #999;
+}
+
 .HeaderAdmin .container .content h1,
 h2,
 h3 {

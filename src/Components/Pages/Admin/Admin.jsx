@@ -1,14 +1,15 @@
 import axios from "axios";
 import "./Admin.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AttTable from "./AttTable/AttTable";
 import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
 import { IoPersonAdd } from "react-icons/io5";
+import CurrentEvent from "../../../Context/CurrentEventContext";
 
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
-  const [currentEvent, setCurrentEvent] = useState([]);
+  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
   const [eventTable, setEventTable] = useState();
   const [addAttendee, setAddAttendee] = useState(false);
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
@@ -29,6 +30,7 @@ function Admin() {
       setEventTable(resp.data);
     } catch (error) {
       setCurrentEvent([]);
+      console.log(currentEvent);
       setMsg(error.response.data.message);
       localStorage.removeItem("Current Event");
       console.log(error.response.data.message);
