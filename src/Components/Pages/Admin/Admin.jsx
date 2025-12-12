@@ -9,29 +9,36 @@ import { IoPersonAdd } from "react-icons/io5";
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
   const [currentEvent, setCurrentEvent] = useState([]);
-  const [eventTable, setEventTable] = useState([]);
+  const [eventTable, setEventTable] = useState();
   const [addAttendee, setAddAttendee] = useState(false);
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
     useState(false);
 
-  const handleEvent = async (eventToDisplay) => {
-    // console.log(eventToDisplay);
-    getCurrentEvent(eventToDisplay);
+  const handleEvent = async (eventId) => {
+    console.log(eventId);
+    getCurrentEvent(eventId);
     try {
       const resp = await axios.get(
-        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableName=" +
-          eventToDisplay
+        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableId=" +
+          eventId
       );
+      console.log(resp.data);
+
       setEventTable(resp.data);
     } catch (error) {
+      setCurrentEvent([]);
+      localStorage.removeItem("Current Event");
       console.log(error);
     }
   };
 
   const getCurrentEvent = (eventToDisplay) => {
     if (allEvents.length > 0) {
+      console.log(eventToDisplay);
+      console.log(allEvents);
+
       const currentEventTemp = allEvents.find(
-        (selectedEvent) => selectedEvent.event_table === eventToDisplay
+        (selectedEvent) => selectedEvent.id == eventToDisplay
       );
       setCurrentEvent(currentEventTemp);
       localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
@@ -47,15 +54,14 @@ function Admin() {
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
       )
       .then((resp) => {
+        console.log(resp.data);
         setAllEvents(resp.data);
         if (
           localStorage.getItem("Current Event") !== null &&
           localStorage.getItem("Current Event").length > 0
         ) {
           setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
-          handleEvent(
-            JSON.parse(localStorage.getItem("Current Event")).event_table
-          );
+          handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
         }
       });
   }, [rerenderTableAfterDelete]);
@@ -85,11 +91,11 @@ function Admin() {
               </option>
               {allEvents.map((event, index) => (
                 <option
-                  selected={event.event_table === currentEvent?.event_table}
+                  selected={event.id === currentEvent?.id}
                   key={index}
-                  value={event.event_table}
+                  value={event.id}
                 >
-                  {event.event_name}
+                  {event.title}
                 </option>
               ))}
             </select>

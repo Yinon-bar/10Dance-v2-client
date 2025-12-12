@@ -67,10 +67,10 @@ function AttTable(props) {
                 />
               </td>
               <td>{att.tz_id}</td>
-              <td>{att.fName}</td>
-              <td>{att.lName}</td>
+              <td>{att.first_name}</td>
+              <td>{att.last_name}</td>
               <td>{att.institute}</td>
-              <td>{att.isArrived}</td>
+              <td>{att.is_arrive}</td>
             </tr>
           ))}
         </tbody>
