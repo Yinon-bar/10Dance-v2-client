@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./EditModal.css";
 import axios from "axios";
+import ClearScreen from "../../../../Context/ClearScreen";
 
-function EditModal({ onClose }) {
+function EditModal(props) {
   const [message, setMessage] = useState("");
-  const [newAttendee, setNewAttendee] = useState({
-    tzId: "",
-    fName: "",
-    lName: "",
-    institute: "",
-    eventTable: JSON.parse(localStorage.getItem("Current Event")).event_table,
+  const [attendeeToEdit, setAttendeeToEdit] = useState({
+    id: props.attendeeObj.id,
+    tzId: props.attendeeObj.tz_id,
+    fName: props.attendeeObj.first_name,
+    lName: props.attendeeObj.last_name,
+    institute: props.attendeeObj.institute,
+    eventId: props.attendeeObj.event_id,
   });
+  const { clearScreen, setClearScreen } = useContext(ClearScreen);
 
   const handleAddAttendee = (e) => {
     e.preventDefault();
@@ -19,24 +22,26 @@ function EditModal({ onClose }) {
 
   const handleAbort = (e) => {
     e.preventDefault();
-    onClose();
+    setClearScreen({ ...clearScreen, btnEdit: false });
   };
 
   const createNewUser = async () => {
-    // try {
-    //   const resp = await axios.post(
-    //     "http://localhost/10Dance-V2-php-server/4-controllers/create-new-attendee.php",
-    //     newAttendee
-    //   );
-    //   // console.log(resp.data);
-    //   setMessage("הוספת נוכח הושלמה בהצלחה");
-    //   setTimeout(() => {
-    //     onClose();
-    //   }, 2500);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const resp = await axios.put(
+        "http://localhost/10Dance-V2-php-server/4-controllers/create-new-attendee.php",
+        attendeeToEdit
+      );
+      // console.log(resp.data);
+      setMessage("עדכון נוכח הושלם בהצלחה");
+      setTimeout(() => {
+        props.onClose(true);
+      }, 2500);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="EditModal">
@@ -51,8 +56,9 @@ function EditModal({ onClose }) {
           <input
             required
             type="text"
+            value={attendeeToEdit.fName}
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, fName: e.target.value })
+              setAttendeeToEdit({ ...attendeeToEdit, fName: e.target.value })
             }
           />
         </label>
@@ -61,8 +67,9 @@ function EditModal({ onClose }) {
           <input
             required
             type="text"
+            value={attendeeToEdit.lName}
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, lName: e.target.value })
+              setAttendeeToEdit({ ...attendeeToEdit, lName: e.target.value })
             }
           />
         </label>
@@ -71,8 +78,9 @@ function EditModal({ onClose }) {
           <input
             required
             type="text"
+            value={attendeeToEdit.tzId}
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, tzId: e.target.value })
+              setAttendeeToEdit({ ...attendeeToEdit, tzId: e.target.value })
             }
           />
         </label>
@@ -81,8 +89,12 @@ function EditModal({ onClose }) {
           <input
             required
             type="text"
+            value={attendeeToEdit.institute}
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, institute: e.target.value })
+              setAttendeeToEdit({
+                ...attendeeToEdit,
+                institute: e.target.value,
+              })
             }
           />
         </label>

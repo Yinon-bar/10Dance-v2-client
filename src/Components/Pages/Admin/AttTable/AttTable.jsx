@@ -3,12 +3,15 @@ import "./AttTable.css";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import EditModal from "../EditModal/EditModal";
+import ClearScreen from "../../../../Context/ClearScreen";
 
 function AttTable(props) {
   const [message, setMessage] = useState("");
   const [isEditAttendee, setIsEditAttendee] = useState(false);
+  const [attendeeObj, setAttendeeObj] = useState([]);
+  const { clearScreen, setClearScreen } = useContext(ClearScreen);
 
   const handleDelete = (attendeeObj) => {
     console.log(attendeeObj);
@@ -16,7 +19,10 @@ function AttTable(props) {
   };
 
   const handleEdit = (attendeeObj) => {
+    // console.log(props.onClose);
     // console.log(attendeeObj);
+    setClearScreen({ ...clearScreen, btnEdit: true });
+    setAttendeeObj(attendeeObj);
     editAttendee(attendeeObj);
   };
 
@@ -36,8 +42,8 @@ function AttTable(props) {
     }
   };
 
-  const editAttendee = async (attendeeToDelte) => {
-    console.log(attendeeToDelte);
+  const editAttendee = async (attendeeToEdit) => {
+    // console.log(attendeeToEdit);
     setIsEditAttendee(true);
     // try {
     //   const resp = await axios.delete(
@@ -53,6 +59,8 @@ function AttTable(props) {
     //   console.log(error);
     // }
   };
+
+  useEffect(() => {}, []);
 
   if (message) {
     return (
@@ -70,7 +78,7 @@ function AttTable(props) {
   // console.log(props.attendee);
   return (
     <div className="AttTable">
-      {isEditAttendee && <EditModal />}
+      {clearScreen.btnEdit && <EditModal attendeeObj={attendeeObj} />}
       <table>
         <thead>
           <tr>

@@ -7,15 +7,15 @@ import AddModal from "./AddModal/AddModal";
 import { IoPersonAdd } from "react-icons/io5";
 import CurrentEvent from "../../../Context/CurrentEventContext";
 import EditModal from "./EditModal/EditModal";
+import ClearScreen from "../../../Context/ClearScreen";
 
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
-  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
   const [eventTable, setEventTable] = useState();
-  const [addAttendee, setAddAttendee] = useState(false);
-  const [editAttendee, setEditAttendee] = useState();
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
     useState(false);
+  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
+  const { clearScreen, setClearScreen } = useContext(ClearScreen);
 
   const [msg, setMsg] = useState("");
 
@@ -54,6 +54,7 @@ function Admin() {
   };
 
   useEffect(() => {
+    // console.log(clearScreen);
     setRerenderTableAfterDelete(false);
     axios
       .get(
@@ -74,7 +75,6 @@ function Admin() {
 
   return (
     <div className="Admin">
-      {/* {console.log(rerenderTableAfterDelete)} */}
       <HeaderAdmin />
       <div className="container">
         <div className="content">
@@ -83,7 +83,7 @@ function Admin() {
           <div className="buttons">
             <button
               onClick={() => {
-                setAddAttendee(true);
+                setClearScreen({ ...clearScreen, btnAdd: true });
               }}
             >
               <IoPersonAdd size={30} color="#20718B" />
@@ -108,8 +108,7 @@ function Admin() {
             </select>
             <div className="spacer"></div>
           </div>
-          {addAttendee && <AddModal onClose={() => setAddAttendee(false)} />}
-          {/* {editAttendee && <EditModal onClose={() => setEditAttendee()} />} */}
+          {clearScreen.btnAdd && <AddModal />}
           {eventTable && msg.length < 1 && (
             <AttTable
               attendee={eventTable}

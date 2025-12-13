@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./AddModal.css";
 import axios from "axios";
+import ClearScreen from "../../../../Context/ClearScreen";
 
 function AddModal({ onClose }) {
   const [message, setMessage] = useState("");
@@ -11,6 +12,7 @@ function AddModal({ onClose }) {
     institute: "",
     eventTable: JSON.parse(localStorage.getItem("Current Event")).event_table,
   });
+  const { setClearScreen } = useContext(ClearScreen);
 
   const handleAddAttendee = (e) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ function AddModal({ onClose }) {
 
   const handleAbort = (e) => {
     e.preventDefault();
-    onClose();
+    setClearScreen(false);
   };
 
   const createNewUser = async () => {
