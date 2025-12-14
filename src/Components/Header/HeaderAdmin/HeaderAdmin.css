@@ -20,6 +20,12 @@
   font-weight: 600;
 }
 
+.HeaderAdmin .container .content a:hover {
+  background-color: #2a3d43;
+  color: #e1eef8;
+  transition: 0.2s ease-in;
+}
+
 .HeaderAdmin .container .content a.disableLink {
   pointer-events: none;
   /* opacity: 0.5;  */

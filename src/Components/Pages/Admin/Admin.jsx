@@ -7,16 +7,17 @@ import AddModal from "./AddModal/AddModal";
 import { IoPersonAdd } from "react-icons/io5";
 import CurrentEvent from "../../../Context/CurrentEventContext";
 import ClearScreen from "../../../Context/ClearScreen";
+import BounceLoader from "react-spinners/BounceLoader";
 
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
   const [eventTable, setEventTable] = useState();
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
     useState(false);
+  const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
   const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
-
-  const [msg, setMsg] = useState("");
 
   const handleEvent = async (eventId) => {
     // console.log(eventId);
@@ -53,9 +54,11 @@ function Admin() {
 
   const getAllEvents = async () => {
     try {
+      setLoading(true);
       const resp = await axios.get(
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
       );
+      setLoading(false);
       let validateResp;
       // בדיקה שהתשובה שקיבלנו היא אכן מערך, במידה ולא, יש בעיה בדאטהבייס ולכן יש להציג את התקלה
       if (Array.isArray(resp.data)) {
@@ -74,13 +77,17 @@ function Admin() {
         handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
       }
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
 
   useEffect(() => {
     console.log(allEvents);
-    getAllEvents();
+    setLoading(true);
+    setTimeout(() => {
+      getAllEvents();
+    }, 2000);
     setRerenderTableAfterDelete(false);
   }, [rerenderTableAfterDelete]);
 
@@ -122,6 +129,13 @@ function Admin() {
             <div className="spacer"></div>
           </div>
           {clearScreen.btnAdd && <AddModal />}
+          {loading && (
+            <BounceLoader
+              className="loader"
+              color="rgb(225, 238, 248)"
+              size={100}
+            />
+          )}
           {eventTable && msg.length < 1 && (
             <AttTable
               attendee={eventTable}

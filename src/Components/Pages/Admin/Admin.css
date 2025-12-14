@@ -21,6 +21,10 @@
   height: 100%;
 }
 
+.Admin > .container > .content .loader {
+  margin-top: 2rem;
+}
+
 .Admin > .container > .content h2.noRecords {
   color: #ff344b;
 }
