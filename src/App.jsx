@@ -23,6 +23,8 @@ function App() {
       >
         <div className="App">
           <Main />
+          {/* {console.log("MODE:", import.meta.env.MODE)}
+          {console.log("API:", import.meta.env.VITE_API_BASE_URL)} */}
         </div>
       </CurrentEvent.Provider>
       {/* </AuthContext.Provider> */}

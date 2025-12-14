@@ -8,6 +8,7 @@ import { IoPersonAdd } from "react-icons/io5";
 import CurrentEvent from "../../../Context/CurrentEventContext";
 import ClearScreen from "../../../Context/ClearScreen";
 import BounceLoader from "react-spinners/BounceLoader";
+import { api } from "../../../API/client";
 
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
@@ -23,10 +24,7 @@ function Admin() {
     // console.log(eventId);
     getCurrentEvent(eventId);
     try {
-      const resp = await axios.get(
-        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableId=" +
-          eventId
-      );
+      const resp = await api.get("/get-all-attendees.php?tableId=" + eventId);
       setMsg("");
       setEventTable(resp.data);
     } catch (error) {
@@ -55,9 +53,7 @@ function Admin() {
   const getAllEvents = async () => {
     try {
       setLoading(true);
-      const resp = await axios.get(
-        "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
-      );
+      const resp = await api.get("/get-all-events.php");
       setLoading(false);
       let validateResp;
       // בדיקה שהתשובה שקיבלנו היא אכן מערך, במידה ולא, יש בעיה בדאטהבייס ולכן יש להציג את התקלה
