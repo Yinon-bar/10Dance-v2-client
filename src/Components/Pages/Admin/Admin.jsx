@@ -6,7 +6,6 @@ import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
 import { IoPersonAdd } from "react-icons/io5";
 import CurrentEvent from "../../../Context/CurrentEventContext";
-import EditModal from "./EditModal/EditModal";
 import ClearScreen from "../../../Context/ClearScreen";
 
 function Admin() {
@@ -27,7 +26,6 @@ function Admin() {
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-attendees.php?tableId=" +
           eventId
       );
-      // console.log(resp.data);
       setMsg("");
       setEventTable(resp.data);
     } catch (error) {
@@ -53,24 +51,37 @@ function Admin() {
     }
   };
 
-  useEffect(() => {
-    // console.log(clearScreen);
-    setRerenderTableAfterDelete(false);
-    axios
-      .get(
+  const getAllEvents = async () => {
+    try {
+      const resp = await axios.get(
         "http://localhost/10Dance-V2-php-server/4-controllers/get-all-events.php"
-      )
-      .then((resp) => {
-        // console.log(resp.data);
-        setAllEvents(resp.data);
-        if (
-          localStorage.getItem("Current Event") !== null &&
-          localStorage.getItem("Current Event").length > 0
-        ) {
-          setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
-          handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
-        }
-      });
+      );
+      let validateResp;
+      // בדיקה שהתשובה שקיבלנו היא אכן מערך, במידה ולא, יש בעיה בדאטהבייס ולכן יש להציג את התקלה
+      if (Array.isArray(resp.data)) {
+        validateResp = resp.data;
+      } else {
+        validateResp = [];
+        setMsg(resp.data);
+      }
+      console.log(resp);
+      setAllEvents(validateResp);
+      if (
+        localStorage.getItem("Current Event") !== null &&
+        localStorage.getItem("Current Event").length > 0
+      ) {
+        setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
+        handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(allEvents);
+    getAllEvents();
+    setRerenderTableAfterDelete(false);
   }, [rerenderTableAfterDelete]);
 
   return (
@@ -96,15 +107,17 @@ function Admin() {
               <option defaultChecked hidden value="">
                 ללא
               </option>
-              {allEvents.map((event, index) => (
-                <option
-                  selected={event.id === currentEvent?.id}
-                  key={index}
-                  value={event.id}
-                >
-                  {event.title}
-                </option>
-              ))}
+              {allEvents.length > 0
+                ? allEvents.map((event, index) => (
+                    <option
+                      selected={event.id === currentEvent?.id}
+                      key={index}
+                      value={event.id}
+                    >
+                      {event.title}
+                    </option>
+                  ))
+                : null}
             </select>
             <div className="spacer"></div>
           </div>
