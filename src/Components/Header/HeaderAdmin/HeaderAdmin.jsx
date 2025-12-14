@@ -52,7 +52,9 @@ function HeaderAdmin() {
             >
               למסך קבלת פנים
             </NavLink>
-            <button className="btn btn-primary">אודות</button>
+            <NavLink className={"btn btn-primary"} to={"/about"}>
+              אודות
+            </NavLink>
           </div>
         </div>
       </div>

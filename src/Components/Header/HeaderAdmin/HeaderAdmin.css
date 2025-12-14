@@ -16,6 +16,10 @@
   justify-content: space-between;
 }
 
+.HeaderAdmin .container .content a {
+  font-weight: 600;
+}
+
 .HeaderAdmin .container .content a.disableLink {
   pointer-events: none;
   /* opacity: 0.5;  */
