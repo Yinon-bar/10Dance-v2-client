@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 function HeaderAdmin() {
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
   const { currentEvent } = useContext(CurrentEvent);
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
@@ -24,8 +25,11 @@ function HeaderAdmin() {
       // console.log("User Exist");
       const parcedUserFromLocal = JSON.parse(localStorage.getItem("User"));
       const userTokenDecoded = jwtDecode(parcedUserFromLocal);
-      // console.log(userTokenDecoded.data);
       setUserFromDb(userTokenDecoded.data);
+      // console.log(userTokenDecoded.data);
+      if (userTokenDecoded.data.role === 3) {
+        setIsSuperAdmin(true);
+      }
     }
     if (currentEvent) {
       // console.log("Is current event");
@@ -46,6 +50,11 @@ function HeaderAdmin() {
             </span>
           </h3>
           <div className="btn-group">
+            {isSuperAdmin && (
+              <NavLink className="btn btn-primary" to={"../welcome/register"}>
+                הוספת משתמש
+              </NavLink>
+            )}
             <NavLink className="btn btn-primary" to={"/admin"}>
               למסך הבית
             </NavLink>

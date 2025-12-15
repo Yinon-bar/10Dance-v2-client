@@ -3,6 +3,7 @@ import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../../../../Context/AuthContext";
+import { api } from "../../../../API/client";
 
 function Register() {
   const [msg, setMsg] = useState("");
@@ -19,11 +20,8 @@ function Register() {
   const handleLogin = (event) => {
     event.preventDefault();
     // console.log(user);
-    axios
-      .post(
-        "http://localhost/10Dance-V2-php-server/4-controllers/register.php",
-        user
-      )
+    api
+      .post("/register.php", user)
       .then((resp) => {
         console.log(resp);
         if (resp.data.error) {
@@ -47,7 +45,7 @@ function Register() {
           <h1 className="title">
             ברוכים הבאים לתכנת <span className="cng-font">10Dance</span>
           </h1>
-          <h2>אנא הכנס פרטי התחברות</h2>
+          <h2>אנא הכנס פרטי משתמש</h2>
           {msg && <h2>פרטי החיבור אינם נכונים</h2>}
           <form action="" className="login">
             <label>
@@ -93,8 +91,8 @@ function Register() {
           </form>
         </div>
         <p className="lowerTxt">
-          כבר נרשמת למערכת?
-          <Link to={"/welcome/login"}> לחץ כאן להחברות</Link>
+          חזרה למסך התחברות
+          <Link to={"/welcome/login"}> לחץ כאן </Link>
         </p>
       </div>
     </div>

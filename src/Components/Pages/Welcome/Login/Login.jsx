@@ -71,8 +71,8 @@ function Login() {
         </form>
       </div>
       <p className="lowerTxt">
-        אם אינך רשום למערכת
-        <Link to={"/welcome/register"}> לחץ כאן </Link>
+        שכחת סיסמה?
+        <Link to={"/welcome/forgot-password"}> לחץ כאן </Link>
       </p>
     </div>
   );
