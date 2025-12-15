@@ -23,7 +23,6 @@ function Login() {
         console.log(resp.data.error);
         setMsg(true);
       } else {
-        console.log(resp.data["user_name"]);
         setUserFromDb(resp.data);
         localStorage.setItem("User", JSON.stringify(resp.data.jwt));
         navigate("/admin");

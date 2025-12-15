@@ -37,7 +37,6 @@ function HeaderAdmin() {
   // console.log(userFromDb);
   return (
     <div className="HeaderAdmin">
-      {/* {console.log(userFromDb?.user_name)} */}
       <div className="container">
         <div className="content">
           <h3>
