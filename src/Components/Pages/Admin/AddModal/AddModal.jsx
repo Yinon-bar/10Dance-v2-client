@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import "./AddModal.css";
 import axios from "axios";
 import ClearScreen from "../../../../Context/ClearScreen";
+import { api } from "../../../../API/client";
 
 function AddModal({ onClose }) {
   const [message, setMessage] = useState("");
@@ -26,8 +27,8 @@ function AddModal({ onClose }) {
 
   const createNewUser = async () => {
     try {
-      const resp = await axios.post(
-        "http://localhost/10Dance-V2-php-server/4-controllers/create-new-attendee.php",
+      const resp = await api.post(
+        "/4-controllers/create-new-attendee.php",
         newAttendee
       );
       // console.log(resp.data);

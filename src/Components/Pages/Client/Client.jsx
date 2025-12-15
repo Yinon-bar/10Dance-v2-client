@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import "./Client.css";
-import axios from "axios";
 import NumberContext from "../../../Context/NumberContext";
 import PrintAtt from "../../PrintAtt/PrintAtt";
 import ListNumpad from "../../NumPad/ListNumpad/ListNumpad";
 import CurrentEvent from "../../../Context/CurrentEventContext";
 import HeaderClient from "../../Header/HeaderClient/HeaderClient";
+import { api } from "../../../API/client";
 
 function Client() {
   const [inputValue, setInputValue] = useState("");
@@ -30,9 +30,9 @@ function Client() {
     e.preventDefault();
     const tzId = e.target.elements.tzId.value;
     setLoading(true);
-    axios
+    api
       .get(
-        `http://localhost/10Dance-V2-php-server/4-controllers/get-attendee-by-tz.php?tz=${tzId}&table=${eventFromLocalStorage.event_table}`
+        `/get-attendee-by-tz.php?tz=${tzId}&table=${eventFromLocalStorage.event_table}`
       )
       .then((resp) => {
         console.log(resp.data);

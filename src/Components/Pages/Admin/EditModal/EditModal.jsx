@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import "./EditModal.css";
 import axios from "axios";
 import ClearScreen from "../../../../Context/ClearScreen";
+import { api } from "../../../../API/client";
 
 function EditModal(props) {
   const [message, setMessage] = useState("");
@@ -27,8 +28,8 @@ function EditModal(props) {
 
   const createNewUser = async () => {
     try {
-      const resp = await axios.put(
-        "http://localhost/10Dance-V2-php-server/4-controllers/create-new-attendee.php",
+      const resp = await api.put(
+        "/4-controllers/create-new-attendee.php",
         attendeeToEdit
       );
       // console.log(resp.data);

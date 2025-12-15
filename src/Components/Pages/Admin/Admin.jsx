@@ -54,6 +54,7 @@ function Admin() {
     try {
       setLoading(true);
       const resp = await api.get("/get-all-events.php");
+      // console.log(resp.data);
       setLoading(false);
       let validateResp;
       // בדיקה שהתשובה שקיבלנו היא אכן מערך, במידה ולא, יש בעיה בדאטהבייס ולכן יש להציג את התקלה

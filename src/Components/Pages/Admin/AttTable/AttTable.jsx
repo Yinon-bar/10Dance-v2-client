@@ -6,6 +6,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import EditModal from "../EditModal/EditModal";
 import ClearScreen from "../../../../Context/ClearScreen";
+import { api } from "../../../../API/client";
 
 function AttTable(props) {
   const [message, setMessage] = useState("");
@@ -28,8 +29,8 @@ function AttTable(props) {
 
   const removeAttendee = async (attendeeToDelte) => {
     try {
-      const resp = await axios.delete(
-        `http://localhost/10Dance-V2-php-server/4-controllers/delete-attendee.php?table_name=dec_geo&id=${attendeeToDelte.id}`
+      const resp = await api.delete(
+        `/delete-attendee.php?table_name=dec_geo&id=${attendeeToDelte.id}`
       );
       console.log(resp);
       setMessage(resp.data);
