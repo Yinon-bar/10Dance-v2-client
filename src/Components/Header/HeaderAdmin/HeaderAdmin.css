@@ -48,12 +48,13 @@ h3 {
 .HeaderAdmin .container .content h3 span.logout {
   cursor: pointer;
   font-size: 1rem;
-  color: #2a3d43;
+  font-weight: 800;
+  color: rgb(255, 52, 75);
 }
 
 .HeaderAdmin .container .content h3 span.logout:hover {
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .HeaderAdmin .container .content .btn-group {
