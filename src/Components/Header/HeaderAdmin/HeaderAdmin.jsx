@@ -3,6 +3,7 @@ import "./HeaderAdmin.css";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../Context/AuthContext";
 import CurrentEvent from "../../../Context/CurrentEventContext";
+import { jwtDecode } from "jwt-decode";
 
 function HeaderAdmin() {
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
@@ -22,7 +23,9 @@ function HeaderAdmin() {
     ) {
       // console.log("User Exist");
       const parcedUserFromLocal = JSON.parse(localStorage.getItem("User"));
-      setUserFromDb(parcedUserFromLocal);
+      const userTokenDecoded = jwtDecode(parcedUserFromLocal);
+      // console.log(userTokenDecoded.data);
+      setUserFromDb(userTokenDecoded.data);
     }
     if (currentEvent) {
       // console.log("Is current event");
@@ -34,11 +37,11 @@ function HeaderAdmin() {
   // console.log(userFromDb);
   return (
     <div className="HeaderAdmin">
-      {/* {console.log(currentEvent)} */}
+      {/* {console.log(userFromDb?.user_name)} */}
       <div className="container">
         <div className="content">
           <h3>
-            שלום {userFromDb?.user_name}
+            שלום {userFromDb?.name}
             <span className="logout" onClick={(e) => handleLogout(e)}>
               &nbsp; &nbsp;התנתק
             </span>

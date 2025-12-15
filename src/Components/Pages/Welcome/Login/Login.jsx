@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import "./Login.css";
 import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
-import axios from "axios";
 import AuthContext from "../../../../Context/AuthContext";
+import { api } from "../../../../API/client";
 
 function Login() {
   const [msg, setMsg] = useState(false);
@@ -14,29 +14,23 @@ function Login() {
   });
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    // console.log(user);
-    axios
-      .post(
-        "http://localhost/10Dance-V2-php-server/4-controllers/login.php",
-        user
-      )
-      .then((resp) => {
-        // console.log(resp);
-        if (resp.data.error) {
-          // console.log(resp.data.error);
-          setMsg(true);
-        } else {
-          // console.log(resp.data);
-          setUserFromDb(resp.data[0]);
-          navigate("/admin");
-          localStorage.setItem("User", JSON.stringify(resp.data[0]));
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const resp = await api.post("/login.php", user);
+      // console.log(resp.data);
+      if (resp.data.error) {
+        console.log(resp.data.error);
+        setMsg(true);
+      } else {
+        console.log(resp.data["user_name"]);
+        setUserFromDb(resp.data);
+        localStorage.setItem("User", JSON.stringify(resp.data.jwt));
+        navigate("/admin");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
