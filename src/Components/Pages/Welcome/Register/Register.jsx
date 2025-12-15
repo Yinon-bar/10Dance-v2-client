@@ -92,7 +92,7 @@ function Register() {
             </button>
           </form>
         </div>
-        <p>
+        <p className="lowerTxt">
           כבר נרשמת למערכת?
           <Link to={"/welcome/login"}> לחץ כאן להחברות</Link>
         </p>

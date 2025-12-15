@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import "./HeaderAdmin.css";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../Context/AuthContext";
@@ -7,6 +7,12 @@ import CurrentEvent from "../../../Context/CurrentEventContext";
 function HeaderAdmin() {
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
   const { currentEvent } = useContext(CurrentEvent);
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    localStorage.removeItem("User");
+    navigate("/");
+  };
 
   useEffect(() => {
     // console.log(currentEvent);
@@ -33,7 +39,9 @@ function HeaderAdmin() {
         <div className="content">
           <h3>
             שלום {userFromDb?.user_name}
-            <span className="logout"> &nbsp; &nbsp;התנתק </span>
+            <span className="logout" onClick={(e) => handleLogout(e)}>
+              &nbsp; &nbsp;התנתק
+            </span>
           </h3>
           <div className="btn-group">
             <NavLink className="btn btn-primary" to={"/admin"}>

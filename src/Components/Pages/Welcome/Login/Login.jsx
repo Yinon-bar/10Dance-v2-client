@@ -77,7 +77,7 @@ function Login() {
           </button>
         </form>
       </div>
-      <p>
+      <p className="lowerTxt">
         אם אינך רשום למערכת
         <Link to={"/welcome/register"}> לחץ כאן </Link>
       </p>

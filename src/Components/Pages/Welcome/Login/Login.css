@@ -2,6 +2,14 @@
   color: #ff344b;
 }
 
+.Login p.lowerTxt {
+  font-size: 1.4rem;
+}
+
+.Login p.lowerTxt a {
+  font-weight: 700;
+}
+
 .Login .content .title {
   margin-top: 2rem;
   color: #fff;

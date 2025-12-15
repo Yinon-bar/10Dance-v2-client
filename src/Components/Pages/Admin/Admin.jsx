@@ -64,7 +64,7 @@ function Admin() {
         validateResp = [];
         setMsg(resp.data);
       }
-      console.log(resp);
+      // console.log(resp);
       setAllEvents(validateResp);
       if (
         localStorage.getItem("Current Event") !== null &&
@@ -80,11 +80,11 @@ function Admin() {
   };
 
   useEffect(() => {
-    console.log(allEvents);
+    // console.log(allEvents);
     setLoading(true);
     setTimeout(() => {
       getAllEvents();
-    }, 2000);
+    }, 500);
     setRerenderTableAfterDelete(false);
   }, [rerenderTableAfterDelete]);
 
