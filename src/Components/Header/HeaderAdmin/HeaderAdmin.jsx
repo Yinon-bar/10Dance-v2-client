@@ -40,11 +40,15 @@ function HeaderAdmin() {
 
   // console.log(userFromDb);
   return (
-    <div className="HeaderAdmin">
+    <div
+      className="HeaderAdmin"
+      style={{ backgroundColor: isSuperAdmin ? "#102125ff" : "" }}
+    >
       <div className="container">
         <div className="content">
           <h3>
             שלום {userFromDb?.name}
+            {isSuperAdmin ? ",  מנהל מערכת" : ""}
             <span className="logout" onClick={(e) => handleLogout(e)}>
               &nbsp; &nbsp;התנתק
             </span>
@@ -52,7 +56,7 @@ function HeaderAdmin() {
           <div className="btn-group">
             {isSuperAdmin && (
               <NavLink className="btn btn-primary" to={"../welcome/register"}>
-                הוספת משתמש
+                הוספת מנהל
               </NavLink>
             )}
             <NavLink className="btn btn-primary" to={"/admin"}>

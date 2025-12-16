@@ -1,4 +1,3 @@
-import axios from "axios";
 import "./Admin.css";
 import { useContext, useEffect, useState } from "react";
 import AttTable from "./AttTable/AttTable";
