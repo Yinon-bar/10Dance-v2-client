@@ -37,21 +37,41 @@
   justify-content: space-between;
 }
 
+.Admin > .container .content .buttons select.selectBox {
+  border-radius: 1rem;
+  text-indent: 0.5rem;
+  border: 2px solid #102125;
+  background-color: #e1eef8;
+}
+
 .Admin > .container .content .buttons select.selectBox option:checked {
   background-color: #2a3d43;
   color: white;
 }
 
-.Admin > .container .content .buttons button {
+.Admin > .container .content .buttons .rightSection {
+  width: 33%;
+}
+
+.Admin > .container .content .buttons .middleSection {
+  width: 33%;
+}
+
+.Admin > .container .content .buttons .leftSection {
+  /* width: 3rem; */
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 33%;
+  height: 100%;
+}
+
+.Admin > .container .content .buttons .rightSection button {
   margin: 0;
   height: 2.4rem;
   padding: 0;
   width: 3rem;
   background-color: #e1eef8;
-}
-
-.Admin > .container .content .buttons .spacer {
-  width: 3rem;
 }
 
 .Admin > .container > .content .commandRibbon {

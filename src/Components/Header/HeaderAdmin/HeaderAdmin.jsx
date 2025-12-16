@@ -67,7 +67,7 @@ function HeaderAdmin() {
             </NavLink>
             <NavLink
               className={
-                currentEvent.length < 1
+                currentEvent?.length < 1
                   ? "btn btn-primary disableLink"
                   : "btn btn-primary"
               }

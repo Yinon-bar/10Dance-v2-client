@@ -8,6 +8,8 @@ import CurrentEvent from "../../../Context/CurrentEventContext";
 import ClearScreen from "../../../Context/ClearScreen";
 import BounceLoader from "react-spinners/BounceLoader";
 import { api } from "../../../API/client";
+import EventEdit from "./EventEdit/EventEdit";
+import EventDelete from "./EventDelete/EventDelete";
 
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
@@ -27,10 +29,10 @@ function Admin() {
       setMsg("");
       setEventTable(resp.data);
     } catch (error) {
-      setCurrentEvent([]);
+      // setCurrentEvent([]);
       // console.log(currentEvent);
       setMsg(error.response.data.message);
-      localStorage.removeItem("Current Event");
+      // localStorage.removeItem("Current Event");
       // console.log(error.response.data.message);
     }
   };
@@ -42,6 +44,7 @@ function Admin() {
       const currentEventTemp = allEvents.find(
         (selectedEvent) => selectedEvent.id == eventToDisplay
       );
+      // console.log(currentEventTemp);
       setCurrentEvent(currentEventTemp);
       localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
     } else {
@@ -54,7 +57,6 @@ function Admin() {
       setLoading(true);
       const resp = await api.get("/get-all-events.php");
       // console.log(resp.data);
-      setLoading(false);
       let validateResp;
       // בדיקה שהתשובה שקיבלנו היא אכן מערך, במידה ולא, יש בעיה בדאטהבייס ולכן יש להציג את התקלה
       if (Array.isArray(resp.data)) {
@@ -64,14 +66,18 @@ function Admin() {
         setMsg(resp.data);
       }
       // console.log(resp);
+      setLoading(false);
       setAllEvents(validateResp);
-      if (
-        localStorage.getItem("Current Event") !== null &&
-        localStorage.getItem("Current Event").length > 0
-      ) {
-        setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
-        handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
-      }
+      // if (
+      //   localStorage.getItem("Current Event") !== null &&
+      //   localStorage.getItem("Current Event").length > 0
+      // ) {
+      //   setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
+      //   handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
+      // }
+
+      // setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
+      handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -95,34 +101,41 @@ function Admin() {
           <h1>ברוכים הבאים לממשק הניהול</h1>
           <h3>בחר אירוע להצגה</h3>
           <div className="buttons">
-            <button
-              onClick={() => {
-                setClearScreen({ ...clearScreen, btnAdd: true });
-              }}
-            >
-              <IoPersonAdd size={30} color="#20718B" />
-            </button>
-            <select
-              onChange={(e) => handleEvent(e.target.value)}
-              name="בחר אירוע להצגה"
-              className="selectBox"
-            >
-              <option defaultChecked hidden value="">
-                ללא
-              </option>
-              {allEvents.length > 0
-                ? allEvents.map((event, index) => (
-                    <option
-                      selected={event.id === currentEvent?.id}
-                      key={index}
-                      value={event.id}
-                    >
-                      {event.title}
-                    </option>
-                  ))
-                : null}
-            </select>
-            <div className="spacer"></div>
+            <div className="rightSection">
+              <button
+                onClick={() => {
+                  setClearScreen({ ...clearScreen, btnAdd: true });
+                }}
+              >
+                <IoPersonAdd size={30} color="#2A3D43" />
+              </button>
+            </div>
+            <div className="middleSection">
+              <select
+                onChange={(e) => handleEvent(e.target.value)}
+                name="בחר אירוע להצגה"
+                className="selectBox"
+              >
+                <option defaultChecked hidden value="">
+                  ללא
+                </option>
+                {allEvents.length > 0
+                  ? allEvents.map((event, index) => (
+                      <option
+                        selected={event.id === currentEvent?.id}
+                        key={index}
+                        value={event.id}
+                      >
+                        {event.title}
+                      </option>
+                    ))
+                  : null}
+              </select>
+            </div>
+            <div className="leftSection">
+              <EventDelete />
+              <EventEdit />
+            </div>
           </div>
           {clearScreen.btnAdd && <AddModal />}
           {loading && (

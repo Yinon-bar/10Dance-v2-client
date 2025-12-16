@@ -1,0 +1,20 @@
+.EventDelete {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(225, 238, 248);
+  border-radius: 1rem;
+  border: 2px solid #102125;
+  color: #2a3d43;
+  width: 10rem;
+  height: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.EventDelete:active {
+  background-color: #2a3d43;
+  color: #e1eef8;
+}
