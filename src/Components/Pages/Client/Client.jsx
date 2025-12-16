@@ -6,6 +6,7 @@ import ListNumpad from "../../NumPad/ListNumpad/ListNumpad";
 import CurrentEvent from "../../../Context/CurrentEventContext";
 import HeaderClient from "../../Header/HeaderClient/HeaderClient";
 import { api } from "../../../API/client";
+import QZStatus from "../../PrintAttendee2/PrintAttendee";
 
 function Client() {
   const [inputValue, setInputValue] = useState("");
@@ -71,7 +72,8 @@ function Client() {
           </div>
         )}
         {printAtt && (
-          <PrintAtt attendee={attendee[0]} onDone={() => setPrintAtt(false)} />
+          <QZStatus />
+          // <PrintAtt attendee={attendee[0]} onDone={() => setPrintAtt(false)} />
         )}
         <div className="title-section">
           <h1 className="title welcome">ברוכים הבאים</h1>
