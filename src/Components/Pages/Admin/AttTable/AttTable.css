@@ -61,7 +61,7 @@
 
 .AttTable table tbody tr td .trash {
   cursor: pointer;
-  color: #ff344b;
+  color: var(--color-red);
 }
 
 .AttTable table tbody tr td .edit {

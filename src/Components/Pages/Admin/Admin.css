@@ -42,6 +42,7 @@
   text-indent: 0.5rem;
   border: 2px solid #102125;
   background-color: #e1eef8;
+  min-width: 200px;
 }
 
 .Admin > .container .content .buttons select.selectBox option:checked {

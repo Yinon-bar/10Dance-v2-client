@@ -42,7 +42,9 @@ function HeaderAdmin() {
   return (
     <div
       className="HeaderAdmin"
-      style={{ backgroundColor: isSuperAdmin ? "#102125ff" : "" }}
+      style={{
+        backgroundColor: isSuperAdmin ? "var(--color-mainBlue)" : "",
+      }}
     >
       <div className="container">
         <div className="content">

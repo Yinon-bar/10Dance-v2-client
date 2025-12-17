@@ -1,75 +1,123 @@
 .NewEvent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
 .NewEvent .container {
-    height: 100%;
+  height: 100%;
 }
 
 .NewEvent > .container > .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 30%;
 }
 
 .NewEvent > .container > .content > h2.primary {
-    color: #fff;
-    margin: 2rem;
-    font-size: 2.4rem;
+  color: #fff;
+  margin: 2rem;
+  font-size: 2.4rem;
 }
 
 .NewEvent .container .content form {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7);
-    background-color: #20708baf;
-    border-radius: 1rem;
-    margin-bottom: 30%;
-    padding: 2.4rem;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7);
+  background-color: var(--color-bgLight);
+  border-radius: 1.1rem 1.1rem 1rem 1rem;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.NewEvent .container .content form .formHeader {
+  background-color: var(--color-mainBlue);
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.NewEvent .container .content form .formHeader h2 {
+  color: var(--color-textLight);
 }
 
 .NewEvent .container .content form label {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.4rem;
-    margin: 0.9rem 0rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0.5rem 0rem;
+  color: var(--color-textDark);
 }
 
 .NewEvent .container .content form label input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 0.3rem;
-    font-size: 1.1rem;
-    padding: 0.2rem;
-    margin: 0.4rem;
-    width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1.1rem;
+  padding: 0.2rem;
+  margin-top: 0.2rem;
+  width: 80%;
 }
 
 .NewEvent .container .content form label input[type="file"] {
-    background-color: #fff;
-    color: #2a3d43;
-    width: 80%;
+  background-color: #fff;
+  color: #2a3d43;
+  width: 80%;
 }
 
 .NewEvent .container .content form input[type="submit"] {
-    margin: 1rem 0rem;
-    cursor: pointer;
+  background-color: var(--color-green);
+  font-weight: 600;
+  border: 2px solid var(--color-secondaryBlue);
+  margin: 1rem 0rem;
+  cursor: pointer;
+  height: 48px;
+  padding: 0 1rem;
 }
 
 .NewEvent .container .content form input[type="submit"]:active {
-    background-color: #1a1f49;
-    color: #fff;
-    transition: 100ms;
-    transform: scale(0.9);
+  background-color: #1a1f49;
+  color: #fff;
+  transition: 100ms;
+  transform: scale(0.9);
+}
+
+.NewEvent .container .content form .errorMessage {
+  max-width: 300px;
+  color: var(--color-red);
+}
+
+.NewEvent .container .content form .successMessage {
+  max-width: 300px;
+  color: var(--color-secondaryBlue);
+}
+
+.NewEvent .container .content form .navigationBtns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.NewEvent .container .content form .navigationBtns .backHome {
+  color: var(--color-textLight);
+  background-color: var(--color-bgDark);
+  border: 2px solid var(--color-secondaryBlue);
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 90px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
 }

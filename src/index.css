@@ -5,6 +5,19 @@
   font-family: Huji-regular;
 }
 
+/* פלטת צבעים לפרוייקט */
+:root {
+  --color-mainBlue: #1b272b;
+  --color-secondaryBlue: #20718b;
+  --color-iconsBlue: #09536a;
+  --color-bgDark: #2a3d43;
+  --color-bgLight: #e1eef8;
+  --color-green: #cefa72;
+  --color-textDark: #09536a;
+  --color-textLight: #fff;
+  --color-red: #e63946;
+}
+
 * {
   margin: 0;
   padding: 0;

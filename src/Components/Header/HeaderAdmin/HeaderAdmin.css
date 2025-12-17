@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #20718b;
+  background-color: var(--color-userAdminBlue);
   box-shadow: 0px 5px 16px rgba(0, 0, 0, 0.5);
 }
 

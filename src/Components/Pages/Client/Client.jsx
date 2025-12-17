@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
 import "./Client.css";
+import { useContext, useEffect, useState } from "react";
 import NumberContext from "../../../Context/NumberContext";
 import PrintAtt from "../../PrintAtt/PrintAtt";
 import ListNumpad from "../../NumPad/ListNumpad/ListNumpad";

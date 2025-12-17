@@ -1,5 +1,5 @@
 import "./HeaderClient.css";
-import logo from "../../../assets/img/לוגו גזור שקוף.png";
+import logo from "../../../assets/img/לוגו גזור.png";
 
 export const HeaderClient = () => {
   return (

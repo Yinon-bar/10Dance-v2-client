@@ -68,16 +68,12 @@ function Admin() {
       // console.log(resp);
       setLoading(false);
       setAllEvents(validateResp);
-      // if (
-      //   localStorage.getItem("Current Event") !== null &&
-      //   localStorage.getItem("Current Event").length > 0
-      // ) {
-      //   setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
-      //   handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
-      // }
-
-      // setCurrentEvent(JSON.parse(localStorage.getItem("Current Event")));
-      handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
+      if (
+        localStorage.getItem("Current Event") !== null &&
+        localStorage.getItem("Current Event").length > 0
+      ) {
+        handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
+      }
     } catch (error) {
       setLoading(false);
       console.log(error);
