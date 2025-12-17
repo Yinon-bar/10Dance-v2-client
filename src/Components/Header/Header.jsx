@@ -1,5 +1,5 @@
 import "./Header.css";
-import logo from "../../assets/img/10dance_logo_white.jpg";
+import logo from "../../assets/img/logo_white.jpg";
 
 function Header() {
   return (

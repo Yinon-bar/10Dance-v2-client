@@ -1,19 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import "./BackspaceBtn.css";
 import { useContext } from "react";
 import NumberContext from "../../../../Context/NumberContext";
+import { IoBackspace } from "react-icons/io5";
 
 export const BackspaceBtn = () => {
-    const { inputValue } = useContext(NumberContext);
-    const { setInputValue } = useContext(NumberContext);
+  const { inputValue } = useContext(NumberContext);
+  const { setInputValue } = useContext(NumberContext);
 
-    return (
-        <div className="btn btn-trash">
-            <FontAwesomeIcon
-                icon={faAngleLeft}
-                onClick={() => setInputValue(inputValue.slice(0, -1))}
-            />
-        </div>
-    );
+  return (
+    <div className="Delete">
+      <IoBackspace
+        size="40"
+        onClick={() => setInputValue(inputValue.slice(0, -1))}
+      />
+    </div>
+  );
 };

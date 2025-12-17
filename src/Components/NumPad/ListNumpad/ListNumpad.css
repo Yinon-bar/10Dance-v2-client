@@ -1,18 +1,22 @@
 .ListNumpad {
-    display: flex;
-    /* flex-direction: row-reverse; */
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 300px;
+  display: flex;
+  /* flex-direction: row-reverse; */
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 300px;
 }
 
 .ListNumpad .btn-angle {
-    order: 0 !important;
+  order: 0 !important;
 }
 
 .ListNumpad .btn-submit {
-    width: 84.5%;
-    background-color: #1cc78b;
-    margin-top: 1rem;
+  background-color: var(--color-green);
+  color: var(--color-textDark);
+  border: 2px solid var(--color-secondaryBlue);
+  border-radius: 1rem;
+  width: 255px;
+  height: 70px;
+  margin-top: 1rem;
 }

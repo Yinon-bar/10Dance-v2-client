@@ -22,8 +22,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* פונט של האוניברסטיה העברית, כבר לא רלוונטי לתוכנה - יש עוד לקוחות */
-  /* font-family: Huji-regular, "Assistant", Arial, Helvetica, sans-serif; */
   font-family: "Assistant", "Noto Sans Hebrew", sans-serif;
 }
 
@@ -65,23 +63,6 @@ select {
   padding: 0.3rem 0.5rem;
   border: none;
   border-radius: 0.5rem;
-}
-
-/* Colors */
-.primary {
-  color: #1a1f49;
-}
-
-.secondary {
-  color: #20718b;
-}
-
-.complementary {
-  color: #e1eef8;
-}
-
-.red {
-  color: #860c1b;
 }
 
 button:active {

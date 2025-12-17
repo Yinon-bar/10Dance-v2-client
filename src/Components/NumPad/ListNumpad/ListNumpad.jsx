@@ -1,10 +1,9 @@
 import "./ListNumpad.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { BackspaceBtn } from "../SingleNumpad/BackspaceBtn/BackspaceBtn";
 import { ClearallBtn } from "../SingleNumpad/ClearallBtn/ClearallBtn";
 import SingleNumpad from "../SingleNumpad/SingleNumpad";
 import { ZeroBtn } from "../SingleNumpad/ZeroBtn/ZeroBtn";
+import { FaCheck } from "react-icons/fa";
 
 function ListNumpad() {
   const num = [9, 8, 7, 6, 5, 4, 3, 2, 1];
@@ -18,7 +17,7 @@ function ListNumpad() {
       <ZeroBtn num={0} />
       <ClearallBtn />
       <button className="btn-submit">
-        <FontAwesomeIcon icon={faCheck} />
+        <FaCheck size="35" />
       </button>
     </div>
   );

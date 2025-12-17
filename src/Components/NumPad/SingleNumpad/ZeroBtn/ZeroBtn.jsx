@@ -7,7 +7,7 @@ export const ZeroBtn = (props) => {
 
   return (
     <div
-      className="btn btn-zero"
+      className="ZeroBtn"
       onClick={(e) => setInputValue(inputValue + e.target.innerHTML)}
     >
       {props.num}

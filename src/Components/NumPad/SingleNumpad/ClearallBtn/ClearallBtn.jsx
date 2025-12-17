@@ -1,15 +1,14 @@
 import "./ClearallBtn.css";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import NumberContext from "../../../../Context/NumberContext";
+import { FaTrashAlt } from "react-icons/fa";
 
 export const ClearallBtn = () => {
-    const { setInputValue } = useContext(NumberContext);
+  const { setInputValue } = useContext(NumberContext);
 
-    return (
-        <div className="btn btn-trash" onClick={() => setInputValue("")}>
-            <FontAwesomeIcon icon={faTrashCan} />
-        </div>
-    );
+  return (
+    <div className="ClearBtn" onClick={() => setInputValue("")}>
+      <FaTrashAlt size="33" />
+    </div>
+  );
 };

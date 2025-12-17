@@ -1,0 +1,12 @@
+.Delete {
+  border: var(--color-secondaryBlue) solid 2px;
+  background-color: var(--color-bgDark);
+  color: var(--color-textLight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 1rem;
+  margin: 0.2rem;
+}

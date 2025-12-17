@@ -1,1 +1,24 @@
+.SingleNumPad .btn {
+  background-color: var(--color-bgDark);
+  border: var(--color-secondaryBlue) 2px solid;
+  color: var(--color-textLight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  margin: 0.2rem;
+  font-family: "Assistant";
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+}
 
+.SingleNumPad .btn:active {
+  background-color: #1a1f49;
+  color: #fff;
+  transition: 100ms;
+  transform: scale(0.9);
+}
