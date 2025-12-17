@@ -13,6 +13,7 @@ const EventDelete = () => {
   };
 
   const deleteEvent = async () => {
+    // console.log(currentEvent.id);
     const resp = await api.delete(`/delete-event.php?id=` + currentEvent.id);
     console.log(resp);
   };

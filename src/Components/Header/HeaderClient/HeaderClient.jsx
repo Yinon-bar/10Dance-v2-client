@@ -1,5 +1,5 @@
 import "./HeaderClient.css";
-import logo from "../../../assets/img/logo_white.jpg";
+import logo from "../../../assets/img/logo_transparent.png";
 
 export const HeaderClient = () => {
   return (

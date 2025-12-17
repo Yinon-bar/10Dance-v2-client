@@ -99,11 +99,13 @@ function Admin() {
           <div className="buttons">
             <div className="rightSection">
               <button
+                className="btnAdd"
                 onClick={() => {
                   setClearScreen({ ...clearScreen, btnAdd: true });
                 }}
               >
                 <IoPersonAdd size={30} color="#2A3D43" />
+                הוספת נוכח
               </button>
             </div>
             <div className="middleSection">
