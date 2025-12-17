@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Noto+Sans+Hebrew:wght@100..900&display=swap");
 
-@font-face {
-  src: url("assets/fonts/Huji-Regular.otf");
-  font-family: Huji-regular;
-}
-
 /* פלטת צבעים לפרוייקט */
 :root {
   --color-mainBlue: #1b272b;

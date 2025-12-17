@@ -10,8 +10,10 @@
 }
 
 .Client .title-section .title.campus {
+  font-family: "Assistant", Arial, Helvetica, sans-serif;
   color: var(--color-textDark);
   font-size: 4rem;
+  font-weight: 800;
 }
 
 .Client h2.title.cta {
