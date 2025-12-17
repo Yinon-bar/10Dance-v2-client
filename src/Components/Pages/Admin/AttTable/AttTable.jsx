@@ -15,7 +15,6 @@ function AttTable(props) {
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
 
   const handleDelete = (attendeeObj) => {
-    console.log(attendeeObj);
     removeAttendee(attendeeObj);
   };
 
@@ -32,7 +31,6 @@ function AttTable(props) {
       const resp = await api.delete(
         `/delete-attendee.php?table_name=dec_geo&id=${attendeeToDelte.id}`
       );
-      console.log(resp);
       setMessage(resp.data);
       setTimeout(() => {
         setMessage("");

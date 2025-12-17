@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import "./AddModal.css";
-import axios from "axios";
 import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
 
@@ -11,9 +10,9 @@ function AddModal({ onClose }) {
     fName: "",
     lName: "",
     institute: "",
-    eventTable: JSON.parse(localStorage.getItem("Current Event")).event_table,
+    eventId: JSON.parse(localStorage.getItem("Current Event")).id,
   });
-  const { setClearScreen } = useContext(ClearScreen);
+  const { clearScreen, setClearScreen } = useContext(ClearScreen);
 
   const handleAddAttendee = (e) => {
     e.preventDefault();
@@ -27,14 +26,11 @@ function AddModal({ onClose }) {
 
   const createNewUser = async () => {
     try {
-      const resp = await api.post(
-        "/4-controllers/create-new-attendee.php",
-        newAttendee
-      );
-      // console.log(resp.data);
+      const resp = await api.post("/create-new-attendee.php", newAttendee);
       setMessage("הוספת נוכח הושלמה בהצלחה");
       setTimeout(() => {
-        onClose();
+        // console.log(clearScreen);
+        setClearScreen({ ...clearScreen, btnAdd: false });
       }, 2500);
     } catch (error) {
       console.log(error);

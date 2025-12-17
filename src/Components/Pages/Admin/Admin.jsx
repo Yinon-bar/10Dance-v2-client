@@ -29,11 +29,7 @@ function Admin() {
       setMsg("");
       setEventTable(resp.data);
     } catch (error) {
-      // setCurrentEvent([]);
-      // console.log(currentEvent);
       setMsg(error.response.data.message);
-      // localStorage.removeItem("Current Event");
-      // console.log(error.response.data.message);
     }
   };
 
@@ -87,7 +83,7 @@ function Admin() {
       getAllEvents();
     }, 500);
     setRerenderTableAfterDelete(false);
-  }, [rerenderTableAfterDelete]);
+  }, [rerenderTableAfterDelete, clearScreen]);
 
   return (
     <div className="Admin">
