@@ -1,22 +1,15 @@
 .ListNumpad {
-  display: flex;
-  /* flex-direction: row-reverse; */
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-auto-rows: 80px;
+  gap: 5px;
 }
-
-.ListNumpad .btn-angle {
-  order: 0 !important;
-}
-
 .ListNumpad .btn-submit {
   background-color: var(--color-green);
   color: var(--color-textDark);
   border: 2px solid var(--color-secondaryBlue);
   border-radius: 1rem;
-  width: 255px;
+  grid-column: span 3;
   height: 70px;
-  margin-top: 1rem;
+  margin-top: 0.2rem;
 }
