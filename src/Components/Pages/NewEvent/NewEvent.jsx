@@ -38,11 +38,9 @@ function NewEvent() {
       );
       setSuccessMessage(resp.data.message);
       setTimeout(() => {
-        // navigate("/admin");
+        navigate("/admin");
       }, [2500]);
-      // console.log(resp);
     } catch (error) {
-      // console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);
     }
   };
