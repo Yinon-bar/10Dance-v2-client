@@ -15,10 +15,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   color: #fff;
   height: 100%;
+  padding-top: 6rem;
 }
 
 .Admin > .container > .content .loader {
@@ -128,6 +129,7 @@
 }
 
 .Admin .container .content h1 {
+  font-size: 2.4rem;
   margin: 2rem;
 }
 
