@@ -2,9 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import "./AddModal.css";
 import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
+import { BarLoader } from "react-spinners";
 
 function AddModal({ onClose }) {
-  const [message, setMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [newAttendee, setNewAttendee] = useState({
     tzId: "",
     fName: "",
@@ -27,7 +28,7 @@ function AddModal({ onClose }) {
   const createNewUser = async () => {
     try {
       const resp = await api.post("/create-new-attendee.php", newAttendee);
-      setMessage("הוספת נוכח הושלמה בהצלחה");
+      setSuccessMessage("הוספת נוכח הושלמה בהצלחה");
       setTimeout(() => {
         // console.log(clearScreen);
         setClearScreen({ ...clearScreen, btnAdd: false });
@@ -85,11 +86,17 @@ function AddModal({ onClose }) {
             }
           />
         </label>
-        {message && (
-          <div className="message">
-            <h2>{message}</h2>
-          </div>
-        )}
+        {successMessage.length > 0 ? (
+          <>
+            <BarLoader
+              className="loader"
+              color="#102125"
+              width="200"
+              height="8"
+            />
+            <h2 className="successMessage">{successMessage}</h2>
+          </>
+        ) : null}
         <div className="btns">
           <input
             className="btn btn-primary submit"

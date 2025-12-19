@@ -19,8 +19,6 @@ function AttTable(props) {
   };
 
   const handleEdit = (attendeeObj) => {
-    // console.log(props.onClose);
-    // console.log(attendeeObj);
     setClearScreen({ ...clearScreen, btnEdit: true });
     setAttendeeObj(attendeeObj);
     editAttendee(attendeeObj);

@@ -23,7 +23,11 @@
   color: #1a1f49;
 }
 
-.addModal form .message h2 {
+.addModal form .loader {
+  margin-top: 1rem;
+}
+
+.addModal form h2.successMessage {
   color: #20718b;
 }
 
