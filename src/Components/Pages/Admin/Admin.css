@@ -18,6 +18,10 @@
   padding-top: 6rem;
 }
 
+.Admin > .container > .content h3 {
+  color: var(--color-textLight);
+}
+
 .Admin > .container > .content .loader {
   margin-top: 2rem;
 }
