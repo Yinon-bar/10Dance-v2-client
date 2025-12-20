@@ -16,6 +16,17 @@
   justify-content: space-between;
 }
 
+.HeaderAdmin .container .content h3 {
+  color: var(--color-textLight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.HeaderAdmin .container .content h3 span.logout {
+  margin-bottom: 0.05rem;
+}
+
 .HeaderAdmin .container .content a {
   font-weight: 600;
 }

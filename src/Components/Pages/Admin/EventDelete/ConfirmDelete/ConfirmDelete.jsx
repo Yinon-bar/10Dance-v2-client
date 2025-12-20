@@ -1,12 +1,31 @@
+import { useContext, useEffect } from "react";
 import "./ConfirmDelete.css";
+import ClearScreen from "../../../../../Context/ClearScreen";
 
 const ConfirmDelete = () => {
+  const { clearScreen, setClearScreen } = useContext(ClearScreen);
+
+  useEffect(() => {
+    console.log(clearScreen);
+  }, []);
+
   return (
     <div className="ConfirmDelete">
-      <h2>האם אתה בטוח שברצונך למחוק את האירוע?</h2>
-      <div className="btns">
-        <button>כן להמשיך</button>
-        <button>ביטול</button>
+      <div className="deleteModal">
+        <div className="header">
+          <h1>מחיקת אירוע</h1>
+        </div>
+        <h2>האם אתה בטוח שברצונך למחוק את האירוע?</h2>
+        <h3>פעולה זאת אינה ניתנת לביטול</h3>
+        <div className="btns">
+          <button className="deleteBtn">כן להמשיך</button>
+          <button
+            className="cancelBtn"
+            onClick={() => setClearScreen({ ...clearScreen, btnAdd: false })}
+          >
+            ביטול
+          </button>
+        </div>
       </div>
     </div>
   );

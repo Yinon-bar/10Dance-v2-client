@@ -11,6 +11,7 @@
 }
 
 .Login .content .title {
+  font-family: "Assistant", Arial, Helvetica, sans-serif;
   margin-top: 2rem;
-  color: #fff;
+  color: var(--color-textLight);
 }

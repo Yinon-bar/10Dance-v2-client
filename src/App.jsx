@@ -13,6 +13,8 @@ function App() {
   });
 
   return (
+    // ClearScreen context object:
+    // {btnAdd: false, btnEdit: false}
     <ClearScreen.Provider value={{ clearScreen, setClearScreen }}>
       {/* <AuthContext.Provider value={{ name: userName }}> */}
       <CurrentEvent.Provider
