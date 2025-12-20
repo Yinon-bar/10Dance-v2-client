@@ -25,10 +25,15 @@ function Admin() {
     // console.log(eventId);
     getCurrentEvent(eventId);
     try {
+      setEventTable("");
+      setMsg("");
+      setLoading(true);
       const resp = await api.get("/get-all-attendees.php?tableId=" + eventId);
       setMsg("");
       setEventTable(resp.data);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       setMsg(error.response.data.message);
     }
   };
@@ -41,7 +46,7 @@ function Admin() {
         (selectedEvent) => selectedEvent.id == eventToDisplay
       );
       // console.log(currentEventTemp);
-      setCurrentEvent(currentEventTemp);
+      setCurrentEvent([currentEventTemp]);
       localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
     } else {
       // console.log("allEvents is empty");
@@ -77,7 +82,6 @@ function Admin() {
   };
 
   useEffect(() => {
-    // console.log(allEvents);
     setLoading(true);
     setTimeout(() => {
       getAllEvents();
@@ -94,15 +98,17 @@ function Admin() {
           <h3>בחר אירוע להצגה</h3>
           <div className="buttons">
             <div className="rightSection">
-              <button
-                className="btnAdd"
-                onClick={() => {
-                  setClearScreen({ ...clearScreen, btnAdd: true });
-                }}
-              >
-                <IoPersonAdd size={30} color="#2A3D43" />
-                הוספת נוכח
-              </button>
+              {currentEvent.length > 0 ? (
+                <button
+                  className="btnAdd"
+                  onClick={() => {
+                    setClearScreen({ ...clearScreen, btnAdd: true });
+                  }}
+                >
+                  <IoPersonAdd size={30} color="#2A3D43" />
+                  הוספת נוכח
+                </button>
+              ) : null}
             </div>
             <div className="middleSection">
               <select
@@ -116,7 +122,7 @@ function Admin() {
                 {allEvents.length > 0
                   ? allEvents.map((event, index) => (
                       <option
-                        selected={event.id === currentEvent?.id}
+                        selected={event.id === currentEvent[0]?.id}
                         key={index}
                         value={event.id}
                       >
@@ -127,8 +133,8 @@ function Admin() {
               </select>
             </div>
             <div className="leftSection">
-              <EventDelete />
-              <EventEdit />
+              {currentEvent.length > 0 ? <EventDelete /> : null}
+              {currentEvent.length > 0 ? <EventEdit /> : null}
             </div>
           </div>
           {clearScreen.btnAdd && <AddModal />}
