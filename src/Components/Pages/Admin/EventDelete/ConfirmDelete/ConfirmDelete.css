@@ -61,6 +61,7 @@ h3 {
   font-weight: 700;
   font-family: "Assistant", Arial, Helvetica, sans-serif;
   width: 7rem;
+  cursor: pointer;
 }
 
 .ConfirmDelete .deleteModal .btns .cancelBtn {
@@ -74,4 +75,17 @@ h3 {
   font-weight: 700;
   font-family: "Assistant", Arial, Helvetica, sans-serif;
   width: 7rem;
+  cursor: pointer;
+}
+
+.ConfirmDelete .deleteModal h2.success {
+  background-color: var(--color-green);
+  color: var(--color-secondaryBlue);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.ConfirmDelete .deleteModal h2.error {
+  color: var(--color-red);
 }
