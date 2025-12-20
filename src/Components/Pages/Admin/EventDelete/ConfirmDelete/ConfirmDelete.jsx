@@ -16,12 +16,14 @@ const ConfirmDelete = () => {
           <h1>מחיקת אירוע</h1>
         </div>
         <h2>האם אתה בטוח שברצונך למחוק את האירוע?</h2>
-        <h3>פעולה זאת אינה ניתנת לביטול</h3>
+        <h3 className="warningTitle">פעולה זאת אינה ניתנת לביטול</h3>
         <div className="btns">
           <button className="deleteBtn">כן להמשיך</button>
           <button
             className="cancelBtn"
-            onClick={() => setClearScreen({ ...clearScreen, btnAdd: false })}
+            onClick={() =>
+              setClearScreen({ ...clearScreen, btnEventAdd: false })
+            }
           >
             ביטול
           </button>
