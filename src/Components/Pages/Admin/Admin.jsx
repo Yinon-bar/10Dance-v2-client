@@ -31,6 +31,7 @@ function Admin() {
       const resp = await api.get("/get-all-attendees.php?tableId=" + eventId);
       setMsg("");
       setEventTable(resp.data);
+
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -87,6 +88,7 @@ function Admin() {
       getAllEvents();
     }, 500);
     setRerenderTableAfterDelete(false);
+    // console.log(eventTable);
   }, [rerenderTableAfterDelete, clearScreen]);
 
   return (
@@ -109,6 +111,24 @@ function Admin() {
                   הוספת נוכח
                 </button>
               ) : null}
+              {eventTable?.length > 0 && (
+                <div className="eventDetails">
+                  <h4 className="totalAttendee">
+                    סה"כ רשומים לאירוע זה: &nbsp;
+                    <span className="totalCount">{eventTable?.length}</span>
+                  </h4>
+                  <h4 className="totalArrived">
+                    מתוכם הגיעו: &nbsp;
+                    <span className="arrived">
+                      {
+                        eventTable?.filter(
+                          (attendee) => attendee.is_arrive === 1
+                        ).length
+                      }
+                    </span>
+                  </h4>
+                </div>
+              )}
             </div>
             <div className="middleSection">
               <select

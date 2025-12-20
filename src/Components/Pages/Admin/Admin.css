@@ -54,8 +54,45 @@
 }
 
 .Admin > .container .content .buttons .rightSection {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
   height: 100%;
   width: 33%;
+}
+
+.Admin > .container .content .buttons .rightSection h4.totalAttendee {
+  font-size: 1.2rem;
+  margin-right: 2rem;
+  font-weight: 500;
+}
+
+.Admin > .container .content .buttons .rightSection h4.totalArrived {
+  font-size: 1.2rem;
+  margin-right: 2rem;
+  font-weight: 500;
+}
+
+.Admin
+  > .container
+  .content
+  .buttons
+  .rightSection
+  h4.totalAttendee
+  span.totalCount {
+  font-weight: 700;
+  color: var(--color-green);
+}
+
+.Admin
+  > .container
+  .content
+  .buttons
+  .rightSection
+  h4.totalArrived
+  span.arrived {
+  font-weight: 700;
+  color: var(--color-green);
 }
 
 .Admin > .container .content .buttons .middleSection {
