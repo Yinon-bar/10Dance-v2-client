@@ -1,0 +1,79 @@
+.HeaderEventSelect {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-userAdminBlue);
+  box-shadow: 0px 5px 16px rgba(0, 0, 0, 0.5);
+}
+
+.HeaderEventSelect .container .content {
+  padding: 1rem 0rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.HeaderEventSelect .container .content h3 {
+  color: var(--color-textLight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.HeaderEventSelect .container .content h3 span.logout {
+  margin-bottom: 0.05rem;
+}
+
+.HeaderEventSelect .container .content a {
+  font-weight: 600;
+}
+
+.HeaderEventSelect .container .content a:hover {
+  background-color: #2a3d43;
+  color: #e1eef8;
+  transition: 0.2s ease-in;
+}
+
+.HeaderEventSelect .container .content a.disableLink {
+  pointer-events: none;
+  /* opacity: 0.5;  */
+  cursor: not-allowed;
+  color: #999;
+}
+
+.HeaderEventSelect .container .content h1,
+h2,
+h3 {
+  color: #fff;
+}
+
+.HeaderEventSelect .container .content h3 {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: end;
+}
+
+.HeaderEventSelect .container .content h3 span.logout {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgb(255, 52, 75);
+}
+
+.HeaderEventSelect .container .content h3 span.logout:hover {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.HeaderEventSelect .container .content .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.HeaderEventSelect .container .content .btn-group * {
+  margin-right: 0.7rem;
+}

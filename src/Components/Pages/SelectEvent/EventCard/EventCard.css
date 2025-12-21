@@ -1,0 +1,21 @@
+.EventCard {
+  background-color: var(--color-bgLight);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  height: 300px;
+}
+
+.EventCard .logo {
+  height: 70%;
+  width: 100%;
+  background-color: aqua;
+}
+
+.EventCard .title {
+  height: 30%;
+  width: 100%;
+  background-color: blue;
+}

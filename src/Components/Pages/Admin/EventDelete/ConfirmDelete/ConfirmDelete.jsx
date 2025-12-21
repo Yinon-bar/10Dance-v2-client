@@ -3,7 +3,7 @@ import "./ConfirmDelete.css";
 import ClearScreen from "../../../../../Context/ClearScreen";
 import { api } from "../../../../../API/client";
 
-const ConfirmDelete = () => {
+const ConfirmDelete = (props) => {
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -29,6 +29,10 @@ const ConfirmDelete = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(props);
+  }, []);
+
   return (
     <div className="ConfirmDelete">
       <div className="deleteModal">
@@ -44,7 +48,8 @@ const ConfirmDelete = () => {
           <button
             className="cancelBtn"
             onClick={() =>
-              setClearScreen({ ...clearScreen, btnEventAdd: false })
+              // setClearScreen({ ...clearScreen, btnEventAdd: false })
+              props.onClose()
             }
           >
             ביטול

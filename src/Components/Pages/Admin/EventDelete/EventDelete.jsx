@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import "./EventDelete.css";
 import { FaTrashAlt } from "react-icons/fa";
 import CurrentEvent from "../../../../Context/CurrentEventContext";
-import { api } from "../../../../API/client";
 import ConfirmDelete from "./ConfirmDelete/ConfirmDelete";
 import ClearScreen from "../../../../Context/ClearScreen";
 

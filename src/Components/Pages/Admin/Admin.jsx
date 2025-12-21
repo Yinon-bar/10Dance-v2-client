@@ -10,6 +10,8 @@ import BounceLoader from "react-spinners/BounceLoader";
 import { api } from "../../../API/client";
 import EventEdit from "./EventEdit/EventEdit";
 import EventDelete from "./EventDelete/EventDelete";
+import { FaTrashAlt } from "react-icons/fa";
+import ConfirmDelete from "./EventDelete/ConfirmDelete/ConfirmDelete";
 
 function Admin() {
   const [allEvents, setAllEvents] = useState([]);
@@ -20,6 +22,12 @@ function Admin() {
   const [loading, setLoading] = useState(false);
   const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
+  const [showModal, setShowModal] = useState({
+    editEventModal: false,
+    deleteEventModal: false,
+    addEventModal: false,
+    addAttendeeModal: false,
+  });
 
   const handleEvent = async (eventId) => {
     // console.log(eventId);
@@ -79,11 +87,17 @@ function Admin() {
     }
   };
 
+  const handleDelete = () => {
+    console.log(currentEvent);
+    setShowModal({ ...showModal, deleteEventModal: true });
+    // setClearScreen({ ...clearScreen, btnEventAdd: true });
+  };
+
   useEffect(() => {
     setLoading(true);
     if (
-      (localStorage.getItem("Current Event") !== null) &
-      (localStorage.getItem("Current Event")?.length > 0)
+      localStorage.getItem("Current Event") !== null &&
+      localStorage.getItem("Current Event")?.length > 0
     ) {
       setCurrentEvent([JSON.parse(localStorage.getItem("Current Event"))]);
     } else {
@@ -97,6 +111,8 @@ function Admin() {
 
   return (
     <div className="Admin">
+      {clearScreen.btnAdd && <AddModal />}
+      {showModal?.deleteEventModal && <ConfirmDelete onClose={setShowModal} />}
       <HeaderAdmin />
       <div className="container">
         <div className="content">
@@ -157,11 +173,18 @@ function Admin() {
               </select>
             </div>
             <div className="leftSection">
-              {currentEvent.length > 0 ? <EventDelete /> : null}
+              {/* {currentEvent.length > 0 ? <EventDelete /> : null} */}
+              {currentEvent.length > 0 ? (
+                <button
+                  className="deleteEvent"
+                  onClick={(e) => handleDelete(e)}
+                >
+                  <FaTrashAlt className="trash" size={25} /> &nbsp; מחיקת אירוע
+                </button>
+              ) : null}
               {currentEvent.length > 0 ? <EventEdit /> : null}
             </div>
           </div>
-          {clearScreen.btnAdd && <AddModal />}
           {loading && (
             <BounceLoader
               className="loader"
