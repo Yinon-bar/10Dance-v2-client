@@ -81,8 +81,13 @@ function Admin() {
 
   useEffect(() => {
     setLoading(true);
-    if (localStorage.getItem("Current Event")) {
+    if (
+      (localStorage.getItem("Current Event") !== null) &
+      (localStorage.getItem("Current Event")?.length > 0)
+    ) {
       setCurrentEvent([JSON.parse(localStorage.getItem("Current Event"))]);
+    } else {
+      setCurrentEvent([]);
     }
     setTimeout(() => {
       getAllEvents();
@@ -99,7 +104,7 @@ function Admin() {
           <h3>בחר אירוע להצגה</h3>
           <div className="buttons">
             <div className="rightSection">
-              {currentEvent.length > 0 ? (
+              {currentEvent?.length > 0 ? (
                 <button
                   className="btnAdd"
                   onClick={() => {

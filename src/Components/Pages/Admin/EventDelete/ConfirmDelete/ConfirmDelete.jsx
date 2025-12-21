@@ -16,6 +16,7 @@ const ConfirmDelete = () => {
       const resp = await api.delete(`/delete-event.php?id=` + currentEvent.id);
       console.log(resp);
       setSuccessMessage(resp.data.message);
+      localStorage.removeItem("Current Event");
       setTimeout(() => {
         setClearScreen({ ...clearScreen, btnEventAdd: false });
         setSuccessMessage("");
