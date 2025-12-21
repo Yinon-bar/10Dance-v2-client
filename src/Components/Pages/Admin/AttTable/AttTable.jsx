@@ -19,7 +19,6 @@ function AttTable(props) {
   };
 
   const handleEdit = (attendeeObj) => {
-    // setClearScreen({ ...clearScreen, btnEdit: true });
     setShowEditModal(true);
     setAttendeeObj(attendeeObj);
     editAttendee(attendeeObj);
