@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import "./EditModal.css";
-import axios from "axios";
 import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
 
@@ -23,15 +22,13 @@ function EditModal(props) {
 
   const handleAbort = (e) => {
     e.preventDefault();
-    setClearScreen({ ...clearScreen, btnEdit: false });
+    props.onClose();
+    // setClearScreen({ ...clearScreen, btnEdit: false });
   };
 
   const createNewUser = async () => {
     try {
-      const resp = await api.put(
-        "/4-controllers/create-new-attendee.php",
-        attendeeToEdit
-      );
+      const resp = await api.put("/create-new-attendee.php", attendeeToEdit);
       // console.log(resp.data);
       setMessage("עדכון נוכח הושלם בהצלחה");
       setTimeout(() => {

@@ -1,4 +1,3 @@
-import axios from "axios";
 import "./AttTable.css";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
@@ -13,13 +12,15 @@ function AttTable(props) {
   const [isEditAttendee, setIsEditAttendee] = useState(false);
   const [attendeeObj, setAttendeeObj] = useState([]);
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const handleDelete = (attendeeObj) => {
     removeAttendee(attendeeObj);
   };
 
   const handleEdit = (attendeeObj) => {
-    setClearScreen({ ...clearScreen, btnEdit: true });
+    // setClearScreen({ ...clearScreen, btnEdit: true });
+    setShowEditModal(true);
     setAttendeeObj(attendeeObj);
     editAttendee(attendeeObj);
   };
@@ -75,7 +76,10 @@ function AttTable(props) {
   // console.log(props.attendee);
   return (
     <div className="AttTable">
-      {clearScreen.btnEdit && <EditModal attendeeObj={attendeeObj} />}
+      {/* {clearScreen.btnEdit && <EditModal attendeeObj={attendeeObj} />} */}
+      {showEditModal && (
+        <EditModal attendeeObj={attendeeObj} onClose={setShowEditModal} />
+      )}
       <table>
         <thead>
           <tr>
