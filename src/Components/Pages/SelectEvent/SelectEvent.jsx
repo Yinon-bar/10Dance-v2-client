@@ -16,14 +16,6 @@ const SelectEvent = () => {
             <EventCard />
             <EventCard />
             <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
           </div>
         </div>
       </div>
