@@ -41,12 +41,9 @@ function Admin() {
 
   const getCurrentEvent = (eventToDisplay) => {
     if (allEvents.length > 0) {
-      // console.log(eventToDisplay);
-      // console.log(allEvents);
       const currentEventTemp = allEvents.find(
         (selectedEvent) => selectedEvent.id == eventToDisplay
       );
-      // console.log(currentEventTemp);
       setCurrentEvent([currentEventTemp]);
       localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
     } else {
@@ -84,11 +81,13 @@ function Admin() {
 
   useEffect(() => {
     setLoading(true);
+    if (localStorage.getItem("Current Event")) {
+      setCurrentEvent([JSON.parse(localStorage.getItem("Current Event"))]);
+    }
     setTimeout(() => {
       getAllEvents();
     }, 500);
     setRerenderTableAfterDelete(false);
-    // console.log(eventTable);
   }, [rerenderTableAfterDelete, clearScreen]);
 
   return (
