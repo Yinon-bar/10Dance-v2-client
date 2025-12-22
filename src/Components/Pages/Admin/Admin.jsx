@@ -7,7 +7,6 @@ import { IoPersonAdd } from "react-icons/io5";
 import ClearScreen from "../../../Context/ClearScreen";
 import BounceLoader from "react-spinners/BounceLoader";
 import { api } from "../../../API/client";
-import ConfirmDelete from "./EventDelete/ConfirmDelete/ConfirmDelete";
 import { useParams } from "react-router-dom";
 
 function Admin() {
@@ -18,12 +17,6 @@ function Admin() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
-  const [showModal, setShowModal] = useState({
-    editEventModal: false,
-    deleteEventModal: false,
-    addEventModal: false,
-    addAttendeeModal: false,
-  });
 
   useEffect(() => {
     if (!eventId) return;
@@ -40,12 +33,11 @@ function Admin() {
       }
     };
     fetchAttendeesByEventId();
-  }, [eventId]);
+  }, [eventId, clearScreen]);
 
   return (
     <div className="Admin">
-      {clearScreen.btnAdd && <AddModal />}
-      {showModal?.deleteEventModal && <ConfirmDelete onClose={setShowModal} />}
+      {clearScreen && <AddModal />}
       <HeaderAdmin />
       <div className="container">
         <div className="content">
@@ -56,7 +48,7 @@ function Admin() {
               <button
                 className="btnAdd"
                 onClick={() => {
-                  setClearScreen({ ...clearScreen, btnAdd: true });
+                  setClearScreen(true);
                 }}
               >
                 <IoPersonAdd size={30} color="#2A3D43" />

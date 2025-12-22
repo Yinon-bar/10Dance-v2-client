@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import EditModal from "../EditModal/EditModal";
 import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
+import { useNavigate } from "react-router-dom";
 
 function AttTable(props) {
   const [message, setMessage] = useState("");
@@ -13,6 +14,7 @@ function AttTable(props) {
   const [attendeeObj, setAttendeeObj] = useState([]);
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
   const [showEditModal, setShowEditModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleDelete = (attendeeObj) => {
     removeAttendee(attendeeObj);
@@ -32,7 +34,8 @@ function AttTable(props) {
       setMessage(resp.data);
       setTimeout(() => {
         setMessage("");
-        props.rerenderTable(true);
+        navigate("/admin/91");
+        // props.rerenderTable(true);
       }, 3000);
     } catch (error) {
       console.log(error);
@@ -75,7 +78,6 @@ function AttTable(props) {
   // console.log(props.attendee);
   return (
     <div className="AttTable">
-      {/* {clearScreen.btnEdit && <EditModal attendeeObj={attendeeObj} />} */}
       {showEditModal && (
         <EditModal attendeeObj={attendeeObj} onClose={setShowEditModal} />
       )}

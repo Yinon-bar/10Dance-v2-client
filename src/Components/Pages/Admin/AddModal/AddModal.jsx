@@ -4,7 +4,7 @@ import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
 import { BarLoader } from "react-spinners";
 
-function AddModal({ onClose }) {
+function AddModal() {
   const [successMessage, setSuccessMessage] = useState("");
   const [newAttendee, setNewAttendee] = useState({
     tzId: "",
@@ -23,6 +23,7 @@ function AddModal({ onClose }) {
   const handleAbort = (e) => {
     e.preventDefault();
     setClearScreen(false);
+    // onClose();
   };
 
   const createNewUser = async () => {
@@ -30,8 +31,7 @@ function AddModal({ onClose }) {
       const resp = await api.post("/create-new-attendee.php", newAttendee);
       setSuccessMessage("הוספת נוכח הושלמה בהצלחה");
       setTimeout(() => {
-        // console.log(clearScreen);
-        setClearScreen({ ...clearScreen, btnAdd: false });
+        setClearScreen(false);
       }, 2500);
     } catch (error) {
       console.log(error);
