@@ -11,7 +11,9 @@ const SelectEvent = () => {
     try {
       const resp = await api.get("/get-all-events.php");
       setAllEvents(resp.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

@@ -12,8 +12,11 @@ import EventEdit from "./EventEdit/EventEdit";
 import EventDelete from "./EventDelete/EventDelete";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmDelete from "./EventDelete/ConfirmDelete/ConfirmDelete";
+import { useParams } from "react-router-dom";
 
 function Admin() {
+  const { id: eventId } = useParams();
+
   const [allEvents, setAllEvents] = useState([]);
   const [eventTable, setEventTable] = useState();
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
@@ -29,64 +32,6 @@ function Admin() {
     addAttendeeModal: false,
   });
 
-  const handleEvent = async (eventId) => {
-    // console.log(eventId);
-    getCurrentEvent(eventId);
-    try {
-      setEventTable("");
-      setMsg("");
-      setLoading(true);
-      const resp = await api.get("/get-all-attendees.php?tableId=" + eventId);
-      setMsg("");
-      setEventTable(resp.data);
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      setMsg(error.response.data.message);
-    }
-  };
-
-  const getCurrentEvent = (eventToDisplay) => {
-    if (allEvents.length > 0) {
-      const currentEventTemp = allEvents.find(
-        (selectedEvent) => selectedEvent.id == eventToDisplay
-      );
-      setCurrentEvent([currentEventTemp]);
-      localStorage.setItem("Current Event", JSON.stringify(currentEventTemp));
-    } else {
-      // console.log("allEvents is empty");
-    }
-  };
-
-  const getAllEvents = async () => {
-    try {
-      setLoading(true);
-      const resp = await api.get("/get-all-events.php");
-      // console.log(resp.data);
-      let validateResp;
-      // בדיקה שהתשובה שקיבלנו היא אכן מערך, במידה ולא, יש בעיה בדאטהבייס ולכן יש להציג את התקלה
-      if (Array.isArray(resp.data)) {
-        validateResp = resp.data;
-      } else {
-        validateResp = [];
-        setMsg(resp.data);
-      }
-      // console.log(resp);
-      setLoading(false);
-      setAllEvents(validateResp);
-      if (
-        localStorage.getItem("Current Event") !== null &&
-        localStorage.getItem("Current Event").length > 0
-      ) {
-        handleEvent(JSON.parse(localStorage.getItem("Current Event")).id);
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
-
   const handleDelete = () => {
     console.log(currentEvent);
     setShowModal({ ...showModal, deleteEventModal: true });
@@ -94,20 +39,21 @@ function Admin() {
   };
 
   useEffect(() => {
-    setLoading(true);
-    if (
-      localStorage.getItem("Current Event") !== null &&
-      localStorage.getItem("Current Event")?.length > 0
-    ) {
-      setCurrentEvent([JSON.parse(localStorage.getItem("Current Event"))]);
-    } else {
-      setCurrentEvent([]);
-    }
-    setTimeout(() => {
-      getAllEvents();
-    }, 500);
-    setRerenderTableAfterDelete(false);
-  }, [rerenderTableAfterDelete, clearScreen]);
+    if (!eventId) return;
+    const fetchAttendeesByEventId = async () => {
+      try {
+        setLoading(true);
+        const resp = await api.get("/get-all-attendees.php?tableId=" + eventId);
+        console.log(resp.data);
+        setEventTable(resp.data);
+      } catch (error) {
+        console.log(error.response.data.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAttendeesByEventId();
+  }, [eventId]);
 
   return (
     <div className="Admin">
@@ -117,10 +63,10 @@ function Admin() {
       <div className="container">
         <div className="content">
           <h1>ברוכים הבאים לממשק הניהול</h1>
-          <h3>בחר אירוע להצגה</h3>
+          <h3></h3>
           <div className="buttons">
             <div className="rightSection">
-              {currentEvent?.length > 0 ? (
+              {eventTable?.length > 0 ? (
                 <button
                   className="btnAdd"
                   onClick={() => {
@@ -151,30 +97,12 @@ function Admin() {
               )}
             </div>
             <div className="middleSection">
-              <select
-                onChange={(e) => handleEvent(e.target.value)}
-                name="בחר אירוע להצגה"
-                className="selectBox"
-              >
-                <option defaultChecked hidden value="">
-                  ללא
-                </option>
-                {allEvents.length > 0
-                  ? allEvents.map((event, index) => (
-                      <option
-                        selected={event.id === currentEvent[0]?.id}
-                        key={index}
-                        value={event.id}
-                      >
-                        {event.title}
-                      </option>
-                    ))
-                  : null}
-              </select>
+              <h3 className="eventTitle">
+                {JSON.parse(localStorage.getItem("Current Event")).title}
+              </h3>
             </div>
             <div className="leftSection">
-              {/* {currentEvent.length > 0 ? <EventDelete /> : null} */}
-              {currentEvent.length > 0 ? (
+              {eventTable.length > 0 ? (
                 <button
                   className="deleteEvent"
                   onClick={(e) => handleDelete(e)}
@@ -182,7 +110,7 @@ function Admin() {
                   <FaTrashAlt className="trash" size={25} /> &nbsp; מחיקת אירוע
                 </button>
               ) : null}
-              {currentEvent.length > 0 ? <EventEdit /> : null}
+              {eventTable.length > 0 ? <EventEdit /> : null}
             </div>
           </div>
           {loading && (

@@ -13,7 +13,7 @@ function Routing() {
     <Routes>
       <Route path="/" element={<Navigate to="/welcome/login" />} />
       <Route path="/select-event" element={<SelectEvent />} />
-      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/:id" element={<Admin />} />
       <Route path="/client" element={<Client />} />
       <Route path="/new-event" element={<NewEvent />} />
       <Route path="/about" element={<About />} />
