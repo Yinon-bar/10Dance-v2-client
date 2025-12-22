@@ -2,25 +2,29 @@ import { useContext, useEffect, useState } from "react";
 import "./ConfirmDelete.css";
 import ClearScreen from "../../../../../Context/ClearScreen";
 import { api } from "../../../../../API/client";
+import { useNavigate } from "react-router-dom";
 
-const ConfirmDelete = (props) => {
+const ConfirmDelete = ({ event, onClose }) => {
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const deleteEvent = async () => {
     try {
       // console.log(currentEvent.id);
-      const currentEvent = JSON.parse(localStorage.getItem("Current Event"));
+      // const currentEvent = JSON.parse(localStorage.getItem("Current Event"));
       // console.log(currentEvent);
-      const resp = await api.delete(`/delete-event.php?id=` + currentEvent.id);
+      const resp = await api.delete(`/delete-event.php?id=` + event.id);
       console.log(resp);
       setSuccessMessage(resp.data.message);
       localStorage.removeItem("Current Event");
       setTimeout(() => {
-        setClearScreen({ ...clearScreen, btnEventAdd: false });
+        // setClearScreen({ ...clearScreen, btnEventAdd: false });
         setSuccessMessage("");
         setErrorMessage("");
+        setClearScreen({ ...clearScreen, clear: true });
+        onClose();
       }, 2500);
     } catch (error) {
       console.log(error);
@@ -30,7 +34,7 @@ const ConfirmDelete = (props) => {
   };
 
   useEffect(() => {
-    console.log(props);
+    console.log(event);
   }, []);
 
   return (
@@ -45,13 +49,7 @@ const ConfirmDelete = (props) => {
           <button className="deleteBtn" onClick={deleteEvent}>
             כן להמשיך
           </button>
-          <button
-            className="cancelBtn"
-            onClick={() =>
-              // setClearScreen({ ...clearScreen, btnEventAdd: false })
-              props.onClose()
-            }
-          >
+          <button className="cancelBtn" onClick={() => onClose()}>
             ביטול
           </button>
         </div>

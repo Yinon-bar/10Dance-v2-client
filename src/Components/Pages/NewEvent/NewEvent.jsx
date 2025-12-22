@@ -38,7 +38,7 @@ function NewEvent() {
       );
       setSuccessMessage(resp.data.message);
       setTimeout(() => {
-        navigate("/admin");
+        navigate("/select-event");
       }, [2500]);
     } catch (error) {
       setErrorMessage(error.response.data.message);

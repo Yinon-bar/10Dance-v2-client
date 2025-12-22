@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HeaderEventSelect from "../../Header/HeaderEventSelect/HeaderEventSelect";
 import EventCard from "./EventCard/EventCard";
 import "./SelectEvent.css";
 import { api } from "../../../API/client";
+import ClearScreen from "../../../Context/ClearScreen";
 
 const SelectEvent = () => {
   const [allEvents, setAllEvents] = useState([]);
+  const { clearScreen, setClearScreen } = useContext(ClearScreen);
 
   const getAllEvents = async () => {
     try {
@@ -18,7 +20,7 @@ const SelectEvent = () => {
 
   useEffect(() => {
     getAllEvents();
-  }, []);
+  }, [clearScreen]);
 
   return (
     <>
