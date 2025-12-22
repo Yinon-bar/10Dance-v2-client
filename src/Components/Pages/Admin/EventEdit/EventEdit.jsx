@@ -3,7 +3,7 @@ import "./EventEdit.css";
 import { BiSolidCalendarEdit } from "react-icons/bi";
 import CurrentEvent from "../../../../Context/CurrentEventContext";
 
-const EventEdit = () => {
+const EventEdit = ({ onClose, event }) => {
   // const [currentEvent, setCurrentEvent] = useState(true);
   const [successMessage, serSuccessMessage] = useState("");
   const [eventToUpdate, setEventToUpdate] = useState({
@@ -28,11 +28,12 @@ const EventEdit = () => {
   return (
     <div className="EventEdit">
       <form
+        className="editEventForm"
         onSubmit={(e) => {
           handleAddAttendee(e);
         }}
       >
-        <h3 className="formHeading">הוספת נוכח</h3>
+        <h3 className="formHeading">עריכת אירוע</h3>
         <label>
           <span>שם פרטי</span>
           <input

@@ -11,7 +11,6 @@
   border-radius: 1rem;
   border: 2px solid #102125;
   color: #2a3d43;
-  cursor: pointer;
   font-weight: 600;
   font-size: 1.2rem;
   z-index: 1;
@@ -20,6 +19,60 @@
 .EventEdit:active {
   background-color: #2a3d43;
   color: #e1eef8;
+}
+
+.EventEdit form.editEventForm {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bgLight);
+  align-items: center;
+  justify-content: center;
+  color: var(--color-textDark);
+  border-radius: 1.2rem;
+}
+
+.EventEdit form.editEventForm h3.formHeading {
+  border-radius: 1rem 1rem 0rem 0rem;
+  background-color: var(--color-mainBlue);
+  width: 100%;
+  padding: 1rem;
+}
+
+.EventEdit form.editEventForm label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0.5rem 2rem;
+  color: var(--color-textDark);
+}
+
+.EventEdit form.editEventForm label input {
+  width: 80%;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.EventEdit form .btns .btn.btn-secondary {
+  color: var(--color-textLight);
+  background-color: var(--color-bgDark);
+  border: 2px solid var(--color-secondaryBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 90px;
+  height: 48px;
+  border-radius: 0.5rem;
+  margin: 0;
+  cursor: pointer;
 }
 
 .disableBtn {
