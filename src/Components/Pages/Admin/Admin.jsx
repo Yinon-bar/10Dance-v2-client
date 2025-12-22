@@ -8,12 +8,8 @@ import CurrentEvent from "../../../Context/CurrentEventContext";
 import ClearScreen from "../../../Context/ClearScreen";
 import BounceLoader from "react-spinners/BounceLoader";
 import { api } from "../../../API/client";
-import EventEdit from "./EventEdit/EventEdit";
-import EventDelete from "./EventDelete/EventDelete";
-import { FaTrashAlt } from "react-icons/fa";
 import ConfirmDelete from "./EventDelete/ConfirmDelete/ConfirmDelete";
 import { useParams } from "react-router-dom";
-import { BiSolidCalendarPlus } from "react-icons/bi";
 
 function Admin() {
   const { id: eventId } = useParams();
@@ -101,24 +97,6 @@ function Admin() {
                   </h4>
                 </div>
               )}
-              {/* {eventTable?.length > 0 ? (
-                <button
-                  className="deleteEvent"
-                  onClick={(e) => handleDelete(e)}
-                >
-                  <BiSolidCalendarPlus className="addEvent" size={30} />
-                  &nbsp; יצירת אירוע חדש
-                </button>
-              ) : null} */}
-              {/* {eventTable?.length > 0 ? (
-                <button
-                  className="deleteEvent"
-                  onClick={(e) => handleDelete(e)}
-                >
-                  <FaTrashAlt className="trash" size={25} /> &nbsp; מחיקת אירוע
-                </button>
-              ) : null}
-              {eventTable?.length > 0 ? <EventEdit /> : null} */}
             </div>
           </div>
           {loading && (

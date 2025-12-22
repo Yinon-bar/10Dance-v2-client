@@ -21,6 +21,7 @@ function Routing() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Route>
+      <Route path="*" element={<h1>דף לא נמצא</h1>} />
     </Routes>
   );
 }

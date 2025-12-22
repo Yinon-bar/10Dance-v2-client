@@ -1,76 +1,89 @@
 import { useContext, useEffect, useState } from "react";
 import "./EventEdit.css";
 import { BiSolidCalendarEdit } from "react-icons/bi";
-import CurrentEvent from "../../../../Context/CurrentEventContext";
+import { api } from "../../../../API/client";
+import { BarLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
-const EventEdit = ({ onClose, event }) => {
-  // const [currentEvent, setCurrentEvent] = useState(true);
-  const [successMessage, serSuccessMessage] = useState("");
+const EventEdit = ({ event, onClose }) => {
+  const [successMessage, setSuccessMessage] = useState("");
   const [eventToUpdate, setEventToUpdate] = useState({
-    id: "",
-    name: "",
-    title: "",
-    institute: "",
+    id: event.id,
+    name: event.name,
+    title: event.title,
+    institute: event.institute,
   });
-  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
+  const navigate = useNavigate();
+
+  const handleAbort = (e) => {
+    e.preventDefault();
+    onClose();
+    // onClose(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateEvent();
+  };
+
+  const updateEvent = async () => {
+    try {
+      console.log(eventToUpdate);
+
+      const resp = await api.put("/update-event.php", eventToUpdate);
+      console.log(resp.data);
+      setSuccessMessage(resp.data.message);
+      setTimeout(() => {
+        navigate("/select-event");
+      }, 2000);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
 
   useEffect(() => {
-    // console.log(currentEvent);
-    // console.log("Edit event rerender");
-    // if (
-    //   localStorage.getItem("Current Event") != null &&
-    //   localStorage.getItem("Current Event").length > 0
-    // ) {
-    //   setCurrentEvent(false);
-    // }
-  }, [currentEvent]);
+    console.log(event);
+  }, []);
 
   return (
     <div className="EventEdit">
       <form
         className="editEventForm"
         onSubmit={(e) => {
-          handleAddAttendee(e);
+          handleSubmit(e);
         }}
       >
         <h3 className="formHeading">עריכת אירוע</h3>
         <label>
-          <span>שם פרטי</span>
+          <span>שם האירוע</span>
           <input
+            value={eventToUpdate.name}
             required
             type="text"
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, fName: e.target.value })
+              setEventToUpdate({ ...eventToUpdate, name: e.target.value })
             }
           />
         </label>
         <label>
-          <span>שם משפחה</span>
+          <span>כותרת האירוע</span>
           <input
+            value={eventToUpdate.title}
             required
             type="text"
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, lName: e.target.value })
-            }
-          />
-        </label>
-        <label>
-          <span>תעודת זהות</span>
-          <input
-            required
-            type="text"
-            onChange={(e) =>
-              setNewAttendee({ ...newAttendee, tzId: e.target.value })
+              setEventToUpdate({ ...eventToUpdate, title: e.target.value })
             }
           />
         </label>
         <label>
           <span>מוסד לימודים</span>
           <input
+            value={eventToUpdate.institute}
             required
             type="text"
             onChange={(e) =>
-              setNewAttendee({ ...newAttendee, institute: e.target.value })
+              setEventToUpdate({ ...eventToUpdate, institute: e.target.value })
             }
           />
         </label>

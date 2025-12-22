@@ -16,11 +16,6 @@
   z-index: 1;
 }
 
-.EventEdit:active {
-  background-color: #2a3d43;
-  color: #e1eef8;
-}
-
 .EventEdit form.editEventForm {
   width: 30rem;
   display: flex;
@@ -30,6 +25,18 @@
   justify-content: center;
   color: var(--color-textDark);
   border-radius: 1.2rem;
+}
+
+.EventEdit form.editEventForm .loader {
+  margin-top: 1rem;
+}
+
+.EventEdit form.editEventForm .successMessage {
+  margin-top: 2rem;
+  background-color: var(--color-green);
+  color: var(--color-textDark);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
 .EventEdit form.editEventForm h3.formHeading {

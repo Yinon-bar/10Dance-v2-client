@@ -37,7 +37,7 @@ const EventCard = ({ event }) => {
         <ConfirmDelete event={event} onClose={setShowDeleteScreen} />
       )}
       {showEditScreen && (
-        <EventEdit event={event} onClose={setShowDeleteScreen} />
+        <EventEdit event={event} onClose={setShowEditScreen} />
       )}
       <div className="EventCard" onClick={(e) => handleEventSelect(event)}>
         <div className="actions">
