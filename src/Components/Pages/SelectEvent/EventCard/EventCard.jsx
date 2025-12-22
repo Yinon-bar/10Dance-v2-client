@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { BiSolidCalendarEdit } from "react-icons/bi";
 import ConfirmDelete from "../../Admin/EventDelete/ConfirmDelete/ConfirmDelete";
+import EventEdit from "../../Admin/EventEdit/EventEdit";
 
 const EventCard = ({ event }) => {
   const [showDeleteScreen, setShowDeleteScreen] = useState(false);
+  const [showEditScreen, setShowEditScreen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,6 +21,7 @@ const EventCard = ({ event }) => {
 
   const handleEdit = (e) => {
     e.stopPropagation();
+    setShowEditScreen(true);
     console.log("לא מנווט");
   };
 
@@ -32,6 +35,9 @@ const EventCard = ({ event }) => {
     <>
       {showDeleteScreen && (
         <ConfirmDelete event={event} onClose={setShowDeleteScreen} />
+      )}
+      {showEditScreen && (
+        <EventEdit event={event} onClose={setShowDeleteScreen} />
       )}
       <div className="EventCard" onClick={(e) => handleEventSelect(event)}>
         <div className="actions">

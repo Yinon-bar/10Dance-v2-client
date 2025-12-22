@@ -20,6 +20,8 @@ const SelectEvent = () => {
 
   useEffect(() => {
     getAllEvents();
+    setClearScreen(false);
+    console.log(clearScreen);
   }, [clearScreen]);
 
   return (

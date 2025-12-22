@@ -7,14 +7,15 @@ import ClearScreen from "./Context/ClearScreen";
 
 function App() {
   const [currentEvent, setCurrentEvent] = useState([]);
-  const [clearScreen, setClearScreen] = useState({
-    btnAdd: false,
-    btnEdit: false,
-  });
+  // const [clearScreen, setClearScreen] = useState({
+  //   btnAdd: false,
+  //   btnEdit: false,
+  //   btnDelete: false,
+  // });
+  const [clearScreen, setClearScreen] = useState(false);
 
   return (
     // ClearScreen context object:
-    // {btnAdd: false, btnEdit: false}
     <ClearScreen.Provider value={{ clearScreen, setClearScreen }}>
       {/* <AuthContext.Provider value={{ name: userName }}> */}
       <CurrentEvent.Provider

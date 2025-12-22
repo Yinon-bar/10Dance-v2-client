@@ -1,7 +1,7 @@
 .ConfirmDelete {
+  position: fixed;
   top: 0;
   right: 0;
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;

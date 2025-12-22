@@ -23,7 +23,7 @@ const ConfirmDelete = ({ event, onClose }) => {
         // setClearScreen({ ...clearScreen, btnEventAdd: false });
         setSuccessMessage("");
         setErrorMessage("");
-        setClearScreen({ ...clearScreen, clear: true });
+        setClearScreen(true);
         onClose();
       }, 2500);
     } catch (error) {
