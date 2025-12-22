@@ -16,8 +16,6 @@ import { useParams } from "react-router-dom";
 
 function Admin() {
   const { id: eventId } = useParams();
-
-  const [allEvents, setAllEvents] = useState([]);
   const [eventTable, setEventTable] = useState();
   const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
     useState(false);
@@ -102,7 +100,7 @@ function Admin() {
               </h3>
             </div>
             <div className="leftSection">
-              {eventTable.length > 0 ? (
+              {eventTable?.length > 0 ? (
                 <button
                   className="deleteEvent"
                   onClick={(e) => handleDelete(e)}
@@ -110,7 +108,7 @@ function Admin() {
                   <FaTrashAlt className="trash" size={25} /> &nbsp; מחיקת אירוע
                 </button>
               ) : null}
-              {eventTable.length > 0 ? <EventEdit /> : null}
+              {eventTable?.length > 0 ? <EventEdit /> : null}
             </div>
           </div>
           {loading && (
