@@ -4,18 +4,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 300px;
   height: 300px;
+  border-radius: 1rem 1rem 1.4rem 1.4rem;
+  cursor: pointer;
+}
+
+.EventCard:hover {
+  transform: scale(1.03);
+  transition: 0.2s;
 }
 
 .EventCard .logo {
   height: 70%;
   width: 100%;
-  background-color: aqua;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.EventCard .logo img {
+  width: 100%;
 }
 
 .EventCard .title {
   height: 30%;
   width: 100%;
-  background-color: blue;
+  background-color: var(--color-mainBlue);
+  border-radius: 0rem 0rem 1rem 1rem;
+}
+
+.EventCard .title h2 {
+  color: var(--color-textLight);
 }

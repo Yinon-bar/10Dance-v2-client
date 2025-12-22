@@ -13,11 +13,19 @@
   /* justify-content: space-between; */
 }
 
+.SelectEvent .container h1.title {
+  font-size: 2.4rem;
+  font-family: "Assistant", Arial, Helvetica, sans-serif;
+  color: var(--color-textLight);
+}
+
 .SelectEvent .eventsList {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2rem;
-  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
 }

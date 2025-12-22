@@ -25,7 +25,7 @@ function Login() {
       } else {
         setUserFromDb(resp.data);
         localStorage.setItem("User", JSON.stringify(resp.data.jwt));
-        navigate("/admin");
+        navigate("/select-event");
       }
     } catch (error) {
       console.log(error);
