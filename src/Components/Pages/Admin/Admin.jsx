@@ -4,7 +4,6 @@ import AttTable from "./AttTable/AttTable";
 import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
 import { IoPersonAdd } from "react-icons/io5";
-import CurrentEvent from "../../../Context/CurrentEventContext";
 import ClearScreen from "../../../Context/ClearScreen";
 import BounceLoader from "react-spinners/BounceLoader";
 import { api } from "../../../API/client";
@@ -18,7 +17,6 @@ function Admin() {
     useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
-  const { currentEvent, setCurrentEvent } = useContext(CurrentEvent);
   const { clearScreen, setClearScreen } = useContext(ClearScreen);
   const [showModal, setShowModal] = useState({
     editEventModal: false,
@@ -26,12 +24,6 @@ function Admin() {
     addEventModal: false,
     addAttendeeModal: false,
   });
-
-  const handleDelete = () => {
-    console.log(currentEvent);
-    setShowModal({ ...showModal, deleteEventModal: true });
-    // setClearScreen({ ...clearScreen, btnEventAdd: true });
-  };
 
   useEffect(() => {
     if (!eventId) return;
@@ -61,17 +53,15 @@ function Admin() {
           <h3></h3>
           <div className="buttons">
             <div className="rightSection">
-              {eventTable?.length > 0 ? (
-                <button
-                  className="btnAdd"
-                  onClick={() => {
-                    setClearScreen({ ...clearScreen, btnAdd: true });
-                  }}
-                >
-                  <IoPersonAdd size={30} color="#2A3D43" />
-                  הוספת נוכח
-                </button>
-              ) : null}
+              <button
+                className="btnAdd"
+                onClick={() => {
+                  setClearScreen({ ...clearScreen, btnAdd: true });
+                }}
+              >
+                <IoPersonAdd size={30} color="#2A3D43" />
+                הוספת נוכח
+              </button>
             </div>
             <div className="middleSection">
               <h3 className="eventTitle">
