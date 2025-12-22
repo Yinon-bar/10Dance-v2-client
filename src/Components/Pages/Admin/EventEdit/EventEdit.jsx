@@ -3,7 +3,7 @@ import "./EventEdit.css";
 import { BiSolidCalendarEdit } from "react-icons/bi";
 import { api } from "../../../../API/client";
 import { BarLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom";
+import ClearScreen from "../../../../Context/ClearScreen";
 
 const EventEdit = ({ event, onClose }) => {
   const [successMessage, setSuccessMessage] = useState("");
@@ -13,12 +13,11 @@ const EventEdit = ({ event, onClose }) => {
     title: event.title,
     institute: event.institute,
   });
-  const navigate = useNavigate();
+  const { clearScreen, setClearScreen } = useContext(ClearScreen);
 
   const handleAbort = (e) => {
     e.preventDefault();
     onClose();
-    // onClose(false);
   };
 
   const handleSubmit = (e) => {
@@ -28,13 +27,12 @@ const EventEdit = ({ event, onClose }) => {
 
   const updateEvent = async () => {
     try {
-      console.log(eventToUpdate);
-
       const resp = await api.put("/update-event.php", eventToUpdate);
       console.log(resp.data);
       setSuccessMessage(resp.data.message);
       setTimeout(() => {
-        navigate("/select-event");
+        setClearScreen(true);
+        onClose();
       }, 2000);
     } catch (error) {
       console.log(error.response.data.message);
@@ -99,11 +97,7 @@ const EventEdit = ({ event, onClose }) => {
           </>
         ) : null}
         <div className="btns">
-          <input
-            className="btn btn-primary submit"
-            type="submit"
-            value="אישור"
-          />
+          <input className="btn submit" type="submit" value="אישור" />
           <button className="btn btn-secondary" onClick={(e) => handleAbort(e)}>
             ביטול
           </button>

@@ -66,6 +66,14 @@
   text-align: center;
 }
 
+.EventEdit form .btns {
+  display: flex;
+  margin: 2rem;
+  width: 60%;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .EventEdit form .btns .btn.btn-secondary {
   color: var(--color-textLight);
   background-color: var(--color-bgDark);
@@ -76,7 +84,19 @@
   font-size: 1.5rem;
   font-weight: 600;
   width: 90px;
-  height: 48px;
+  height: 55px;
+  border-radius: 0.5rem;
+  margin: 0;
+  cursor: pointer;
+}
+
+.EventEdit form .btns input.btn.submit {
+  color: var(--color-textDark);
+  background-color: var(--color-green);
+  border: 2px solid var(--color-secondaryBlue);
+  font-weight: 600;
+  width: 90px;
+  height: 55px;
   border-radius: 0.5rem;
   margin: 0;
   cursor: pointer;
