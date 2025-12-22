@@ -13,6 +13,7 @@ import EventDelete from "./EventDelete/EventDelete";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmDelete from "./EventDelete/ConfirmDelete/ConfirmDelete";
 import { useParams } from "react-router-dom";
+import { BiSolidCalendarPlus } from "react-icons/bi";
 
 function Admin() {
   const { id: eventId } = useParams();
@@ -42,7 +43,7 @@ function Admin() {
       try {
         setLoading(true);
         const resp = await api.get("/get-all-attendees.php?tableId=" + eventId);
-        console.log(resp.data);
+        // console.log(resp.data);
         setEventTable(resp.data);
       } catch (error) {
         console.log(error.response.data.message);
@@ -75,6 +76,13 @@ function Admin() {
                   הוספת נוכח
                 </button>
               ) : null}
+            </div>
+            <div className="middleSection">
+              <h3 className="eventTitle">
+                {JSON.parse(localStorage.getItem("Current Event")).title}
+              </h3>
+            </div>
+            <div className="leftSection">
               {eventTable?.length > 0 && (
                 <div className="eventDetails">
                   <h4 className="totalAttendee">
@@ -93,14 +101,16 @@ function Admin() {
                   </h4>
                 </div>
               )}
-            </div>
-            <div className="middleSection">
-              <h3 className="eventTitle">
-                {JSON.parse(localStorage.getItem("Current Event")).title}
-              </h3>
-            </div>
-            <div className="leftSection">
-              {eventTable?.length > 0 ? (
+              {/* {eventTable?.length > 0 ? (
+                <button
+                  className="deleteEvent"
+                  onClick={(e) => handleDelete(e)}
+                >
+                  <BiSolidCalendarPlus className="addEvent" size={30} />
+                  &nbsp; יצירת אירוע חדש
+                </button>
+              ) : null} */}
+              {/* {eventTable?.length > 0 ? (
                 <button
                   className="deleteEvent"
                   onClick={(e) => handleDelete(e)}
@@ -108,7 +118,7 @@ function Admin() {
                   <FaTrashAlt className="trash" size={25} /> &nbsp; מחיקת אירוע
                 </button>
               ) : null}
-              {eventTable?.length > 0 ? <EventEdit /> : null}
+              {eventTable?.length > 0 ? <EventEdit /> : null} */}
             </div>
           </div>
           {loading && (

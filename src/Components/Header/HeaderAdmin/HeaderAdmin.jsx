@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../Context/AuthContext";
 import CurrentEvent from "../../../Context/CurrentEventContext";
 import { jwtDecode } from "jwt-decode";
+import { MdArrowForwardIos } from "react-icons/md";
+import { MdArrowBackIos } from "react-icons/md";
 
 function HeaderAdmin() {
   const { userFromDb, setUserFromDb } = useContext(AuthContext);
@@ -56,6 +58,10 @@ function HeaderAdmin() {
             </span>
           </h3>
           <div className="btn-group">
+            <NavLink className="btn btn-primary btnBack" to={"/select-event"}>
+              <MdArrowForwardIos className="back" size={30} />
+              בחירת אירוע
+            </NavLink>
             {isSuperAdmin && (
               <NavLink className="btn btn-primary" to={"../welcome/register"}>
                 הוספת מנהל
@@ -64,21 +70,12 @@ function HeaderAdmin() {
             <NavLink className="btn btn-primary" to={"/admin"}>
               למסך הבית
             </NavLink>
-            <NavLink className="btn btn-primary" to={"/new-event"}>
-              יצירת אירוע חדש
-            </NavLink>
-            <NavLink
-              className={
-                currentEvent?.length < 1
-                  ? "btn btn-primary disableLink"
-                  : "btn btn-primary"
-              }
-              to={"/client"}
-            >
-              למסך קבלת פנים
-            </NavLink>
             <NavLink className={"btn btn-primary"} to={"/about"}>
               אודות
+            </NavLink>
+            <NavLink className={"btn btn-primary btnBack"} to={"/client"}>
+              למסך קבלת פנים
+              <MdArrowBackIos className="forward" size={30} />
             </NavLink>
           </div>
         </div>

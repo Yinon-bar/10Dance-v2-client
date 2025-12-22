@@ -1,11 +1,45 @@
 .EventCard {
   background-color: var(--color-bgLight);
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 300px;
-  border-radius: 1rem 1rem 1.4rem 1.4rem;
+  border-radius: 1.4rem 1.4rem 2rem 2rem;
+  cursor: pointer;
+}
+
+.EventCard .actions {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.EventCard .actions button.btn-round.delete {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  border: none;
+  background-color: var(--color-mainBlue);
+  cursor: pointer;
+}
+
+.EventCard .actions button.btn-round.edit {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  background-color: var(--color-mainBlue);
   cursor: pointer;
 }
 
@@ -30,7 +64,7 @@
   height: 30%;
   width: 100%;
   background-color: var(--color-mainBlue);
-  border-radius: 0rem 0rem 1rem 1rem;
+  border-radius: 0rem 0rem 1.4rem 1.4rem;
 }
 
 .EventCard .title h2 {
