@@ -3,8 +3,9 @@ import "./AddModal.css";
 import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
 import { BarLoader } from "react-spinners";
+import EventAttendees from "../../../../Context/EventAttendeesContext";
 
-function AddModal() {
+function AddModal({ onClose }) {
   const [successMessage, setSuccessMessage] = useState("");
   const [newAttendee, setNewAttendee] = useState({
     tzId: "",
@@ -13,7 +14,7 @@ function AddModal() {
     institute: "",
     eventId: JSON.parse(localStorage.getItem("Current Event")).id,
   });
-  const { clearScreen, setClearScreen } = useContext(ClearScreen);
+  const { eventAttendees, setEventAttendees } = useContext(EventAttendees);
 
   const handleAddAttendee = (e) => {
     e.preventDefault();
@@ -22,16 +23,18 @@ function AddModal() {
 
   const handleAbort = (e) => {
     e.preventDefault();
-    setClearScreen(false);
-    // onClose();
+    onClose();
   };
 
   const createNewUser = async () => {
     try {
       const resp = await api.post("/create-new-attendee.php", newAttendee);
-      setSuccessMessage("הוספת נוכח הושלמה בהצלחה");
+      // console.log(resp.data);
+      setSuccessMessage(resp.data.message);
+      setEventAttendees([...eventAttendees, resp.data.data]);
       setTimeout(() => {
-        setClearScreen(false);
+        console.log(newAttendee);
+        onClose();
       }, 2500);
     } catch (error) {
       console.log(error);

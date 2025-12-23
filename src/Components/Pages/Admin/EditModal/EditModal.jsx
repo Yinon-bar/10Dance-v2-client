@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./EditModal.css";
-import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
+import EventAttendees from "../../../../Context/EventAttendeesContext";
 
 function EditModal(props) {
   const [message, setMessage] = useState("");
@@ -13,11 +13,11 @@ function EditModal(props) {
     institute: props.attendeeObj.institute,
     eventId: props.attendeeObj.event_id,
   });
-  const { clearScreen, setClearScreen } = useContext(ClearScreen);
+  const { eventAttendees, setEventAttendees } = useContext(EventAttendees);
 
   const handleAddAttendee = (e) => {
     e.preventDefault();
-    createNewUser();
+    updateAttendee();
   };
 
   const handleAbort = (e) => {
@@ -26,20 +26,29 @@ function EditModal(props) {
     // setClearScreen({ ...clearScreen, btnEdit: false });
   };
 
-  const createNewUser = async () => {
+  const updateAttendee = async () => {
+    console.log(attendeeToEdit);
+
     try {
-      const resp = await api.put("/create-new-attendee.php", attendeeToEdit);
-      // console.log(resp.data);
-      setMessage("עדכון נוכח הושלם בהצלחה");
+      const resp = await api.put("/update-attendee.php", attendeeToEdit);
+      console.log(resp.data);
+      setMessage(resp.data.message);
       setTimeout(() => {
+        console.log();
+        const updatedAttendee = resp.data.data[0];
+        setEventAttendees(
+          eventAttendees.map((attendeeToReplace) =>
+            updatedAttendee.id === attendeeToReplace.id
+              ? updatedAttendee
+              : attendeeToReplace
+          )
+        );
         props.onClose(true);
-      }, 2500);
+      }, 1500);
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div className="EditModal">

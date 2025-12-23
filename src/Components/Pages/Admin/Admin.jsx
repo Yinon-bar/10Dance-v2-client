@@ -4,19 +4,17 @@ import AttTable from "./AttTable/AttTable";
 import HeaderAdmin from "../../Header/HeaderAdmin/HeaderAdmin";
 import AddModal from "./AddModal/AddModal";
 import { IoPersonAdd } from "react-icons/io5";
-import ClearScreen from "../../../Context/ClearScreen";
 import BounceLoader from "react-spinners/BounceLoader";
 import { api } from "../../../API/client";
 import { useParams } from "react-router-dom";
+import EventAttendees from "../../../Context/EventAttendeesContext";
 
 function Admin() {
   const { id: eventId } = useParams();
-  const [eventTable, setEventTable] = useState();
-  const [rerenderTableAfterDelete, setRerenderTableAfterDelete] =
-    useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
-  const { clearScreen, setClearScreen } = useContext(ClearScreen);
+  const { eventAttendees, setEventAttendees } = useContext(EventAttendees);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (!eventId) return;
@@ -25,7 +23,8 @@ function Admin() {
         setLoading(true);
         const resp = await api.get("/get-all-attendees.php?tableId=" + eventId);
         // console.log(resp.data);
-        setEventTable(resp.data);
+        // setEventTable(resp.data);
+        setEventAttendees(resp.data);
       } catch (error) {
         console.log(error.response.data.message);
       } finally {
@@ -33,11 +32,18 @@ function Admin() {
       }
     };
     fetchAttendeesByEventId();
-  }, [eventId, clearScreen]);
+  }, [eventId]);
+
+  useEffect(() => {
+    // כדי לכבות את הגלילה כשהמודל פתוח
+    showModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [showModal]);
 
   return (
     <div className="Admin">
-      {clearScreen && <AddModal />}
+      {showModal && <AddModal onClose={() => setShowModal(false)} />}
       <HeaderAdmin />
       <div className="container">
         <div className="content">
@@ -48,7 +54,7 @@ function Admin() {
               <button
                 className="btnAdd"
                 onClick={() => {
-                  setClearScreen(true);
+                  setShowModal(true);
                 }}
               >
                 <IoPersonAdd size={30} color="#2A3D43" />
@@ -61,17 +67,17 @@ function Admin() {
               </h3>
             </div>
             <div className="leftSection">
-              {eventTable?.length > 0 && (
+              {eventAttendees?.length > 0 && (
                 <div className="eventDetails">
                   <h4 className="totalAttendee">
                     סה"כ רשומים לאירוע זה: &nbsp;
-                    <span className="totalCount">{eventTable?.length}</span>
+                    <span className="totalCount">{eventAttendees?.length}</span>
                   </h4>
                   <h4 className="totalArrived">
                     מתוכם הגיעו: &nbsp;
                     <span className="arrived">
                       {
-                        eventTable?.filter(
+                        eventAttendees?.filter(
                           (attendee) => attendee.is_arrive === 1
                         ).length
                       }
@@ -88,11 +94,8 @@ function Admin() {
               size={100}
             />
           )}
-          {eventTable && msg.length < 1 && (
-            <AttTable
-              attendee={eventTable}
-              rerenderTable={setRerenderTableAfterDelete}
-            />
+          {eventAttendees && msg.length < 1 && (
+            <AttTable attendee={eventAttendees} />
           )}
           {msg && <h2 className="noRecords">{msg}</h2>}
         </div>

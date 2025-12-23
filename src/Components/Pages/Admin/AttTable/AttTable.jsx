@@ -4,17 +4,14 @@ import { FaCheckCircle } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import EditModal from "../EditModal/EditModal";
-import ClearScreen from "../../../../Context/ClearScreen";
 import { api } from "../../../../API/client";
-import { useNavigate } from "react-router-dom";
+import EventAttendees from "../../../../Context/EventAttendeesContext";
 
 function AttTable(props) {
   const [message, setMessage] = useState("");
-  const [isEditAttendee, setIsEditAttendee] = useState(false);
   const [attendeeObj, setAttendeeObj] = useState([]);
-  const { clearScreen, setClearScreen } = useContext(ClearScreen);
   const [showEditModal, setShowEditModal] = useState(false);
-  const navigate = useNavigate();
+  const { eventAttendees, setEventAttendees } = useContext(EventAttendees);
 
   const handleDelete = (attendeeObj) => {
     removeAttendee(attendeeObj);
@@ -23,7 +20,6 @@ function AttTable(props) {
   const handleEdit = (attendeeObj) => {
     setShowEditModal(true);
     setAttendeeObj(attendeeObj);
-    editAttendee(attendeeObj);
   };
 
   const removeAttendee = async (attendeeToDelte) => {
@@ -34,33 +30,24 @@ function AttTable(props) {
       setMessage(resp.data);
       setTimeout(() => {
         setMessage("");
-        navigate("/admin/91");
+        const newEventAttendees = eventAttendees.filter(
+          (attendee) => attendee.id !== attendeeToDelte.id
+        );
+        setEventAttendees(newEventAttendees);
+        // navigate("/admin/91");
         // props.rerenderTable(true);
-      }, 3000);
+      }, 1000);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const editAttendee = async (attendeeToEdit) => {
-    // console.log(attendeeToEdit);
-    setIsEditAttendee(true);
-    // try {
-    //   const resp = await axios.delete(
-    //     `http://localhost/10Dance-V2-php-server/4-controllers/delete-attendee.php?table_name=dec_geo&id=${attendeeToDelte.id}`
-    //   );
-    //   console.log(resp);
-    //   setMessage(resp.data);
-    //   setTimeout(() => {
-    //     setMessage("");
-    //     props.rerenderTable(true);
-    //   }, 3000);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  };
-
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // כדי לכבות את הגלילה כשהמודל פתוח
+    showEditModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [showEditModal]);
 
   if (message) {
     return (
@@ -79,7 +66,10 @@ function AttTable(props) {
   return (
     <div className="AttTable">
       {showEditModal && (
-        <EditModal attendeeObj={attendeeObj} onClose={setShowEditModal} />
+        <EditModal
+          attendeeObj={attendeeObj}
+          onClose={() => setShowEditModal(false)}
+        />
       )}
       <table>
         <thead>

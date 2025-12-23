@@ -67,7 +67,12 @@ function HeaderAdmin() {
                 הוספת מנהל
               </NavLink>
             )}
-            <NavLink className="btn btn-primary" to={"/admin"}>
+            <NavLink
+              className="btn btn-primary"
+              to={`/admin/${
+                JSON.parse(localStorage.getItem("Current Event")).id
+              }`}
+            >
               למסך הבית
             </NavLink>
             <NavLink className={"btn btn-primary"} to={"/about"}>
