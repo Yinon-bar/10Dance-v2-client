@@ -7,6 +7,8 @@ import Login from "../Pages/Welcome/Login/Login";
 import Register from "../Pages/Welcome/Register/Register";
 import About from "../Pages/About/About";
 import SelectEvent from "../Pages/SelectEvent/SelectEvent";
+import ForgotPassword from "../Pages/Welcome/ForgotPassword/ForgotPassword";
+import ResetPassword from "../Pages/Welcome/ResetPassword/ResetPassword";
 
 function Routing() {
   return (
@@ -20,6 +22,8 @@ function Routing() {
       <Route path="welcome" element={<Welcome />}>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="reset-password" element={<ResetPassword />} />
       </Route>
       <Route path="*" element={<h1>דף לא נמצא</h1>} />
     </Routes>
