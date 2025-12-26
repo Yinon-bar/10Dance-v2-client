@@ -72,8 +72,8 @@ function Client() {
           </div>
         )}
         {printAtt && (
-          <QZStatus />
-          // <PrintAtt attendee={attendee[0]} onDone={() => setPrintAtt(false)} />
+          // <QZStatus />
+          <PrintAtt attendee={attendee[0]} onDone={() => setPrintAtt(false)} />
         )}
         <div className="title-section">
           <h1 className="title welcome">ברוכים הבאים</h1>
